@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('admin_id');
             $table->string('title');
-            $table->string('content');
-            $table->string('time');
+            $table->text('content');
+            $table->dateTime('time');
             $table->timestamps();
         });
     }

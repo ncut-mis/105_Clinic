@@ -15,13 +15,11 @@ class CreateSectionsTable extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('medicalrecord_id');
-            $table->unsignedInteger('examination_id');
-            $table->unsignedInteger('doctor_id');
             $table->unsignedInteger('clinic_id');
+            $table->unsignedInteger('staff_id');
             $table->string('week');
-            $table->string('section');
-            $table->string('date');
+            $table->text('section');
+            $table->date('date');
             $table->timestamps();
         });
     }

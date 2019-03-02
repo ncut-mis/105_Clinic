@@ -14,11 +14,12 @@ class CreateRegistersTable extends Migration
     public function up()
     {
         Schema::create('registers', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('section_id');
-            $table->unsignedInteger('medicalrecord_id');
-            $table->string('datetime');
-            $table->string('number');
-            $table->string('queue');
+            $table->unsignedInteger('patient_id');
+            $table->dateTime('datetime');
+            $table->unsignedInteger('number');
+            $table->float('sequence');
             $table->timestamps();
         });
     }

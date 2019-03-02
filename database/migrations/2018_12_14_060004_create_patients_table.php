@@ -16,15 +16,12 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('birthday');
-            $table->string('number');
+            $table->date('birthday');
             $table->string('phone');
             $table->string('address');
-            $table->string('liasion');
-            $table->string('liasion_phone');
             $table->string('email')->unique();
-            $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
