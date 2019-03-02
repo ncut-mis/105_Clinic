@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Doctor;
+use App\ExamineMedicine;
+use App\Medicine;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -14,7 +17,12 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        //
+        $exams = Doctor::orderBy('id')->get();
+        $names = Patient::orderBy('id')->get();
+        $medicines = Medicine::orderBy('id')->get();
+        $ExamineMedicines = ExamineMedicine::orderBy('id')->get();
+        $data=['exams' => $exams,'names' => $names,'medicines' => $medicines,'ExamineMedicines' => $ExamineMedicines];
+        return view('Examinations',$data);
     }
 
     /**
@@ -35,7 +43,11 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->user()->medicines()->create([
+            'medicines' => $request->medicines,
+            'note1' => $request->note1,
+            'note2' => $request->note2,
+        ]);
     }
 
     /**
