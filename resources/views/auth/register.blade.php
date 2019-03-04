@@ -68,22 +68,6 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="liaison" class="col-md-4 col-form-label text-md-right">{{ __('聯絡人') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="liaison" type="text" class="form-control{{ $errors->has('contact_person') ? ' is-invalid' : '' }}" name="liaison" required >
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="liaison_phone" class="col-md-4 col-form-label text-md-right">{{ __('聯絡人電話') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="liaison_phone" type="text" class="form-control{{ $errors->has('cp_phone') ? ' is-invalid' : '' }}"  name="liaison_phone"  required >
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('信箱') }}</label>
 
                                 <div class="col-md-6">
