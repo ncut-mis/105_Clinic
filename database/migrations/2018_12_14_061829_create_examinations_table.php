@@ -15,14 +15,12 @@ class CreateExaminationsTable extends Migration
     {
         Schema::create('examinations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('medicalrecord_id');
-            $table->unsignedInteger('section_id');
+            $table->unsignedInteger('patient_id');
             $table->unsignedInteger('clinic_id');
-            $table->unsignedInteger('doctor_id');
-            $table->unsignedInteger('medicine_id');
-            $table->string('symptom');
-            $table->string('time');
-            $table->string('note');
+            $table->unsignedInteger('staff_id');
+            $table->text('symptom');
+            $table->date('date');
+            $table->text('note');
             $table->timestamps();
         });
     }

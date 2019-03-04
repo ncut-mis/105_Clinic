@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Doctor;
-use App\ExamineMedicine;
-use App\Medicine;
-use App\Patient;
+use App\ClinicMedicine;
 use Illuminate\Http\Request;
 
-class DoctorController extends Controller
+class ClinicMedicineController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +14,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $exams = Doctor::orderBy('id')->get();
-        $names = Patient::orderBy('id')->get();
-        $medicines = Medicine::orderBy('id')->get();
-        $ExamineMedicines = ExamineMedicine::orderBy('id')->get();
-        $data=['exams' => $exams,'names' => $names,'medicines' => $medicines,'ExamineMedicines' => $ExamineMedicines];
-        return view('Examinations',$data);
+        //
     }
 
     /**
@@ -43,20 +35,16 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->user()->medicines()->create([
-            'medicines' => $request->medicines,
-            'note1' => $request->note1,
-            'note2' => $request->note2,
-        ]);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Doctor $doctor
+     * @param  \App\ClinicMedicine  $clinicMedicine
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
+    public function show(ClinicMedicine $clinicMedicine)
     {
         //
     }
@@ -64,10 +52,10 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Doctor $doctor
+     * @param  \App\ClinicMedicine  $clinicMedicine
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit(ClinicMedicine $clinicMedicine)
     {
         //
     }
@@ -76,10 +64,10 @@ class DoctorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Doctor $doctor
+     * @param  \App\ClinicMedicine  $clinicMedicine
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(Request $request, ClinicMedicine $clinicMedicine)
     {
         //
     }
@@ -87,10 +75,10 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Doctor $doctor
+     * @param  \App\ClinicMedicine  $clinicMedicine
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(ClinicMedicine $clinicMedicine)
     {
         //
     }
