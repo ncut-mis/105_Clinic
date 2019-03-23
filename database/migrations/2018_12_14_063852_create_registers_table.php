@@ -16,10 +16,9 @@ class CreateRegistersTable extends Migration
         Schema::create('registers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('section_id');
-            $table->unsignedInteger('patient_id');
-            $table->dateTime('datetime');
+            $table->unsignedInteger('member_id');
             $table->unsignedInteger('number');
-            $table->float('sequence');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

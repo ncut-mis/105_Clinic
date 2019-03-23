@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExaminationsTable extends Migration
+class CreateAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateExaminationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('examinations', function (Blueprint $table) {
+        Schema::create('areas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('patient_id');
-            $table->unsignedInteger('clinic_id');
-            $table->unsignedInteger('staff_id');
-            $table->text('symptom');
-            $table->date('date');
-            $table->text('note');
+            $table->string('area');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateExaminationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('examination');
+        Schema::dropIfExists('areas');
     }
 }

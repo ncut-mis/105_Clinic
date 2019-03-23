@@ -15,10 +15,14 @@ class CreateClinicsTable extends Migration
     {
         Schema::create('clinics', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('area_id');
             $table->string('name');
             $table->string('tel');
             $table->string('address');
             $table->string('photo');
+            $table->text('per_week_sections');
+            $table->unsignedInteger('reservable_day');
             $table->timestamps();
         });
     }

@@ -16,9 +16,10 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('section_id');
-            $table->unsignedInteger('patient_id');
-            $table->date('date');
+            $table->unsignedInteger('member_id');
             $table->unsignedInteger('number');
+            $table->dateTime('reminding_time');
+            $table->unsignedInteger('reminding_no');
             $table->timestamps();
         });
     }
