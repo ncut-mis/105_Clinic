@@ -10,7 +10,6 @@ use \App\Clinic as ClinicEloquent;
 
 class Doctor extends Model
 {
-    protected $table ='doctors';
 
     public function section()
     {

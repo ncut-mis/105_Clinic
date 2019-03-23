@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Examination;
+use App\Prescription;
 use Illuminate\Http\Request;
 
-class ExaminationController extends Controller
+class PrescriptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ExaminationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Examination $examination
+     * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function show(Examination $examination)
+    public function show(Prescription $prescription)
     {
         //
     }
@@ -52,10 +52,10 @@ class ExaminationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Examination $examination
+     * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function edit(Examination $examination)
+    public function edit(Prescription $prescription)
     {
         //
     }
@@ -64,10 +64,10 @@ class ExaminationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Examination $examination
+     * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Examination $examination)
+    public function update(Request $request, Prescription $prescription)
     {
         //
     }
@@ -75,11 +75,12 @@ class ExaminationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Examination $examination
+     * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Examination $examination)
+    public function destroy($id)
     {
-        //
+        Prescription::destroy($id);
+        return redirect()->route('Examinations.index');
     }
 }

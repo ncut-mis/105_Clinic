@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ExamineMedicine;
+use App\Position;
 use Illuminate\Http\Request;
 
-class ExamineMedicineController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ExamineMedicineController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ExamineMedicine  $examineMedicine
+     * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function show(ExamineMedicine $examineMedicine)
+    public function show(Position $position)
     {
         //
     }
@@ -52,10 +52,10 @@ class ExamineMedicineController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ExamineMedicine  $examineMedicine
+     * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function edit(ExamineMedicine $examineMedicine)
+    public function edit(Position $position)
     {
         //
     }
@@ -64,10 +64,10 @@ class ExamineMedicineController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ExamineMedicine  $examineMedicine
+     * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExamineMedicine $examineMedicine)
+    public function update(Request $request, Position $position)
     {
         //
     }
@@ -75,10 +75,10 @@ class ExamineMedicineController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ExamineMedicine  $examineMedicine
+     * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExamineMedicine $examineMedicine)
+    public function destroy(Position $position)
     {
         //
     }

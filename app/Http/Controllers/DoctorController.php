@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Diagnosis;
 use App\Doctor;
+use App\Examination;
 use App\ExamineMedicine;
 use App\Medicine;
+use App\Member;
 use App\Patient;
+use App\Prescription;
+use App\Recipe;
+use App\Staff;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -17,11 +23,18 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $exams = Doctor::orderBy('id')->get();
-        $names = Patient::orderBy('id')->get();
+        $exams =Diagnosis::orderBy('id')->get();
+        $names = Member::orderBy('id')->get();
         $medicines = Medicine::orderBy('id')->get();
-        $ExamineMedicines = ExamineMedicine::orderBy('id')->get();
-        $data=['exams' => $exams,'names' => $names,'medicines' => $medicines,'ExamineMedicines' => $ExamineMedicines];
+        $ExamineMedicines = Prescription::orderBy('id')->get();
+        $records = Diagnosis::orderBy('id')->get();
+        $staffs = Staff::orderBy('id')->get();
+        $recipes = Prescription::orderBy('id')->get();
+        $prescriptions = Prescription::orderBy('id')->get();
+        $doctors = Doctor::orderBy('id')->get();
+        $data=['exams' => $exams,'names' => $names,'medicines' => $medicines
+            ,'ExamineMedicines' => $ExamineMedicines,'records' => $records,
+            'staffs' => $staffs,'recipes' => $recipes,'prescriptions'=> $prescriptions,'doctors'=> $doctors];
         return view('Examinations',$data);
     }
 
@@ -43,11 +56,13 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->user()->medicines()->create([
-            'medicines' => $request->medicines,
-            'note1' => $request->note1,
-            'note2' => $request->note2,
-        ]);
+        Prescription::create([
+        'diagnosis_id' => $request->record,
+        'medicine_id' => $request->medicine_id,
+         'dosage' => $request->dosage,
+         'note' => $request->note,
+    ]);
+        return redirect()->route('Examinations.index');
     }
 
     /**
@@ -92,6 +107,6 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
-        //
+
     }
 }
