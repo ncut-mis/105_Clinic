@@ -3,44 +3,40 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\Section as SectionEloquent;
-use \App\Doctor as DoctorEloquent;
-use \App\Medicine as MedicineEloquent;
-use \App\Examination as ExaminationEloquent;
-use \App\Staff as StaffEloquent;
-use \App\Announcement as AnnouncementEloquent;
+use App\User as Staff;
+
 
 class Clinic extends Model
 {
     protected $table ='clinics';
 
-    public function section()
+    public function sections()
     {
-        return $this->hasMany(SectionEloquent::class);
+        return $this->hasMany(Section::class);
     }
 
-    public function doctor()
+    public function doctors()
     {
-        return $this->hasMany(DoctorEloquent::class);
+        return $this->hasMany(Doctor::class);
     }
 
-    public function medicine()
+    public function medicines()
     {
-        return $this->hasMany(MedicineEloquent::class);
+        return $this->hasMany(Medicine::class);
     }
 
-    public function examination()
+    public function diagnoses()
     {
-        return $this->hasMany(ExaminationEloquent::class);
+        return $this->hasMany(Diagnosis::class);
     }
 
     public function staff()
     {
-        return $this->hasMany(StaffEloquent::class);
+        return $this->hasMany(Staff::class);
     }
 
-    public function announcement()
+    public function announcements()
     {
-        return $this->hasMany(AnnouncementEloquent::class);
+        return $this->hasMany(Announcement::class);
     }
 }

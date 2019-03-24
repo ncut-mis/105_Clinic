@@ -3,38 +3,34 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\Reservation as ReservationEloquent;
-use \App\Register as RegisterEloquent;
-use \App\Examination as ExaminationEloquent;
-use \App\Doctor as DoctorEloquent;
-use \App\Clinic as ClinicEloquent;
+
 
 class Section extends Model
 {
     protected $table ='sections';
 
-    public function reservation()
+    public function reservations()
     {
-        return $this->hasMany(ReservationEloquent::class);
+        return $this->hasMany(Reservation::class);
     }
 
-    public function register()
+    public function registers()
     {
-        return $this->hasMany(RegisterEloquent::class);
+        return $this->hasMany(Register::class);
     }
 
-    public function examination()
+    public function diagnoses()
     {
-        return $this->hasMany(ExaminationEloquent::class);
+        return $this->hasMany(Diagnosis::class);
     }
 
     public function doctor()
     {
-        return $this->belongsTo(DoctorEloquent::class);
+        return $this->belongsTo(Doctor::class);
     }
 
     public function clinic()
     {
-        return $this->belongsTo(ClinicEloquent::class);
+        return $this->belongsTo(Clinic::class);
     }
 }

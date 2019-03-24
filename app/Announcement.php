@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\Clinic as ClinicEloquent;
+
 
 class Announcement extends Model
 {
@@ -11,6 +11,6 @@ class Announcement extends Model
 
     public function clinic()
     {
-        return $this->belongsTo(ClinicEloquent::class);
+        return $this->belongsTo(Clinic::class);
     }
 }

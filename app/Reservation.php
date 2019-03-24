@@ -10,13 +10,13 @@ class Reservation extends Model
 {
     protected $table ='reservations';
 
-    public function patient()
+    public function member()
     {
-        return $this->belongsTo(PatientEloquent::class);
+        return $this->belongsTo(Member::class);
     }
 
     public function section()
     {
-        return $this->belongsTo(SectionEloquent::class);
+        return $this->belongsTo(Section::class);
     }
 }

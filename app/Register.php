@@ -3,20 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\Patient as PatientEloquent;
-use \App\Section as SectionEloquent;
+
 
 class Register extends Model
 {
     protected $table ='registers';
 
-    public function patient()
+    public function member()
     {
-        return $this->belongsTo(PatientEloquent::class);
+        return $this->belongsTo(Member::class);
     }
 
     public function section()
     {
-        return $this->belongsTo(SectionEloquent::class);
+        return $this->belongsTo(Section::class);
     }
 }
