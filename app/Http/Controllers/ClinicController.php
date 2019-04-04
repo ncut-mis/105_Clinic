@@ -12,6 +12,11 @@ class ClinicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function home()
+    {
+        return view('clinic.home');
+    }
+
     public function index()
     {
         //

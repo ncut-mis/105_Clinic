@@ -20,4 +20,5 @@ Route::get('/home', function () {
 });
 
 Route::get('/examination', 'DoctorController@index');
-Route::post('/examination/store', 'DoctorController@store');
+Route::get('/clinic/home', 'ClinicController@home');
+Route::get('/doctor/home', 'DoctorController@home');

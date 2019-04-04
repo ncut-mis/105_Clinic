@@ -21,6 +21,11 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function home()
+    {
+        return view('doctor.home');
+    }
+
     public function index()
     {
         $exams =Diagnosis::orderBy('id')->get();
@@ -53,7 +58,7 @@ class DoctorController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     */  
     public function store(Request $request)
     {
         Prescription::create([
