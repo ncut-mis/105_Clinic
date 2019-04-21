@@ -24,4 +24,7 @@ Route::get('/clinic/home',['as' => 'clinic.home', 'uses' =>'ClinicController@hom
 Route::get('/doctor/home', 'DoctorController@home');
 Route::get('/clinic/staff/create'  , ['as' => 'clinic.addstaff', 'uses' => 'StaffController@create']);
 Route::post('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'StaffController@store']);
+Route::get('/clinic/doctors'  , ['as' => 'clinic.doctors', 'uses' => 'ClinicController@doctors']);
+Route::get('/clinic/doctors/{doctor}/profile/'  , ['as' => 'clinic.profile', 'uses' => 'DoctorController@profile']);
+
 

@@ -9,6 +9,7 @@ use App\ExamineMedicine;
 use App\Medicine;
 use App\Member;
 use App\Patient;
+use App\PerWeekSection;
 use App\Prescription;
 use App\Recipe;
 use App\Staff;
@@ -24,6 +25,13 @@ class DoctorController extends Controller
     public function home()
     {
         return view('doctor.home');
+    }
+
+    public function profile(Doctor $doctor)
+    {
+        $per_week_sections=PerWeekSection::orderBy('id')->get();
+        $data = ['doctor' => $doctor,'per_week_sections' => $per_week_sections];
+        return view('clinic.profile',$data);
     }
 
     public function index()

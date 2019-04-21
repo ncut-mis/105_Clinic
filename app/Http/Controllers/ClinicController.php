@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Clinic;
 use Illuminate\Http\Request;
+use Auth;
 
 class ClinicController extends Controller
 {
@@ -15,6 +16,13 @@ class ClinicController extends Controller
     public function home()
     {
         return view('clinic.home');
+    }
+
+    public function doctors()
+    {
+        $doctors=auth()->user()->clinic->doctors;
+        $staffs=auth()->user()->clinic->staff;
+        return view('clinic.doctors',['doctors'=>$doctors,'staffs'=>$staffs]);
     }
 
     public function index()

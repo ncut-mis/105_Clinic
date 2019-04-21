@@ -13,6 +13,15 @@
     <link href="{{ asset('plugins/morrisjs/morris.css') }}" rel="stylesheet" />
     <!-- Swift Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('css/themes/all-themes.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet"><!-- addstaff -->
+    <!-- Dropzone Css -->
+    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{ asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
+    <!-- Wait Me Css -->
+    <link href="{{ asset('plugins/waitme/waitMe.css') }}" rel="stylesheet" />
+    <!-- Bootstrap Select Css -->
+    <link href="{{ asset('plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
 </head>
 
 <body class="theme-cyan">
@@ -263,18 +272,18 @@
                 </li>
                 <?php $URL=$_SERVER['REQUEST_URI'];?>
                 @if($URL==='/clinic/doctors')
-                    <li class="active open"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span><font face="微軟正黑體"><strong>醫生管理</strong></font></span> </a>
+                    <li class="active open"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span><font face="微軟正黑體"><strong>診所人員管理</strong></font></span> </a>
                     <ul class="ml-menu">
                         <li class="active"><a href="{{ route('clinic.doctors') }}"><font face="微軟正黑體"><strong>所有醫生</strong></font></a></li>
-                        <li><a href="add-doctor.html">Add Doctor</a></li>
+                        <li><a href="{{ route('clinic.addstaff') }}"><font face="微軟正黑體"><strong>新增診所人員</strong></font></a></li>
 
                     </ul>
                 </li>
                     @else
-                    <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span><font face="微軟正黑體"><strong>醫生管理</strong></font></span> </a>
+                    <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span><font face="微軟正黑體"><strong>診所人員管理</strong></font></span> </a>
                         <ul class="ml-menu">
                             <li><a href="{{ route('clinic.doctors') }}"><font face="微軟正黑體"><strong>所有醫生</strong></font></a></li>
-                            <li><a href="add-doctor.html">Add Doctor</a></li>
+                            <li><a href="{{ route('clinic.addstaff') }}"><font face="微軟正黑體"><strong>新增診所人員</strong></font></a></li>
 
                         </ul>
                     </li>
@@ -516,5 +525,12 @@
 <script src="{{ asset('plugins/chartjs/Chart.bundle.min.js') }}"></script> <!-- Chart Plugins Js -->
 <script src="{{ asset('js/pages/index.js') }}"></script>
 <script src="{{ asset('js/pages/charts/sparkline.min.js') }}"></script>
+<!-- addstaff -->
+<script src="{{ asset('plugins/autosize/autosize.js') }}"></script> <!-- Autosize Plugin Js -->
+<script src="{{ asset('plugins/momentjs/moment.js') }}"></script> <!-- Moment Plugin Js -->
+<script src="{{ asset('plugins/dropzone/dropzone.js') }}"></script> <!-- Dropzone Plugin Js -->
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+<script src="{{ asset('js/pages/forms/basic-form-elements.js') }}"></script>
 </body>
 </html>
