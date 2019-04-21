@@ -20,5 +20,8 @@ Route::get('/home', function () {
 });
 
 Route::get('/examination', 'DoctorController@index');
-Route::get('/clinic/home', 'ClinicController@home');
+Route::get('/clinic/home',['as' => 'clinic.home', 'uses' =>'ClinicController@home']);
 Route::get('/doctor/home', 'DoctorController@home');
+Route::get('/clinic/staff/create'  , ['as' => 'clinic.addstaff', 'uses' => 'StaffController@create']);
+Route::post('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'StaffController@store']);
+

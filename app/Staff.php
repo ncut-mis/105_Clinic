@@ -8,11 +8,16 @@ class Staff extends Model
 {
     protected $table ='staff';
     protected $fillable = [
-        'name', 'email', 'password',
+        'clinic_id', 'position_id', 'name', 'email', 'password','created_at'
     ];
 
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
+    }
+
+    public function position()
+    {
+        return $this->hasOne(Position::class);
     }
 }

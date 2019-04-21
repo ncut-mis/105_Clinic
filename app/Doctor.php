@@ -9,6 +9,9 @@ use App\User as Staff;
 
 class Doctor extends Model
 {
+    protected $fillable = [
+        'clinic_id', 'staff_id', 'clinic_date',
+    ];
 
     public function sections()
     {
