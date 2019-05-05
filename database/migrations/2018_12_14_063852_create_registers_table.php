@@ -19,6 +19,7 @@ class CreateRegistersTable extends Migration
             $table->unsignedInteger('member_id');
             $table->unsignedInteger('number');
             $table->integer('status')->default(0);
+            $table->string('note');
             $table->timestamps();
         });
     }
