@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Medicine;
+use App\Repositories\MedicineRepository;
 use Illuminate\Http\Request;
-
+//use Auth;
+//use App\Http\Requests;
 class MedicineController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $medicines,$clinic_id;
+    public function index(Request $request)
     {
-        //
+        $medicines = Medicine::where('clinic_id', Auth::user()->clinic->id)->get(); //不行
+
+
+        return view('medicine', [
+            'medicines' => $medicines,
+        ]);
+//        $medicines=auth()->user()->medicines;
+
+//        return view('medicine');
     }
 
     /**
@@ -35,7 +41,14 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'medicine' => 'required|max:255',
+        ]);
+
+        auth()->user()->medicines()->create([
+            'medicine' => $request->medicine,
+        ]);
+        return redirect('/medicines');
     }
 
     /**
@@ -78,8 +91,16 @@ class MedicineController extends Controller
      * @param  \App\Medicine $medicine
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Medicine $medicine)
+    public function destroy(Request $request, Medicine $medicine)
     {
-        //
+//        $this->authorize('destroy', $medicine);
+//        $medicine->delete();
+//        return redirect('/medicines');
     }
+
+    public function __construct(MedicineRepository $medicines)
+    {
+        $this->middleware('auth');
+    }
+
 }

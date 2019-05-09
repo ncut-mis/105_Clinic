@@ -27,4 +27,6 @@ Route::post('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'StaffControll
 Route::get('/clinic/doctors'  , ['as' => 'clinic.doctors', 'uses' => 'ClinicController@doctors']);
 Route::get('/clinic/doctors/{doctor}/profile/'  , ['as' => 'clinic.profile', 'uses' => 'DoctorController@profile']);
 
-
+Route::get('/medicine', 'MedicineController@index');
+Route::post('/medicine', 'MedicineController@store');
+Route::delete('/medicine/{medicine}', 'MedicineController@destroy');
