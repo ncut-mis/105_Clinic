@@ -80,13 +80,14 @@
             <tr>
                 <th>藥物名稱</th>
                 <th>備註</th>
-
             </tr>
             </thead>
             <tbody>
-
-
-
+            @foreach($medicines as $medicine)
+            <tr>
+                <th>{{$medicine->medicine}}</th>
+            </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
