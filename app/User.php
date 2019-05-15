@@ -28,12 +28,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function medicines()
+    
+    public function position()
     {
-        return $this->hasMany(ExamineMedicine::class);
+        return $this->hasOne(Position::class);
     }
+
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
+    }
+
+    public function medicines()
+    {
+        return $this->hasMany(ExamineMedicine::class);
     }
 }
