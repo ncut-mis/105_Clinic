@@ -9,6 +9,10 @@ class Register extends Model
 {
     protected $table ='registers';
 
+    protected $fillable =[
+        'section_id', 'member_id', 'number','status','note','created_at',
+    ];
+
     public function member()
     {
         return $this->belongsTo(Member::class);
