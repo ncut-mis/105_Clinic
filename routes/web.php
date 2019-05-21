@@ -28,6 +28,11 @@ Route::get('/clinic/doctors'  , ['as' => 'clinic.doctors', 'uses' => 'ClinicCont
 Route::get('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'ClinicController@staff']);
 Route::get('/clinic/doctors/{doctor}/profile/'  , ['as' => 'clinic.profile', 'uses' => 'DoctorController@profile']);
 
+Route::get('/register/home',['as' => 'register.home', 'uses' =>'RegisterController@home']);
+Route::get('/register/create',['as' => 'register.create', 'uses' =>'RegisterController@create']);
+Route::get('/register/edit',['as' => 'register.edit', 'uses' =>'RegisterController@edit']);
+Route::post('/register'      ,['as' => 'register.store', 'uses' =>'RegisterController@store']);
+
 Route::get('/medicine',['as' => 'medicine.index', 'uses' =>  'MedicineController@index']);
 Route::post('/medicine/store', ['as' => 'medicine.store', 'uses' => 'MedicineController@store']);
 Route::delete('/medicine/{medicine}', 'MedicineController@destroy');

@@ -264,10 +264,11 @@
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li><a href="{{ route('clinic.home') }}"><i class="zmdi zmdi-home"></i><span><font face="微軟正黑體"><strong>首頁</strong></font></span></a></li>
+                <li><a href="{{ route('medicine.index') }}"><i class="zmdi zmdi-medicine"></i><span><font face="微軟正黑體"><strong>藥物管理</strong></font></span></a></li>
                 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span><font face="微軟正黑體"><strong>預約管理</strong></font></span> </a>
                     <ul class="ml-menu">
                         <li><a href="doctor-schedule.html">Doctor Schedule</a></li>
-                        <li><a href="book-appointment.html">Book Appointment</a></li>
+                        <li><a href="{{ route('register.home') }}">預約/掛號</a></li>
                     </ul>
                 </li>
                 <?php $URL=$_SERVER['REQUEST_URI'];?>
