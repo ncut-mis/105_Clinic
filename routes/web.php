@@ -27,6 +27,9 @@ Route::post('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'StaffControll
 Route::get('/clinic/doctors'  , ['as' => 'clinic.doctors', 'uses' => 'ClinicController@doctors']);
 Route::get('/clinic/doctors/{doctor}/profile/'  , ['as' => 'clinic.profile', 'uses' => 'DoctorController@profile']);
 
+Route::get('/clinic/information/edit'  , ['as' => 'clinic.information.edit', 'uses' => 'ClinicController@edit']);
+Route::patch('/clinic/information'  , ['as' => 'clinic.information.update', 'uses' => 'ClinicController@update']);
+
 Route::get('/medicine',['as' => 'medicine.index', 'uses' =>  'MedicineController@index']);
 Route::post('/medicine/store', ['as' => 'medicine.store', 'uses' => 'MedicineController@store']);
 Route::delete('/medicine/{medicine}', 'MedicineController@destroy');

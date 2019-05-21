@@ -70,7 +70,7 @@ class ClinicController extends Controller
      */
     public function edit(Clinic $clinic)
     {
-        //
+        return view('clinic.information');
     }
 
     /**
@@ -82,7 +82,15 @@ class ClinicController extends Controller
      */
     public function update(Request $request, Clinic $clinic)
     {
-        //
+        $clinic=auth()->user()->clinic;
+        $clinic->update([
+            'name' =>$request->name,
+            'tel' =>$request->tel,
+            'address' =>$request->address,
+            'reservable_day' =>$request->reservable_day,
+            'per_week_sections' =>$request->per_week_sections,
+        ]);
+        return view('clinic.information');
     }
 
     /**

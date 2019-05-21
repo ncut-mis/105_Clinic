@@ -9,6 +9,8 @@ use App\User as Staff;
 class Clinic extends Model
 {
     protected $table ='clinics';
+    protected $fillable = [
+        'name', 'tel', 'address','reservable_day','per_week_sections'];
 
     public function sections()
     {

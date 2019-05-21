@@ -303,7 +303,7 @@
                         <li> <a href="patient-invoice.html">Patient Invoice</a></li>
                     </ul>
                 </li>
-                <li><a href="reports.html"><i class="zmdi zmdi-file-text"></i><span>Reports</span></a></li>
+                <li><a href="{{ route('clinic.information.edit') }}"><i class="zmdi zmdi-file-text"></i><span>診所基本資料</span></a></li>
                 <li><a href="widgets.html"><i class="zmdi zmdi-delicious"></i><span>Widgets</span></a></li>
                 <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Extra Pages</span> </a>
                     <ul class="ml-menu">
