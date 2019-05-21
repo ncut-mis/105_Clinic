@@ -1,27 +1,28 @@
-@extends('layouts.app')
+@extends('layouts.clinic')
 
 @section('title', '藥品資訊')
 
-@section('content')
+<section class="content">
 
+    <div class="container-fluid">
+        <div class="block-header">
+            <h3>藥品資訊</h3>
 
-    <div class="container">
-        <div class="page-header">
-            <h1>藥品資訊</h1>
         </div>
-    </div>
+
     <div>
         <form action="/medicine/store" method="POST" class="form-horizontal">
         {{ csrf_field() }}
 
             <div class="form-group">
-                <label for="medicine-name">藥品</label>
+                <label for="medicine-name"><h3>輸入藥品</h3></label>
 
-                <div class="col-sm-6">
+                <div class="col-sm-4">
+                    <div class="modal-col-white">
                     <input type="text" name="medicine" id="medicine-name" class="form-control">
+                    </div>
                 </div>
             </div>
-
 
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
@@ -31,6 +32,7 @@
                 </div>
             </div>
         </form>
+    </div>
     </div>
 
     {{--@if (count($medicines) > 0)--}}
@@ -73,8 +75,8 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--@endif--}}
-
-    <div class="row">
+    <div class="container-fluid">
+    <div class="card">
         <table class="table table-hover">
             <thead>
             <tr>
@@ -91,5 +93,5 @@
             </tbody>
         </table>
     </div>
-
-@endsection 
+    </div>
+</section>
