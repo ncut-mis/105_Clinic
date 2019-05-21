@@ -25,6 +25,12 @@ class ClinicController extends Controller
         return view('clinic.doctors',['doctors'=>$doctors,'staffs'=>$staffs]);
     }
 
+    public function staff()
+    {
+        $clinicstaff=auth()->user()->clinic->staff;
+        return view('clinic.staff',['clinicstaff'=>$clinicstaff]);
+    }
+
     public function index()
     {
         //

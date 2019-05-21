@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Clinic;
+use App\Member;
 use App\Register;
+use App\Section;
+use App\Staff;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -12,9 +16,13 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function home()
     {
-        //
+        $sections=Section::orderBy('start')->get();
+        $members=Member::orderBy('name')->get();
+        $registers = Register::orderBy('id')->get();
+        $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members];
+        return view('register.home',$data);
     }
 
     /**
@@ -24,7 +32,11 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        //
+        $registers=Register::orderBy('id')->get();
+        $sections=Section::orderBy('id')->get();
+        $members=Member::orderBy('id')->get();
+        $data= ['sections'=>$sections,'members'=>$members,'registers'=>$registers];
+        return view('register.create', $data);
     }
 
     /**
@@ -35,7 +47,14 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Register::create([
+            'section_id' => $request->section_id,
+            'member_id' =>$request->member_id,
+            'number'=> $request->number,
+            'status' => 0,
+            'created_at' =>$request->date,
+        ]);
+        return redirect()->route('register.home');
     }
 
     /**
