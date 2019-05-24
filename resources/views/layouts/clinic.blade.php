@@ -264,11 +264,11 @@
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li><a href="{{ route('clinic.home') }}"><i class="zmdi zmdi-home"></i><span><font face="微軟正黑體"><strong>首頁</strong></font></span></a></li>
-                <li><a href="{{ route('medicine.index') }}"><i class="zmdi zmdi-medicine"></i><span><font face="微軟正黑體"><strong>藥物管理</strong></font></span></a></li>
+                <li><a href="{{ route('medicine.index') }}"><i class="zmdi zmdi-local-hospital"></i><span><font face="微軟正黑體"><strong>藥物管理</strong></font></span></a></li>
                 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span><font face="微軟正黑體"><strong>預約管理</strong></font></span> </a>
                     <ul class="ml-menu">
                         <li><a href="doctor-schedule.html">Doctor Schedule</a></li>
-                        <li><a href="{{ route('register.home') }}">預約/掛號</a></li>
+                        <li><a href="{{ route('register.home') }}"><font face="微軟正黑體"><strong>預約/掛號</strong></font></a></li>
                     </ul>
                 </li>
                 <?php $URL=$_SERVER['REQUEST_URI'];?>
@@ -308,15 +308,8 @@
                         <li><a href="patient-invoice.html">Patient Invoice</a></li>
                     </ul>
                 </li>
-                <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-balance-wallet"></i><span>Payments</span> </a>
-                    <ul class="ml-menu">
-                        <li> <a href="payments.html">Payments</a></li>
-                        <li> <a href="add-payments.html">Add Payment</a></li>
-                        <li> <a href="patient-invoice.html">Patient Invoice</a></li>
-                    </ul>
-                </li>
-                <li><a href="{{ route('clinic.information.edit') }}"><i class="zmdi zmdi-file-text"></i><span>診所基本資料</span></a></li>
-                <li><a href="widgets.html"><i class="zmdi zmdi-delicious"></i><span>Widgets</span></a></li>
+                <li><a href="{{ route('clinic.information.edit') }}"><i class="zmdi zmdi-file-text"></i><span><font face="微軟正黑體"><strong>診所基本資料</strong></font></span></a>
+                <li><a href="widgets.html"><i class="zmdi zmdi-delicious"></i><span><font face="微軟正黑體"><strong>醫生預定看診時段管理</strong></font></span></a></li>
                 <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Extra Pages</span> </a>
                     <ul class="ml-menu">
                         <li> <a href="sign-in.html">Sign In</a> </li>
@@ -356,10 +349,9 @@
                         <li> <a href="waves.html">Waves</a> </li>
                     </ul>
                 </li>
-                <li class="header">LABELS</li>
-                <li> <a href="javascript:void(0);"><i class="zmdi zmdi-chart-donut col-red"></i><span>Important</span> </a> </li>
-                <li> <a href="javascript:void(0);"><i class="zmdi zmdi-chart-donut col-amber"></i><span>Warning</span> </a> </li>
-                <li> <a href="javascript:void(0);"><i class="zmdi zmdi-chart-donut col-blue"></i><span>Information</span> </a> </li>
+                <li class="header"></li>
+                <li> <a href="javascript:void(0);"><span></span> </a> </li>
+                <li> <a href="javascript:void(0);"><span></span> </a> </li>
             </ul>
         </div>
         <!-- #Menu -->
