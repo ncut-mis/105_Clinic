@@ -7,6 +7,7 @@ use App\Position;
 use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon as Carbon;
 
 class StaffController extends Controller
 {
@@ -40,10 +41,16 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
+        $file = $request->file('photo');
+        $destinationPath = 'img/staff';
+        $image=$file->getClientOriginalExtension();
+        $file_name=(Carbon::now()->timestamp).'.'.$image;
+        $file->move($destinationPath, $file_name);
         Staff::create([
             'clinic_id' =>auth()->user()->clinic->id,
             'position_id' =>$request->position_id,
             'name' => $request->name,
+            'photo' => $file_name,
             'email' => $request->email,
             'password' =>Hash::make($request->password),
             'created_at' =>$request->date,

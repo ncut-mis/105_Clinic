@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Clinic;
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon as Carbon;
 
 class ClinicController extends Controller
 {
@@ -88,11 +89,17 @@ class ClinicController extends Controller
      */
     public function update(Request $request, Clinic $clinic)
     {
+        $file = $request->file('photo');
+        $destinationPath = 'img/clinic';
+        $image=$file->getClientOriginalExtension();
+        $file_name=(Carbon::now()->timestamp).'.'.$image;
+        $file->move($destinationPath, $file_name);
         $clinic=auth()->user()->clinic;
         $clinic->update([
             'name' =>$request->name,
             'tel' =>$request->tel,
             'address' =>$request->address,
+            'photo' => $file_name,
             'reservable_day' =>$request->reservable_day,
             'per_week_sections' =>$request->per_week_sections,
         ]);

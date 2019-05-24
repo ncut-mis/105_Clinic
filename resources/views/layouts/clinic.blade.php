@@ -239,7 +239,7 @@
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
-            <div class="admin-image"> <img src="/img/sm/avatar2.jpg" alt=""> </div>
+            <div class="admin-image"><img src="{{url('img/staff/'. auth()->user()->photo)}}"> </div>
             <div class="admin-action-info"> <span>Welcome</span>
                 <h3><font face="微軟正黑體">{{Auth::user()->name}}</font></h3>
                 <ul>
