@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Clinic;
+use App\Doctor;
 use App\Member;
+use App\Patient;
 use App\Register;
 use App\Section;
 use App\Staff;
@@ -88,7 +90,7 @@ class RegisterController extends Controller
      */
     public function update(Request $request, Register $register)
     {
-        //
+
     }
 
     /**
@@ -100,5 +102,17 @@ class RegisterController extends Controller
     public function destroy(Register $register)
     {
         //
+    }
+    public function search(Patient $patient)
+    {
+        $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first();//取得醫生資料
+        date_default_timezone_set("Asia/Taipei");
+        $date=date("Y-m-d");
+        $time=date("H:i:s");
+        $current_section=$doctor->sections()->where('date',$date)->where('start','<',$time)->where('end','>',$time)->get()->first();//目前的看診時段
+        $registers=$current_section->registers()->get();
+        $members=Member::orderBy('id')->get();
+        $data= ['patient' => $patient,'registers'=>$registers,'members'=>$members];
+        return view('doctor.search',$data);
     }
 }
