@@ -55,3 +55,5 @@ Route::patch('/register/{register}/update'  , ['as' => 'register.update', 'uses'
 Route::get('/medicine',['as' => 'medicine.index', 'uses' =>  'MedicineController@index']);
 Route::post('/medicine/store', ['as' => 'medicine.store', 'uses' => 'MedicineController@store']);
 Route::delete('/medicine/{medicine}', 'MedicineController@destroy');
+Route::get('medicine/{medicine}/edit', ['as' => 'medicine.edit','uses' => 'MedicineController@edit']);
+

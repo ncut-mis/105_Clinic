@@ -15,9 +15,7 @@ class MedicineController extends Controller
         $medicines = Medicine::where('clinic_id', Auth::user()->clinic->id)->get();
         $data = ['medicines' => $medicines];
         return view('medicine', $data);
-//        $medicines=auth()->user()->medicines;
 
-//        return view('medicine');
     }
 
     /**
@@ -42,12 +40,11 @@ class MedicineController extends Controller
             'medicine' => 'required|max:255',
         ]);
 
-        Medicine::create([
-            'clinic_id' =>auth()->user()->clinic->id,
+        auth()->user()->clinic->medicines()->create([
             'medicine' => $request->medicine,
         ]);
-        return redirect()->route('medicine.index');
 
+        return redirect()->route('medicine.index');
     }
 
     /**
@@ -69,7 +66,9 @@ class MedicineController extends Controller
      */
     public function edit(Medicine $medicine)
     {
-        //
+        $medicine = Medicine::find($medicine);
+        $data = ['medicine' => $medicine];
+        return view('medicine.index', $data);
     }
 
     /**
@@ -92,9 +91,8 @@ class MedicineController extends Controller
      */
     public function destroy(Request $request, Medicine $medicine)
     {
-//        $this->authorize('destroy', $medicine);
-//        $medicine->delete();
-//        return redirect('/medicines');
+        Medicine::destroy($medicine->id);
+        return redirect()->route('medicine.index');
     }
 
     public function __construct(MedicineRepository $medicines)
