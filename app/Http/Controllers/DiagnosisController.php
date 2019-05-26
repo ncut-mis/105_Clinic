@@ -141,10 +141,13 @@ class DiagnosisController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-
+        $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first()->id;
+        $symptom=Diagnosis::where('doctor_id',$doctor)->where('member_id',$patient->id)->get()->last();
+        $symptom->update(['symptom' =>$request->symptom]);
+        return redirect()->route('patient.diagnosis.edit2',$patient);
     }
 
-   
+    
 
     /**
      * Remove the specified resource from storage.

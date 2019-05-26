@@ -31,7 +31,7 @@ Route::get('/patient/{patient}/diagnosis/create'  , ['as' => 'doctor.diagnosis',
 Route::post('/patient/{patient}/symptom/store'  , ['as' => 'patient.diagnosis.store', 'uses' => 'DiagnosisController@store']);
 Route::get('/patient/diagnosis/edit'  , ['as' => 'patient.diagnosis.edit2', 'uses' => 'DiagnosisController@edit2']);
 Route::get('/patient/{patient}/diagnosis/edit2'  , ['as' => 'patient.diagnosis.edit2', 'uses' => 'DiagnosisController@edit2']);
-
+Route::patch('/patient/{patient}/diagnosis',    ['as' => 'patient.diagnosis.update', 'uses' => 'DiagnosisController@update']);
 
 
 Route::get('/clinic/information/edit'  , ['as' => 'clinic.information.edit', 'uses' => 'ClinicController@edit']);
