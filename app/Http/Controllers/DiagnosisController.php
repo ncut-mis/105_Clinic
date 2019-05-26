@@ -58,8 +58,23 @@ class DiagnosisController extends Controller
         $data=['patient' => $patient,'next' => $next,'one' => $one];
         return view('doctor.diagnosis',$data);
     }
+    public function continue(Patient $patient)
+    {
+        $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first();//取得醫生資料
+        date_default_timezone_set("Asia/Taipei");
+        $date=date("Y-m-d");
+        $time=date("H:i:s");
+        $current_section=$doctor->sections()->where('date',$date)->where('start','<',$time)->where('end','>',$time)->get()->first();//目前的看診時段
 
-
+        $waiting_list=$current_section->registers()->where('status',0)->orderBy('number', 'ASC')->get();
+        $next=$waiting_list->first(); //下一個看診者
+        session(['next' => $next]);
+//
+        $medicines = Medicine::where('clinic_id',Auth()->user()->clinic->id)->get();
+        $data=['patient' => $patient,'medicines' => $medicines,'next' => $next];
+        return view('doctor.diagnosis',$data);
+    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -147,7 +162,7 @@ class DiagnosisController extends Controller
         return redirect()->route('patient.diagnosis.edit2',$patient);
     }
 
-    
+
 
     /**
      * Remove the specified resource from storage.
