@@ -18,7 +18,7 @@ class Doctor extends Model
         return $this->hasMany(Section::class);
     }
 
-    public function Diagnoses()
+    public function diagnoses()
     {
         return $this->hasMany(Diagnosis::class);
     }
@@ -31,5 +31,9 @@ class Doctor extends Model
     public function staff()
     {
         return $this->belongsTo(Staff::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
