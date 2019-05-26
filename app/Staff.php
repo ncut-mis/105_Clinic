@@ -8,7 +8,7 @@ class Staff extends Model
 {
     protected $table ='staff';
     protected $fillable = [
-        'clinic_id', 'position_id', 'name', 'email', 'password','created_at'
+        'clinic_id', 'position_id', 'name', 'photo','email', 'password','created_at'
     ];
 
     public function clinic()

@@ -10,7 +10,7 @@ class Clinic extends Model
 {
     protected $table ='clinics';
     protected $fillable = [
-        'name', 'tel', 'address','reservable_day','per_week_sections'];
+        'name', 'tel', 'address','photo','reservable_day','per_week_sections'];
 
     public function sections()
     {
