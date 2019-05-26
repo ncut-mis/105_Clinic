@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Diagnosis;
+use App\Medicine;
 use App\Prescription;
 use Illuminate\Http\Request;
+
+use App\Member as Patient;
+use Illuminate\Support\Facades\Session;
 
 class PrescriptionController extends Controller
 {
@@ -33,9 +38,28 @@ class PrescriptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Patient $patient,Diagnosis $diagnosis)
     {
-        //
+        Prescription::create([
+            'diagnosis_id' =>$diagnosis->id,
+            'medicine_id' =>$request->medicine_id,
+            'dosage' => $request->dosage,
+            'note' => $request->note,
+        ]);
+        $register=session('register');
+        if ($register->member_id===$patient->id)
+        {
+        $register=session('register');
+        $register->status=2;
+        $register->save();
+            return redirect()->route('search.diagnosis.compile',$patient);
+        }
+        else{
+            $current=session('current');
+            $current->status=2;  //已看診
+            $current->save();
+            return redirect()->route('patient.diagnosis.edit2',$patient);
+           }
     }
 
     /**
@@ -78,9 +102,16 @@ class PrescriptionController extends Controller
      * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Patient $patient,Prescription $prescription)
     {
-        Prescription::destroy($id);
-        return redirect()->route('Examinations.index');
+        Prescription::destroy($prescription->id);
+        $register=session('register');
+        if ($register->member_id===$patient->id)
+        {
+            return redirect()->route('search.diagnosis.compile',$patient);
+        }
+        else {
+            return redirect()->route('patient.diagnosis.edit2', $patient);
+        }
     }
 }
