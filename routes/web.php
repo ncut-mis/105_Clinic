@@ -27,6 +27,11 @@ Route::post('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'StaffControll
 Route::get('/clinic/doctors'  , ['as' => 'clinic.doctors', 'uses' => 'ClinicController@doctors']);
 Route::get('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'ClinicController@staff']);
 Route::get('/clinic/doctors/{doctor}/profile/'  , ['as' => 'clinic.profile', 'uses' => 'DoctorController@profile']);
+Route::get('/patient/{patient}/diagnosis/create'  , ['as' => 'doctor.diagnosis', 'uses' => 'DiagnosisController@create']);
+Route::post('/patient/{patient}/symptom/store'  , ['as' => 'patient.diagnosis.store', 'uses' => 'DiagnosisController@store']);
+Route::get('/patient/diagnosis/edit'  , ['as' => 'patient.diagnosis.edit2', 'uses' => 'DiagnosisController@edit2']);
+Route::get('/patient/{patient}/diagnosis/edit2'  , ['as' => 'patient.diagnosis.edit2', 'uses' => 'DiagnosisController@edit2']);
+
 
 
 Route::get('/clinic/information/edit'  , ['as' => 'clinic.information.edit', 'uses' => 'ClinicController@edit']);
