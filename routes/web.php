@@ -36,6 +36,8 @@ Route::post('/patient/{patient}/diagnosis/{diagnosis}/prescription/store'  , ['a
 Route::delete('/patient/{patient}/prescription/{prescription}/destroy'  , ['as' => 'diagnosis.prescription.destroy', 'uses' => 'PrescriptionController@destroy']);
 Route::get('/patient/{patient}/diagnosis'  , ['as' => 'doctor.diagnosis.continue', 'uses' => 'DiagnosisController@continue']);
 
+Route::get('/register/patient/search'  , ['as' => 'register.patient.search', 'uses' => 'RegisterController@search']);
+
 Route::get('/clinic/information/edit'  , ['as' => 'clinic.information.edit', 'uses' => 'ClinicController@edit']);
 Route::patch('/clinic/information'  , ['as' => 'clinic.information.update', 'uses' => 'ClinicController@update']);
 
