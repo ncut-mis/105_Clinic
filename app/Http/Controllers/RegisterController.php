@@ -90,6 +90,10 @@ class RegisterController extends Controller
      */
     public function update(Request $request, Register $register)
     {
+        $register->update([
+            'status' => 0,
+        ]);
+        return view('/clinic/home');
 
     }
 

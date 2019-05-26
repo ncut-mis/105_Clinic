@@ -24,11 +24,15 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         @foreach($registers as $register)
                         @foreach($sections as $section)
                         @foreach($members as $member)
                             @if($register->section_id===$section->id)
                                 @if($register->member_id===$member->id)
+                                    <form action="/register/{{$register->id}}/update" method="POST" >
+                                        {{ csrf_field() }}
+                                        {{ method_field('PATCH') }}
                                     <tr>
                                         <th>{{$register->id}}</th>
                                         <th>{{$section->start}}</th>
@@ -37,8 +41,13 @@
                                         <th>{{$register->status}}</th>
                                         <th>{{$register->note}}</th>
                                         <th>{{$register->updated_at}}</th>
-                                        <th>修改/刪除</th>
+
+                                        <th>
+                                            <button type="submit" class="btn btn-raised g-bg-cyan"> <font face="微軟正黑體">掛號</font></button>
+                                        </th>
+                                        </form>
                                     </tr>
+
                                 @endif
                             @endif
                         @endforeach

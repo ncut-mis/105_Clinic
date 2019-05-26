@@ -49,6 +49,7 @@ Route::get('/register/home',['as' => 'register.home', 'uses' =>'RegisterControll
 Route::get('/register/create',['as' => 'register.create', 'uses' =>'RegisterController@create']);
 Route::get('/register/edit',['as' => 'register.edit', 'uses' =>'RegisterController@edit']);
 Route::post('/register'      ,['as' => 'register.store', 'uses' =>'RegisterController@store']);
+Route::patch('/register/{register}/update'  , ['as' => 'register.update', 'uses' => 'RegisterController@update']);
 
 
 Route::get('/medicine',['as' => 'medicine.index', 'uses' =>  'MedicineController@index']);
