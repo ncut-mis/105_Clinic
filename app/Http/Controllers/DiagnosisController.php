@@ -74,7 +74,7 @@ class DiagnosisController extends Controller
         $data=['patient' => $patient,'medicines' => $medicines,'next' => $next];
         return view('doctor.diagnosis',$data);
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -92,9 +92,19 @@ class DiagnosisController extends Controller
             'created_at' => date("Y-m-d"),
         ]);
         return redirect()->route('patient.diagnosis.edit2',$patient);
+    }
+    public function post(Request $request,Patient $patient)
+    {
+        date_default_timezone_set("Asia/Taipei");
+        Diagnosis::create([
+            'member_id' =>$patient->id,
+            'doctor_id' =>$doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first()->id,
+            'symptom' => $request->symptom,
+            'created_at' => date("Y-m-d"),
+        ]);
+        return redirect()->route('search.diagnosis.compile',$patient);
 
     }
-
 
 
     /**
@@ -149,7 +159,17 @@ class DiagnosisController extends Controller
         return view('doctor.diagnosis.edit',$data);
     }
 
-
+    public function compile(Patient $patient)
+    {
+        $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first();
+        date_default_timezone_set("Asia/Taipei");//+8hour
+        $date=date("Y-m-d");
+        $diagnosis=$doctor->diagnoses()->where('created_at',$date)->where('member_id',$patient->id)->get()->first();
+        $medicines = Medicine::where('clinic_id',auth()->user()->clinic->id)->get();
+        $prescriptions=$diagnosis->prescriptions()->get();
+        $data=['patient' => $patient,'diagnosis' => $diagnosis,'medicines' => $medicines,'prescriptions' => $prescriptions];
+        return view('doctor.diagnosis.update',$data);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -166,7 +186,13 @@ class DiagnosisController extends Controller
         return redirect()->route('patient.diagnosis.edit2',$patient);
     }
 
-
+    public function renew(Request $request, Patient $patient)
+    {
+        $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first()->id;
+        $symptom=Diagnosis::where('doctor_id',$doctor)->where('member_id',$patient->id)->get()->last();
+        $symptom->update(['symptom' =>$request->symptom]);
+        return redirect()->route('search.diagnosis.compile',$patient);
+    }
 
     /**
      * Remove the specified resource from storage.

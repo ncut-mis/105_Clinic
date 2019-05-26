@@ -35,9 +35,12 @@ Route::patch('/patient/{patient}/diagnosis',    ['as' => 'patient.diagnosis.upda
 Route::post('/patient/{patient}/diagnosis/{diagnosis}/prescription/store'  , ['as' => 'diagnosis.prescription.store', 'uses' => 'PrescriptionController@store']);
 Route::delete('/patient/{patient}/prescription/{prescription}/destroy'  , ['as' => 'diagnosis.prescription.destroy', 'uses' => 'PrescriptionController@destroy']);
 Route::get('/patient/{patient}/diagnosis'  , ['as' => 'doctor.diagnosis.continue', 'uses' => 'DiagnosisController@continue']);
+Route::patch('/patient/{patient}/diagnosis',    ['as' => 'search.diagnosis.renew', 'uses' => 'DiagnosisController@renew']);
 
 Route::get('/register/patient/search'  , ['as' => 'register.patient.search', 'uses' => 'RegisterController@search']);
 Route::get('/register/{register}/patient/{patient}/search/diagnosis'  , ['as' => 'search.diagnosis', 'uses' => 'DiagnosisController@show']);
+Route::post('/patient/{patient}/symptom/store'  , ['as' => 'search.diagnosis.post', 'uses' => 'DiagnosisController@post']);
+Route::get('/patient/{patient}/diagnosis/edit2'  , ['as' => 'search.diagnosis.compile', 'uses' => 'DiagnosisController@compile']);
 
 Route::get('/clinic/information/edit'  , ['as' => 'clinic.information.edit', 'uses' => 'ClinicController@edit']);
 Route::patch('/clinic/information'  , ['as' => 'clinic.information.update', 'uses' => 'ClinicController@update']);
