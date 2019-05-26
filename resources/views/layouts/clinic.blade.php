@@ -246,7 +246,7 @@
                     <li><a data-placement="bottom" title="Go to Inbox" href="mail-inbox.html"><i class="zmdi zmdi-email"></i></a></li>
                     <li><a data-placement="bottom" title="Go to Profile" href="profile.html"><i class="zmdi zmdi-account"></i></a></li>
                     <li><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="zmdi zmdi-settings"></i></a></li>
-                    <li><a data-placement="bottom" title="Full Screen" href="sign-in.html" ><i class="zmdi zmdi-sign-in"></i></a></li>
+                    <li><a data-placement="bottom" title="登出" href="/home" ><i class="zmdi zmdi-sign-in"></i></a></li>
                 </ul>
             </div>
             <div class="quick-stats">
@@ -310,45 +310,8 @@
                 </li>
                 <li><a href="{{ route('clinic.information.edit') }}"><i class="zmdi zmdi-file-text"></i><span><font face="微軟正黑體"><strong>診所基本資料</strong></font></span></a>
                 <li><a href="widgets.html"><i class="zmdi zmdi-delicious"></i><span><font face="微軟正黑體"><strong>醫生預定看診時段管理</strong></font></span></a></li>
-                <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Extra Pages</span> </a>
-                    <ul class="ml-menu">
-                        <li> <a href="sign-in.html">Sign In</a> </li>
-                        <li> <a href="sign-up.html">Sign Up</a> </li>
-                        <li> <a href="forgot-password.html">Forgot Password</a> </li>
-                        <li> <a href="404.html">Page 404</a> </li>
-                        <li> <a href="500.html">Page 500</a> </li>
-                        <li> <a href="page-offline.html">Page Offline</a> </li>
-                        <li> <a href="locked.html">Locked Screen</a> </li>
-                        <li> <a href="blank.html">Blank Page</a> </li>
-                    </ul>
-                </li>
-                <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i><span>User Interface (UI)</span> </a>
-                    <ul class="ml-menu">
-                        <li> <a href="typography.html">Typography</a> </li>
-                        <li> <a href="helper-classes.html">Helper Classes</a></li>
-                        <li> <a href="alerts.html">Alerts</a> </li>
-                        <li> <a href="animations.html">Animations</a> </li>
-                        <li> <a href="badges.html">Badges</a> </li>
-                        <li> <a href="breadcrumbs.html">Breadcrumbs</a> </li>
-                        <li> <a href="buttons.html">Buttons</a> </li>
-                        <li> <a href="collapse.html">Collapse</a> </li>
-                        <li> <a href="colors.html">Colors</a> </li>
-                        <li> <a href="dialogs.html">Dialogs</a> </li>
-                        <li> <a href="icons.html">Icons</a> </li>
-                        <li> <a href="labels.html">Labels</a> </li>
-                        <li> <a href="list-group.html">List Group</a> </li>
-                        <li> <a href="media-object.html">Media Object</a> </li>
-                        <li> <a href="modals.html">Modals</a> </li>
-                        <li> <a href="notifications.html">Notifications</a> </li>
-                        <li> <a href="pagination.html">Pagination</a> </li>
-                        <li> <a href="preloaders.html">Preloaders</a> </li>
-                        <li> <a href="progressbars.html">Progress Bars</a> </li>
-                        <li> <a href="range-sliders.html">Range Sliders</a> </li>
-                        <li> <a href="sortable-nestable.html">Sortable & Nestable</a> </li>
-                        <li> <a href="tabs.html">Tabs</a> </li>
-                        <li> <a href="waves.html">Waves</a> </li>
-                    </ul>
-                </li>
+
+
                 <li class="header"></li>
                 <li> <a href="javascript:void(0);"><span></span> </a> </li>
                 <li> <a href="javascript:void(0);"><span></span> </a> </li>
