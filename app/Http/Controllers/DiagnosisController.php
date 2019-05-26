@@ -74,7 +74,7 @@ class DiagnosisController extends Controller
         $data=['patient' => $patient,'medicines' => $medicines,'next' => $next];
         return view('doctor.diagnosis',$data);
     }
-   
+    
 
     /**
      * Store a newly created resource in storage.
@@ -105,7 +105,11 @@ class DiagnosisController extends Controller
      */
     public function show(Register $register,Patient $patient,Diagnosis $diagnosis)
     {
-
+        session(['register' => null]);
+        session(['register' => $register]);
+        $register= $register->id;
+        $data=['patient' => $patient,'register' => $register];
+        return view('doctor.diagnosis.show',$data);
     }
 
     /**
