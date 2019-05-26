@@ -66,9 +66,9 @@ class MedicineController extends Controller
      */
     public function edit(Medicine $medicine)
     {
-        $medicine = Medicine::find($medicine);
+        $medicine = Medicine::where('id',$medicine->id)->get()->first();
         $data = ['medicine' => $medicine];
-        return view('medicine.index', $data);
+        return view('medicine.edit', $data);
     }
 
     /**
@@ -80,7 +80,10 @@ class MedicineController extends Controller
      */
     public function update(Request $request, Medicine $medicine)
     {
-        //
+        $medicine->update([
+            'medicine' =>$request->medicine,
+        ]);
+        return redirect()->route('medicine.index');
     }
 
     /**
