@@ -10,17 +10,17 @@
             <div class="card-top"></div>
             <div class="card">
                 <div class="col-md-12">
-                    <form action="/register" id="register" class="col-xs-12" method="POST" class="form-horizontal">
+                    @foreach($sections as $section)
+                    <form action={{route('register.store',$section)}} id="register" class="col-xs-12" method="POST" class="form-horizontal" name="register">
                         {{ csrf_field() }}
+                        <div style="text-align:center"><h5>{{$section->name}}醫生</h5></div>
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="zmdi zmdi-timer"></i>
                             </span>
                             <div class="form-group drop-custum">
-                                <select class="form-control show-tick" name="section_id" id="section_id" >
-                                    @foreach($sections as $section)
+                                <select class="form-control show-tick" name="section_id" id="section_id">
                                         <option value="{{$section->id}}">{{$section->start}}</option>
-                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -30,29 +30,10 @@
                                 <i class="zmdi zmdi-account"></i>
                             </span>
                             <div class="form-group drop-custum">
-                                <select class="form-control show-tick" name="member_id" id="member_id" >
-                                    @foreach($members as $member)
-                                        <option value="{{$member->id}}">{{$member->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="zmdi zmdi-confirmation-number"></i>
-                            </span>
-                            <div class="form-line">
-                                <input type="text" class="form-control" name="number" id="number"  value="{{$registers->Max()->number+1}}" readonly>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="material-icons">event</i>
-                            </span>
-                            <div class="form-line">
-                                <input type="date" class="form-control"  name="date" id="date" placeholder="Join Date" value="<?php echo date("Y-m-d",strtotime('8hours'));?>">
+                                @foreach($members as $member)
+                                <input id="member_id" type="hidden" class="form-control show-tick" name="member_id" value="{{$member->id}}"readonly>
+                                <a type="text" class="form-control show-tick">{{$member->name}}</a>
+                                @endforeach
                             </div>
                         </div>
 
@@ -62,6 +43,7 @@
                             </button>
                         </div>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </div>

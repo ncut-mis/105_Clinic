@@ -38,6 +38,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Clinic::class);
     }
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
+    }
 
     public function medicines()
     {
