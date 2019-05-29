@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Clinic;
+use App\Doctor;
 use App\Member;
 use App\Register;
 use App\Section;
-use App\Staff;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -16,13 +15,49 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function index()
     {
-        $sections=Section::orderBy('start')->get();
+        date_default_timezone_set( "Asia/Taipei");
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
+        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->where('date','=' ,$date)
+            ->where('start','<',$time )->where('end','>',$time )
+            ->select('sections.id','sections.start','staff.name','sections.date','sections.next_register_no')
+            ->get();
+        $members=Member::orderBy('name')->get();
+        $registers = Register::orderBy('id')->get();
+        $doctors = auth()->user()->clinic->doctors()->get();
+        $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members,'doctors'=>$doctors];
+        return view('register.index',$data);
+    }
+
+    public function late()
+    {
+        date_default_timezone_set( "Asia/Taipei");
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
+        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->where('date','=' ,$date)
+            ->where('start','<',$time )->where('end','>',$time )
+            ->select('sections.id','sections.start','staff.name','sections.date','sections.next_register_no')
+            ->get();
         $members=Member::orderBy('name')->get();
         $registers = Register::orderBy('id')->get();
         $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members];
-        return view('register.home',$data);
+        return view('register.late',$data);
+    }
+
+    public function member_search(Request $request)
+    {
+        return View('register.search');
+    }
+
+    public function member_reservation(Request $request)
+    {
+        return View('register.reservation');
     }
 
     /**
@@ -30,31 +65,81 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        date_default_timezone_set( "Asia/Taipei");
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
         $registers=Register::orderBy('id')->get();
-        $sections=Section::orderBy('id')->get();
-        $members=Member::orderBy('id')->get();
-        $data= ['sections'=>$sections,'members'=>$members,'registers'=>$registers];
-        return view('register.create', $data);
+        $doctors=auth()->user()->clinic->doctors()->get();
+        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->where('date','=' ,$date)
+            ->where('start','<',$time )->where('end','>',$time )
+            ->select('sections.id','sections.start','sections.end','staff.name','sections.date','sections.next_register_no')
+            ->orderBy('date','asc')
+            ->get();
+//          echo $sections;
+        $keyword =$request->get('keyword');
+        $members = Member::where('number','LIKE',"$keyword")->get();
+        $data	=	['sections'=>$sections,'registers'=>$registers,'doctors'=>$doctors,'members'=> $members,];
+        return View('register.create',$data);
     }
 
+    public function create_reservation(Request $request)
+    {
+        date_default_timezone_set( "Asia/Taipei");
+        $date = date("Y-m-d");
+        $registers=Register::orderBy('id')->get();
+        $doctors=auth()->user()->clinic->doctors()->get();
+        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->where('date','>' ,$date)
+            ->select('sections.id','sections.start','staff.name','sections.date','sections.next_register_no')
+            ->orderBy('date','asc')
+            ->get();
+//          echo $sections;
+        $keyword =$request->get('keyword');
+        $members = Member::where('number','LIKE',"$keyword")->get();
+        $data	=	['sections'=>$sections,'registers'=>$registers,'doctors'=>$doctors,'members'=> $members,];
+        return View('register.create_reservation',$data);
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Section $section)
     {
+        $register_no = $section->next_register_no;
         Register::create([
-            'section_id' => $request->section_id,
+            'section_id' => $section->id,
             'member_id' =>$request->member_id,
-            'number'=> $request->number,
+            'reservation_no'=> $register_no,
+            'reminding_time' =>null,
+            'reminding_no' =>null,
             'status' => 0,
-            'created_at' =>$request->date,
         ]);
-        return redirect()->route('register.home');
+        $section->next_register_no= $register_no+1;
+        $section->save();
+        return redirect()->route('register.index');
+    }
+
+    public function reservation_store(Request $request,Section $section)
+    {
+        $register_no = $section->next_register_no;
+        Register::create([
+            'section_id' => $section->id,
+            'member_id' =>$request->member_id,
+            'reservation_no'=> $register_no,
+            'reminding_time' =>null,
+            'reminding_no' =>null,
+            'status' => -1,
+        ]);
+        $section->next_register_no= $register_no+1;
+        $section->save();
+        return redirect()->route('register.index');
     }
 
     /**
@@ -97,8 +182,27 @@ class RegisterController extends Controller
      * @param  \App\Register $register
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Register $register)
+    public function destroy($id)
     {
-        //
+        Register::destroy($id);
+        return view('register.index');
     }
+
+    public function add_register($id)
+    {
+        $add_register = Register::find($id);
+        $add_register->status = 0;
+        $add_register->save();
+        return view('register.index');
+    }
+
+    public function reset_register(Section $sections,$id)
+    {
+        $registers = Register::find($id);
+        $registers->status = 0;
+        $registers->reservation_no = $sections->current_no+ 2.5;
+        $registers->save();
+        return view('register.index');
+    }
+
 }
