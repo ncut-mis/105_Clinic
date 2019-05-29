@@ -17,7 +17,9 @@ class CreateRegistersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('section_id');
             $table->unsignedInteger('member_id');
-            $table->unsignedInteger('number');
+            $table->unsignedInteger('reservation_no');
+            $table->string('reminding_time');
+            $table->string('reminding_no');
             $table->integer('status')->default(0);
             $table->string('note');
             $table->timestamps();
