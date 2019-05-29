@@ -9,31 +9,6 @@
             <h3>藥物資訊</h3>
         </div>
 
-        <div>
-            <form action="/medicine/store" method="POST" class="form-horizontal">
-                {{ csrf_field() }}
-
-                <div class="form-group">
-                    <label for="medicine-name"><h4>輸入藥品</h4></label>
-
-                    <div class="col-sm-4">
-                        <div class="modal-col-white">
-                            <input type="text" name="medicine" id="medicine-name" class="form-control" placeholder="請輸入藥品">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-6">
-                        <button type="submit" class="btn btn-default">
-                            <i class="fa fa-plus"></i> 增加藥品
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
 
     <div class="container-fluid">
         <div class="card">
