@@ -81,3 +81,4 @@ Route::delete('/medicine/{medicine}', 'MedicineController@destroy');
 Route::get('medicine/{medicine}/edit', ['as' => 'medicine.edit','uses' => 'MedicineController@edit']);
 Route::patch('/medicine/{medicine}/update'  , ['as' => 'medicine.update', 'uses' => 'MedicineController@update']);
 
+Route::get('/per_week_section',['as' => 'per_week_section.index', 'uses' =>  'PerWeekSectionController@index']);
