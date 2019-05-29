@@ -32,4 +32,9 @@ class Doctor extends Model
     {
         return $this->belongsTo(Staff::class);
     }
+
+    public function registers()
+    {
+        return $this->hasMany(Register::class);
+    }
 }
