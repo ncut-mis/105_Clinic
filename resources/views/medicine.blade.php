@@ -1,13 +1,12 @@
 @extends('layouts.clinic')
 
-@section('title', '藥品資訊')
+@section('title', '藥物資訊')
 
 <section class="content">
 
     <div class="container-fluid">
         <div class="block-header">
-            <h3>藥品資訊</h3>
-
+            <h3>藥物資訊</h3>
         </div>
 
     <div>
@@ -15,11 +14,11 @@
         {{ csrf_field() }}
 
             <div class="form-group">
-                <label for="medicine-name"><h3>輸入藥品</h3></label>
+                <label for="medicine-name"><h4>輸入藥品</h4></label>
 
                 <div class="col-sm-4">
                     <div class="modal-col-white">
-                    <input type="text" name="medicine" id="medicine-name" class="form-control">
+                    <input type="text" name="medicine" id="medicine-name" class="form-control" placeholder="請輸入藥品">
                     </div>
                 </div>
             </div>
@@ -35,46 +34,7 @@
     </div>
     </div>
 
-    {{--@if (count($medicines) > 0)--}}
-        {{--<div>--}}
-            {{--<div class="panel-heading">--}}
-                {{--目前藥品--}}
-            {{--</div>--}}
 
-            {{--<div class="panel-body">--}}
-                {{--<table>--}}
-
-                    {{--<!-- 表頭 -->--}}
-                    {{--<thead>--}}
-                    {{--<th>Task</th>--}}
-                    {{--<th>&nbsp;</th>--}}
-                    {{--</thead>--}}
-
-                    {{--<!-- 表身 -->--}}
-                    {{--<tbody>--}}
-                    {{--@foreach ($medicines as $medicine)--}}
-                        {{--<tr>--}}
-                            {{--<!-- 任務名稱 -->--}}
-                            {{--<td class="table-text">--}}
-                                {{--<div>{{ $medicine->medicine }}</div>--}}
-                            {{--</td>--}}
-
-                            {{--<!-- 刪除按鈕 -->--}}
-                            {{--<td>--}}
-                                {{--<form action="/medicines/{{ $medicine->id }}" method="POST">--}}
-                                    {{--{{ csrf_field() }}--}}
-                                    {{--{{ method_field('DELETE') }}--}}
-
-                                    {{--<button>刪除藥品</button>--}}
-                                {{--</form>--}}
-                            {{--</td>--}}
-                        {{--</tr>--}}
-                    {{--@endforeach--}}
-                    {{--</tbody>--}}
-                {{--</table>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--@endif--}}
     <div class="container-fluid">
     <div class="card">
         <table class="table table-hover">
@@ -88,6 +48,16 @@
             @foreach($medicines as $medicine)
             <tr>
                 <th>{{$medicine->medicine}}</th>
+                <td>
+                    <a class="btn btn-link" href="{{ route('medicine.edit', $medicine->id) }}">修改藥品</a>
+                    /
+                    <form action="/medicine/{{ $medicine->id }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+
+                        <button class="btn btn-link">刪除藥品</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
             </tbody>

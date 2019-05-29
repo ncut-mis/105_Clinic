@@ -18,6 +18,7 @@ class CreateStaffTable extends Migration
             $table->unsignedInteger('clinic_id');
             $table->unsignedInteger('position_id');
             $table->string('name');
+            $table->string('photo');
             $table->string('email');
             $table->string('password');
             $table->rememberToken();

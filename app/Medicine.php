@@ -13,9 +13,12 @@ class Medicine extends Model
     {
         return $this->belongsTo(Diagnosis::class);
     }
-
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
+    }
+    public function prescription()
+    {
+        return $this->belongsTo(Prescription::class);
     }
 }

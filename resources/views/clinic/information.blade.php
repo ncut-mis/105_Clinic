@@ -1,6 +1,6 @@
 ﻿@extends('layouts.clinic')
 <section class="content">
-    <form action="/clinic/information" method="POST" >
+    <form action="/clinic/information" method="POST" enctype="multipart/form-data" >
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
     <div class="container-fluid">
@@ -10,9 +10,9 @@
         </div>
         <div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12">
-				<div class="card">
-					<div class="header">
-						<h2>基本資料 <small>Basic Information</small> </h2>
+				<div class="card bg-lime">
+					<div class="header bg-lime">
+						<h2>基本資料<br> <small>Basic Information</small> </h2>
 					</div>
 
 					<div class="body">
@@ -63,16 +63,14 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--<div class="col-lg-12 col-md-12 col-sm-12">--}}
-                                {{--<form action="/" id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">--}}
-                                    {{--<div class="dz-message">--}}
-                                        {{--<div class="drag-icon-cph"> <i class="material-icons">touch_app</i> </div>--}}
-                                        {{--<h3>上傳診所環境照片</h3></div>--}}
-                                    {{--<div class="fallback">--}}
-                                        {{--<input name="file" type="file" multiple />--}}
-                                    {{--</div>--}}
-                                {{--</form>--}}
-                            {{--</div>--}}
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="dz-message">
+                                    <h3><font face="微軟正黑體"><i class="material-icons col-indigo">photo</i>上傳診所環境照片</font></h3>
+                                </div>
+                                <div class="fallback">
+                                    <input name="photo" type="file" accept ="image/*" />
+                                </div>
+                            </div>
                         </div>
                     </div>
 				</div>
@@ -80,13 +78,13 @@
 		</div>
         <div class="row clearfix">
 			<div class="col-md-12">
-				<div class="card">
-					<div class="header">
+				<div class="card bg-pink">
+					<div class="header bg-pink">
 						<h2>診所營業時間<small>Opening hour</small> </h2>
 					</div>
 					<div class="body">
                         <div class="row clearfix">
-                            <textarea class="form-control bg-grey" name="per_week_sections" style="width:1000px;height:200px;">{{Auth::user()->clinic->per_week_sections}}</textarea>
+                            <textarea class="form-control bg-blush" name="per_week_sections" style="width:1000px;height:200px;">{{Auth::user()->clinic->per_week_sections}}</textarea>
                         </div>
                     </div>
                     </div>

@@ -14,7 +14,7 @@
                                 <div class="body">
                                     <div class="member-card verified">
                                         <div class="thumb-xl member-thumb">
-                                            <img src="/img/random-avatar3.jpg" class="img-thumbnail rounded-circle" alt="profile-image">
+                                            <img src="{{url('img/staff/'. $staff->photo)}}"class="img-thumbnail rounded-circle" alt="profile-image">
                                         </div>
 
                                         <div class="">
@@ -50,7 +50,7 @@
                             <div class="body">
                                 <div class="member-card verified">
                                     <div class="thumb-xl member-thumb">
-                                        <img src="/img/random-avatar3.jpg" class="img-thumbnail rounded-circle" alt="profile-image">
+                                        <img src="{{url('img/staff/'. $staff->photo)}}"class="img-thumbnail rounded-circle" alt="profile-image">
                                     </div>
 
                                     <div class="">

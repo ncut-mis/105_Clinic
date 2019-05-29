@@ -27,7 +27,20 @@ Route::post('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'StaffControll
 Route::get('/clinic/doctors'  , ['as' => 'clinic.doctors', 'uses' => 'ClinicController@doctors']);
 Route::get('/clinic/staff'  , ['as' => 'clinic.staff', 'uses' => 'ClinicController@staff']);
 Route::get('/clinic/doctors/{doctor}/profile/'  , ['as' => 'clinic.profile', 'uses' => 'DoctorController@profile']);
+Route::get('/patient/{patient}/diagnosis/create'  , ['as' => 'doctor.diagnosis', 'uses' => 'DiagnosisController@create']);
+Route::post('/patient/{patient}/symptom/store'  , ['as' => 'patient.diagnosis.store', 'uses' => 'DiagnosisController@store']);
+Route::get('/patient/diagnosis/edit'  , ['as' => 'patient.diagnosis.edit2', 'uses' => 'DiagnosisController@edit2']);
+Route::get('/patient/{patient}/diagnosis/edit2'  , ['as' => 'patient.diagnosis.edit2', 'uses' => 'DiagnosisController@edit2']);
+Route::patch('/patient/{patient}/diagnosis',    ['as' => 'patient.diagnosis.update', 'uses' => 'DiagnosisController@update']);
+Route::post('/patient/{patient}/diagnosis/{diagnosis}/prescription/store'  , ['as' => 'diagnosis.prescription.store', 'uses' => 'PrescriptionController@store']);
+Route::delete('/patient/{patient}/prescription/{prescription}/destroy'  , ['as' => 'diagnosis.prescription.destroy', 'uses' => 'PrescriptionController@destroy']);
+Route::get('/patient/{patient}/diagnosis'  , ['as' => 'doctor.diagnosis.continue', 'uses' => 'DiagnosisController@continue']);
+Route::patch('/patient/{patient}/diagnosis',    ['as' => 'search.diagnosis.renew', 'uses' => 'DiagnosisController@renew']);
 
+Route::get('/register/patient/search'  , ['as' => 'register.patient.search', 'uses' => 'RegisterController@search']);
+Route::get('/register/{register}/patient/{patient}/search/diagnosis'  , ['as' => 'search.diagnosis', 'uses' => 'DiagnosisController@show']);
+Route::post('/patient/{patient}/symptom/store'  , ['as' => 'search.diagnosis.post', 'uses' => 'DiagnosisController@post']);
+Route::get('/patient/{patient}/diagnosis/edit2'  , ['as' => 'search.diagnosis.compile', 'uses' => 'DiagnosisController@compile']);
 
 Route::get('/clinic/information/edit'  , ['as' => 'clinic.information.edit', 'uses' => 'ClinicController@edit']);
 Route::patch('/clinic/information'  , ['as' => 'clinic.information.update', 'uses' => 'ClinicController@update']);
@@ -57,6 +70,14 @@ Route::patch('/register/late/{section}',['as' => 'register.late.reset_register',
 
 //藥物相關路由.......................................................................................
 //藥物名單頁面view；新增藥物、刪除藥物
+Route::get('/register/edit',['as' => 'register.edit', 'uses' =>'RegisterController@edit']);
+Route::post('/register'      ,['as' => 'register.store', 'uses' =>'RegisterController@store']);
+Route::patch('/register/{register}/update'  , ['as' => 'register.update', 'uses' => 'RegisterController@update']);
+
+//..........................................
 Route::get('/medicine',['as' => 'medicine.index', 'uses' =>  'MedicineController@index']);
 Route::post('/medicine/store', ['as' => 'medicine.store', 'uses' => 'MedicineController@store']);
 Route::delete('/medicine/{medicine}', 'MedicineController@destroy');
+Route::get('medicine/{medicine}/edit', ['as' => 'medicine.edit','uses' => 'MedicineController@edit']);
+Route::patch('/medicine/{medicine}/update'  , ['as' => 'medicine.update', 'uses' => 'MedicineController@update']);
+

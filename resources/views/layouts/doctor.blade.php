@@ -239,7 +239,7 @@
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
-            <div class="admin-image"> <img src="/img/random-avatar7.jpg" alt=""> </div>
+            <div class="admin-image"> <img src="{{url('img/staff/'. auth()->user()->photo)}}"> </div>
             <div class="admin-action-info"> <span>Welcome</span>
                 <h3><font face="微軟正黑體">{{Auth::user()->name}}</font></h3>
                 <ul>
@@ -252,8 +252,8 @@
             <div class="quick-stats">
                 <h5>Today Report</h5>
                 <ul>
-                    <li><span>16<i>Patient</i></span></li>
-                    <li><span>20<i>Panding</i></span></li>
+                    <li><span>1<i><font face="微軟正黑體"><strong>目前號碼</strong></font></i></span></li>
+                    <li><span>20<i><font face="微軟正黑體"><strong>剩餘人數</strong></font></i></span></li>
                     <li><span>04<i>Visit</i></span></li>
                 </ul>
             </div>
@@ -263,13 +263,8 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
-                <li><a href="{{ route('doctor.home') }}"><i class="zmdi zmdi-home"></i><span><font face="微軟正黑體"><strong>首頁</strong></font></span></a></li>
-                <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span><font face="微軟正黑體"><strong>看診</strong></font></span> </a>
-                    <ul class="ml-menu">
-                        <li><a href="{{ route('doctor.diagnosis') }}"><font face="微軟正黑體">看診</font></a></li>
-                        <li><a href="book-appointment.html">Book Appointment</a></li>
-                    </ul>
-                </li>
+                <li><a href="{{ route('doctor.home') }}"><i class="zmdi zmdi-home col-red"></i><span><font face="微軟正黑體"><strong>首頁</strong></font></span></a></li>
+                <li><a href="{{ route('doctor.diagnosis.continue',$patient) }}"><i class="zmdi zmdi-calendar-check col-blue"></i><span><font face="微軟正黑體"><strong>看診</strong></font></span></a></li>
                 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-balance-wallet"></i><span>Payments</span> </a>
                     <ul class="ml-menu">
                         <li> <a href="payments.html">Payments</a></li>
