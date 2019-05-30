@@ -49,7 +49,7 @@
             <tr>
                 <th>{{$medicine->medicine}}</th>
                 <td>
-                    <a class="btn btn-link" href="{{ route('medicine.edit', $medicine->id) }}">修改藥品</a>
+                    <a class="btn btn-link" href="{{ route('medicine.edit', $medicine)}}">修改藥品</a>
                     /
                     <form action="/medicine/{{ $medicine->id }}" method="POST">
                         {{ csrf_field() }}
