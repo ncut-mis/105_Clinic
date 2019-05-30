@@ -10,7 +10,7 @@ class Register extends Model
     protected $table ='registers';
 
     protected $fillable =[
-        'section_id', 'member_id', 'number','status','note','created_at',
+        'section_id', 'member_id','status','reservation_no','status','date',
     ];
 
     public function member()
@@ -21,5 +21,10 @@ class Register extends Model
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
     }
 }

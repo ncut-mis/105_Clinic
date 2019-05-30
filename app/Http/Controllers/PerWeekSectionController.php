@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\PerWeekSection;
 use Illuminate\Http\Request;
+use Auth;
 
 class PerWeekSectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $per_week_sections = PerWeekSection::where('doctor_id', Auth::user()->clinic->doctors)->get();
+        $doctors=auth()->user()->clinic->doctors;
+        $data = ['per_week_sections' => $per_week_sections,'doctors'=>$doctors];
+        return view('per_week_section', $data);
     }
 
     /**
@@ -24,7 +24,7 @@ class PerWeekSectionController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +35,7 @@ class PerWeekSectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -82,4 +82,5 @@ class PerWeekSectionController extends Controller
     {
         //
     }
+
 }

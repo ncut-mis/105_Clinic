@@ -23,12 +23,8 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-plus"></i> 增加藥品
-                    </button>
-                </div>
+            <div class="text-right">
+                <button style="color:white;" type="submit" class="btn btn-success">新增</button>
             </div>
         </form>
     </div>
@@ -47,7 +43,7 @@
             <tbody>
             @foreach($medicines as $medicine)
             <tr>
-                <th>{{$medicine->medicine}}</th>
+                <td>{{$medicine->medicine}}</td>
                 <td>
                     <a class="btn btn-link" href="{{ route('medicine.edit', $medicine)}}">修改藥品</a>
                     /
