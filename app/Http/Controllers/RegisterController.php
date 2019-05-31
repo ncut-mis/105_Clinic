@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Clinic;
+use App\Prescription;
+use App\Diagnosis;
 use App\Doctor;
 use App\Member;
 use App\Patient;
@@ -22,16 +24,17 @@ class RegisterController extends Controller
         date_default_timezone_set( "Asia/Taipei");
         $date = date("Y-m-d");
         $time = date("H:i:s");
-        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+        $registers = Register::join('members','members.id','=','registers.member_id')
+            ->join('sections','sections.id','=','registers.section_id')
+            ->join('doctors','doctors.id','=','sections.doctor_id')
             ->join('staff','staff.id','=','doctors.staff_id')
             ->where('date','=' ,$date)
             ->where('start','<',$time )->where('end','>',$time )
-            ->select('sections.id','sections.start','staff.name','sections.date','sections.next_register_no')
+            ->select('sections.id','sections.start','staff.name AS staff_name',
+                'sections.date','members.name AS member_name','sections.next_register_no',
+                'registers.reservation_no','registers.id','registers.status')
             ->get();
-        $members=Member::orderBy('name')->get();
-        $registers = Register::orderBy('id')->get();
-        $doctors = auth()->user()->clinic->doctors()->get();
-        $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members,'doctors'=>$doctors];
+        $data= ['registers'=>$registers];
         return view('register.index',$data);
     }
 
@@ -50,6 +53,23 @@ class RegisterController extends Controller
         $registers = Register::orderBy('id')->get();
         $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members];
         return view('register.late',$data);
+    }
+
+    public function receipt()
+    {
+        date_default_timezone_set( "Asia/Taipei");
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
+        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->where('date','=' ,$date)
+            ->where('start','<',$time )->where('end','>',$time )
+            ->select('sections.id','sections.start','staff.name','sections.date','sections.next_register_no')
+            ->get();
+        $members=Member::orderBy('name')->get();
+        $registers = Register::orderBy('id')->get();
+        $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members];
+        return view('register.receipt',$data);
     }
 
     public function member_search(Request $request)
@@ -222,5 +242,27 @@ class RegisterController extends Controller
         $members=Member::orderBy('id')->get();
         $data= ['patient' => $patient,'registers'=>$registers,'members'=>$members];
         return view('doctor.search',$data);
+    }
+
+    public function detail($id)
+    {
+        $date = date("Y-m-d");
+        $diagnosises = Diagnosis::join('members','members.id','=','diagnoses.member_id')
+            ->join('doctors','doctors.id','=','diagnoses.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->where('member_id',$id)
+            ->where('date','=' ,$date)
+            ->select('diagnoses.member_id','diagnoses.doctor_id','staff.name AS staff_name','members.name AS member_name')
+            ->get();
+        //echo $diagnosises;
+        $prescriptions = Diagnosis::join('prescriptions','prescriptions.diagnosis_id','=','diagnoses.id')
+            ->join('medicines','medicines.id','=','prescriptions.medicine_id')
+            ->where('date','=' ,$date)
+            ->where('member_id',[$id])
+            ->select('prescriptions.id','prescriptions.diagnosis_id',
+                'prescriptions.dosage','prescriptions.note','medicines.medicine')
+            ->get();
+        $data= ['diagnosises'=>$diagnosises,'prescriptions'=>$prescriptions];
+        return view('register.detail',$data);
     }
 }
