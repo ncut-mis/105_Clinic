@@ -7,6 +7,11 @@
             <h4>掛號名單</h4>
             <a href="{{ route('register.search') }}"><button class="btn-success">新增掛號</button></a>
             <a href="{{ route('register.late') }}"><button class="btn-success">過號名單</button></a>
+            @foreach($registers as $register)
+                @if($register->status === 1 )
+                    <a>{{$register->reservation_no}}號看診中</a>
+                @endif
+            @endforeach
         </div>
         <div class="container-fluid">
             <div class="card">
@@ -24,28 +29,27 @@
                     </thead>
                     <tbody>
                     @foreach($registers as $register)
-                        @foreach($sections as $section)
-                            @foreach($members as $member)
-                                @if($register->section_id===$section->id)
-                                    @if($register->member_id===$member->id)
-                                        @if($register->status === 0)
-                                            <tr>
-                                                <th style="text-align:center"></th>
-                                                <th style="text-align:center">{{$member->name}}</th>
-                                                <th style="text-align:center">{{$section->name}}</th>
-                                                <th style="text-align:center">{{$section->start}}</th>
-                                                <th style="text-align:center">{{$register->reservation_no}}</th>
-                                                <th>{{$register->note}}</th>
-                                                <th><form action="{{ route('register.index.destroy',$register->id) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('DELETE') }}
-                                                        <button class="btn-secondary">Cancel</button></form></th>
-                                            </tr>
-                                        @endif
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
+                         @if($register->status == 0 )
+                               <tr>
+                                   <th style="text-align:center"></th>
+                                   <th style="text-align:center">{{$register->member_name}}</th>
+                                   <th style="text-align:center">{{$register->staff_name}}</th>
+                                   <th style="text-align:center">{{$register->start}}</th>
+                                   @if($register->reservation_no == (int)$register->reservation_no)
+                                       <th style="text-align:center">{{$register->reservation_no}}</th>
+                                   @elseif($register->reservation_no <= 2.5)
+                                       <th style="text-align:center">1過號</th>
+                                   @else
+                                       <th style="text-align:center">{{$register->reservation_no-2.5}}過號</th>
+                                   @endif
+                                   {{--<th style="text-align:center">{{$register->reservation_no}}</th>--}}
+                                   <th>{{$register->note}}</th>
+                                   <th><form action="{{ route('register.index.destroy',$register->id) }}" method="POST">
+                                           {{ csrf_field() }}
+                                           {{ method_field('DELETE') }}
+                                           <button class="btn-secondary">Cancel</button></form></th>
+                               </tr>
+                         @endif
                     @endforeach
                     </tbody>
                 </table>
@@ -75,28 +79,20 @@
                     </thead>
                     <tbody>
                     @foreach($registers as $register)
-                        @foreach($sections as $section)
-                            @foreach($members as $member)
-                                @if($register->section_id===$section->id)
-                                    @if($register->member_id===$member->id)
-                                        @if($register->status === -1)
-                                            <tr>
-                                                <th style="text-align:center"></th>
-                                                <th style="text-align:center">{{$member->name}}</th>
-                                                <th style="text-align:center">{{$section->name}}</th>
-                                                <th style="text-align:center">{{$section->start}}</th>
-                                                <th style="text-align:center">{{$register->reservation_no}}</th>
-                                                <th style="text-align:center">{{$register->note}}</th>
-                                                <th><form action="{{ route('register.index.add_register',$register->id) }}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('PATCH') }}
-                                                    <button class="btn-secondary"></button>ADD</form></th>
-                                            </tr>
-                                        @endif
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
+                         @if($register->status === -1)
+                             <tr>
+                                    <th style="text-align:center"></th>
+                                    <th style="text-align:center">{{$register->member_name}}</th>
+                                    <th style="text-align:center">{{$register->staff_name}}</th>
+                                    <th style="text-align:center">{{$register->start}}</th>
+                                    <th style="text-align:center">{{$register->reservation_no}}</th>
+                                    <th style="text-align:center">{{$register->note}}</th>
+                                    <th><form action="{{ route('register.index.add_register',$register->id) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PATCH') }}
+                                        <button class="btn-secondary">ADD</button></form></th>
+                             </tr>
+                         @endif
                     @endforeach
                     </tbody>
                 </table>
