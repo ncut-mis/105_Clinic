@@ -37,7 +37,7 @@
                                                 <th><form action="{{ route('register.late.reset_register',$register->id) }}" method="POST">
                                                         {{ csrf_field() }}
                                                         {{ method_field('PATCH') }}
-                                                        <button class="btn-secondary">重新排位</button></th>
+                                                        <button class="btn-secondary">重新排位</button></form></th>
                                             </tr>
                                         @endif
                                     @endif
