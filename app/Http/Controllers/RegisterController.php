@@ -43,32 +43,48 @@ class RegisterController extends Controller
         date_default_timezone_set( "Asia/Taipei");
         $date = date("Y-m-d");
         $time = date("H:i:s");
-        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+        $registers = Register::join('members','members.id','=','registers.member_id')
+            ->join('sections','sections.id','=','registers.section_id')
+            ->join('doctors','doctors.id','=','sections.doctor_id')
             ->join('staff','staff.id','=','doctors.staff_id')
             ->where('date','=' ,$date)
             ->where('start','<',$time )->where('end','>',$time )
-            ->select('sections.id','sections.start','staff.name','sections.date','sections.next_register_no')
+            ->select('sections.id','sections.start','staff.name AS staff_name',
+                'sections.date','members.name AS member_name','sections.next_register_no',
+                'registers.reservation_no','registers.id','registers.status')
             ->get();
-        $members=Member::orderBy('name')->get();
-        $registers = Register::orderBy('id')->get();
-        $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members];
+        $data= ['registers'=>$registers];
         return view('register.late',$data);
     }
 
     public function receipt()
     {
+//        date_default_timezone_set( "Asia/Taipei");
+//        $date = date("Y-m-d");
+//        $time = date("H:i:s");
+//        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+//            ->join('staff','staff.id','=','doctors.staff_id')
+//            ->where('date','=' ,$date)
+//            ->where('start','<',$time )->where('end','>',$time )
+//            ->select('sections.id','sections.start','staff.name','sections.date','sections.next_register_no')
+//            ->get();
+//        $members=Member::orderBy('name')->get();
+//        $registers = Register::orderBy('id')->get();
+//        $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members];
         date_default_timezone_set( "Asia/Taipei");
         $date = date("Y-m-d");
         $time = date("H:i:s");
-        $sections = Section::join('doctors','doctors.id','=','sections.doctor_id')
+        $registers = Register::join('members','members.id','=','registers.member_id')
+            ->join('sections','sections.id','=','registers.section_id')
+            ->join('doctors','doctors.id','=','sections.doctor_id')
             ->join('staff','staff.id','=','doctors.staff_id')
             ->where('date','=' ,$date)
             ->where('start','<',$time )->where('end','>',$time )
-            ->select('sections.id','sections.start','staff.name','sections.date','sections.next_register_no')
+            ->select('sections.id','sections.start','staff.name AS staff_name',
+                'sections.date','members.name AS member_name','sections.next_register_no','members.id AS members_id',
+                'registers.reservation_no','registers.id','registers.status')
             ->get();
-        $members=Member::orderBy('name')->get();
-        $registers = Register::orderBy('id')->get();
-        $data= ['registers'=>$registers,'sections'=>$sections,'members'=>$members];
+        $data= ['registers'=>$registers];
         return view('register.receipt',$data);
     }
 

@@ -22,28 +22,20 @@
                     </thead>
                     <tbody>
                     @foreach($registers as $register)
-                        @foreach($sections as $section)
-                            @foreach($members as $member)
-                                @if($register->section_id===$section->id)
-                                    @if($register->member_id===$member->id)
-                                        @if($register->status === 3)
-                                            <tr>
-                                                <th style="text-align:center"></th>
-                                                <th style="text-align:center">{{$member->name}}</th>
-                                                <th style="text-align:center">{{$section->name}}</th>
-                                                <th style="text-align:center">{{$section->start}}</th>
-                                                <th style="text-align:center">{{$register->reservation_no}}</th>
-                                                <th>{{$register->note}}</th>
-                                                <th><form action="{{ route('register.late.reset_register',$register->id) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('PATCH') }}
-                                                        <button class="btn-secondary">重新排位</button></form></th>
-                                            </tr>
-                                        @endif
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
+                         @if($register->status === 3)
+                              <tr>
+                                  <th style="text-align:center"></th>
+                                  <th style="text-align:center">{{$register->member_name}}</th>
+                                  <th style="text-align:center">{{$register->staff_name}}</th>
+                                  <th style="text-align:center">{{$register->start}}</th>
+                                  <th style="text-align:center">{{$register->reservation_no}}</th>
+                                  <th>{{$register->note}}</th>
+                                  <th><form action="{{ route('register.late.reset_register',$register->id) }}" method="POST">
+                                          {{ csrf_field() }}
+                                          {{ method_field('PATCH') }}
+                                          <button class="btn-secondary">重新排位</button></form></th>
+                              </tr>
+                         @endif
                     @endforeach
                     </tbody>
                 </table>

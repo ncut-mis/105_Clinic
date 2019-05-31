@@ -21,27 +21,19 @@
                     </thead>
                     <tbody>
                     @foreach($registers as $register)
-                        @foreach($sections as $section)
-                            @foreach($members as $member)
-                                @if($register->section_id===$section->id)
-                                    @if($register->member_id===$member->id)
-                                        @if($register->status === 2)
-                                            <tr>
-                                                <th style="text-align:center"></th>
-                                                <th style="text-align:center">{{$member->name}}</th>
-                                                <th style="text-align:center">{{$section->name}}</th>
-                                                <th style="text-align:center">{{$section->start}}</th>
-                                                <th style="text-align:center">{{$register->reservation_no}}</th>
-                                                <th>{{$register->note}}</th>
-                                                <th><a href="{{ route('register.detail',$member->id) }}">
-                                                    <input type="hidden" name="member_id" value="{{$member->id}}" >
-                                                    <button class="btn-secondary">列印收據</button></a></th>
-                                            </tr>
-                                        @endif
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
+                        @if($register->status === 2)
+                            <tr>
+                                <th style="text-align:center"></th>
+                                <th style="text-align:center">{{$register->member_name}}</th>
+                                <th style="text-align:center">{{$register->staff_name}}</th>
+                                <th style="text-align:center">{{$register->start}}</th>
+                                <th style="text-align:center">{{$register->reservation_no}}</th>
+                                <th>{{$register->note}}</th>
+                                <th><a href="{{ route('register.detail',$register->members_id) }}">
+                                    <input type="hidden" name="member_id" value="{{$register->members_id}}" >
+                                    <button class="btn-secondary">列印收據</button></a></th>
+                            </tr>
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
