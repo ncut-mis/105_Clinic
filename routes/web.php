@@ -89,3 +89,8 @@ Route::get('medicine/{medicine}/edit', ['as' => 'medicine.edit','uses' => 'Medic
 Route::patch('/medicine/{medicine}/update'  , ['as' => 'medicine.update', 'uses' => 'MedicineController@update']);
 
 Route::get('/per_week_section',['as' => 'per_week_section.index', 'uses' =>  'PerWeekSectionController@index']);
+Route::post('/per_week_section/store', ['as' => 'per_week_section.store', 'uses' => 'PerWeekSectionController@store']);
+Route::delete('/per_week_section/{id}','PerWeekSectionController@destroy');
+Route::get('per_week_section/{id}/edit', ['as' => 'per_week_section.edit','uses' => 'MedicineController@edit']);
+Route::patch('/per_week_section/{id}/update'  , ['as' => 'per_week_section.update', 'uses' => 'MedicineController@update']);
+

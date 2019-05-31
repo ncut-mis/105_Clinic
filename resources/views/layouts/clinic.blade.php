@@ -311,7 +311,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('clinic.information.edit') }}"><i class="zmdi zmdi-file-text"></i><span><font face="微軟正黑體"><strong>診所基本資料</strong></font></span></a>
-                <li><a href="widgets.html"><i class="zmdi zmdi-delicious"></i><span><font face="微軟正黑體"><strong>醫生預定看診時段管理</strong></font></span></a></li>
+                <li><a href="{{ route('per_week_section.index') }}"><i class="zmdi zmdi-delicious"></i><span><font face="微軟正黑體"><strong>醫生預定看診時段管理</strong></font></span></a></li>
 
 
                 <li class="header"></li>
