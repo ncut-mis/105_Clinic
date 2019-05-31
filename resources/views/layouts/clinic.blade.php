@@ -270,6 +270,7 @@
                         <li><a href="doctor-schedule.html">Doctor Schedule</a></li>
                         <li><a href="{{ route('register.index') }}">掛號</a></li>
                         <li><a href="{{ route('register.reservation') }}">預約</a></li>
+                        <li><a href="{{ route('register.receipt') }}">已看診</a></li>
                     </ul>
                 </li>
                 <?php $URL=$_SERVER['REQUEST_URI'];?>
