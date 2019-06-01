@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Doctor;
 use App\PerWeekSection;
 use App\Repositories\PerWeekSectionRepository;
+use App\Staff;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -12,9 +14,11 @@ class PerWeekSectionController extends Controller
 
     public function index()
     {
-        $per_week_sections = PerWeekSection::where('doctor_id', Auth::user()->clinic->doctors)->get();
+        $per_week_sections = PerWeekSection::orderby('doctor_id')->get();
+        //dd($per_week_sections);
+        $staffs = Staff::orderBy('id')->get();
         $doctors=auth()->user()->clinic->doctors;
-        $data = ['per_week_sections' => $per_week_sections,'doctors'=>$doctors];
+        $data = ['per_week_sections' => $per_week_sections,'doctors'=>$doctors,'staffs'=> $staffs];
         return view('per_week_section', $data);
     }
 
@@ -61,18 +65,17 @@ class PerWeekSectionController extends Controller
     }
 
 
-    public function edit(PerWeekSection $per_week_sections)
+    public function edit(PerWeekSection $per_week_section,Staff $staff)
     {
-        $per_week_sections = PerWeekSection::where('doctor_id',$doctors->id)->get()->first();
-        $data = ['per_week_sections' => $per_week_sections,'doctors'=>$doctors];
-        return view('per_week_section.edit', $data);
+        $per_week_sections = PerWeekSection::where('doctor_id',$staff->doctor_id)->get()->first();
+        $data = ['per_week_sections' => $per_week_sections,'staff'=>$staff,'per_week_section' => $per_week_section];
+        return view('doctor.per_week_section.edit', $data);
     }
 
 
-    public function update(Request $request, PerWeekSection $per_week_sections)
+    public function update(Request $request, PerWeekSection $per_week_section)
     {
-        $per_week_sections->update([
-            'doctor_id' => $request->doctor_id,
+        $per_week_section->update([
             'weekday' => $request->weekday,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
@@ -82,9 +85,9 @@ class PerWeekSectionController extends Controller
     }
 
 
-    public function destroy(Request $request,PerWeekSection $per_week_sections)
+    public function destroy(Request $request,PerWeekSection $per_week_section)
     {
-        PerWeekSection::destroy($per_week_sections->doctor_id);
+        PerWeekSection::destroy($per_week_section->id);
         return redirect()->route('per_week_section.index');
     }
 

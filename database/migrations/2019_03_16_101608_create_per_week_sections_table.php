@@ -20,8 +20,8 @@ class CreatePerWeekSectionsTable extends Migration
             $table->string('start_time');
             $table->string('end_time');
             $table->string('from');
-            $table->string('suspense_from');
-            $table->string('suspense_to');
+            $table->string('suspense_from')->nullable();
+            $table->string('suspense_to')->nullable();
             $table->timestamps();
         });
     }

@@ -39,8 +39,8 @@ Route::patch('/patient/{patient}/diagnosis',    ['as' => 'search.diagnosis.renew
 
 Route::get('/register/patient/search'  , ['as' => 'register.patient.search', 'uses' => 'RegisterController@search']);
 Route::get('/register/{register}/patient/{patient}/search/diagnosis'  , ['as' => 'search.diagnosis', 'uses' => 'DiagnosisController@show']);
-Route::post('/patient/{patient}/symptom/store'  , ['as' => 'search.diagnosis.post', 'uses' => 'DiagnosisController@post']);
-Route::get('/patient/{patient}/diagnosis/edit2'  , ['as' => 'search.diagnosis.compile', 'uses' => 'DiagnosisController@compile']);
+Route::post('/search/patient/{patient}/symptom/store'  , ['as' => 'search.diagnosis.post', 'uses' => 'DiagnosisController@post']);
+Route::get('/search/patient/{patient}/diagnosis/edit2'  , ['as' => 'search.diagnosis.compile', 'uses' => 'DiagnosisController@compile']);
 
 Route::get('/clinic/information/edit'  , ['as' => 'clinic.information.edit', 'uses' => 'ClinicController@edit']);
 Route::patch('/clinic/information'  , ['as' => 'clinic.information.update', 'uses' => 'ClinicController@update']);
@@ -83,7 +83,7 @@ Route::patch('/medicine/{medicine}/update'  , ['as' => 'medicine.update', 'uses'
 
 Route::get('/per_week_section',['as' => 'per_week_section.index', 'uses' =>  'PerWeekSectionController@index']);
 Route::post('/per_week_section/store', ['as' => 'per_week_section.store', 'uses' => 'PerWeekSectionController@store']);
-Route::delete('/per_week_section/{id}','PerWeekSectionController@destroy');
-Route::get('per_week_section/{id}/edit', ['as' => 'per_week_section.edit','uses' => 'MedicineController@edit']);
-Route::patch('/per_week_section/{id}/update'  , ['as' => 'per_week_section.update', 'uses' => 'MedicineController@update']);
+Route::delete('/per_week_section/{per_week_section}','PerWeekSectionController@destroy');
+Route::get('/per_week_section/{per_week_section}/staff/{staff}/edit', ['as' => 'per_week_section.edit','uses' => 'PerWeekSectionController@edit']);
+Route::patch('/per_week_section/{per_week_section}/update'  , ['as' => 'per_week_section.update', 'uses' => 'PerWeekSectionController@update']);
 
