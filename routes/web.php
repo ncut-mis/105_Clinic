@@ -45,6 +45,11 @@ Route::get('/search/patient/{patient}/diagnosis/edit2'  , ['as' => 'search.diagn
 Route::get('/clinic/information/edit'  , ['as' => 'clinic.information.edit', 'uses' => 'ClinicController@edit']);
 Route::patch('/clinic/information'  , ['as' => 'clinic.information.update', 'uses' => 'ClinicController@update']);
 
+
+//firebase測試
+Route::get('/fire/{patient}'  , ['as' => 'firebase.late', 'uses' => 'NoticeController@late']);
+
+
 //掛號相關路由..................................................................................
 //今日掛號名單&今日已預約名單view；取消掛號、今日預約轉為掛號
 Route::get('/register/index',['as' => 'register.index', 'uses' =>'RegisterController@index']);

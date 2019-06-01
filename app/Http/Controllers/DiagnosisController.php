@@ -43,6 +43,7 @@ class DiagnosisController extends Controller
             $one_no=session('one');
             $one_no->status=3;
             $one_no->save();
+            return redirect()->route('firebase.late',$patient);
         }
 
         $current=session('next');
