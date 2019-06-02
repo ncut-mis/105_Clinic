@@ -9,10 +9,10 @@
             <div class="card-top"></div>
             <div class="card">
                 <div class="col-md-12">
-                    @foreach($sections as $section)
-                        <form action={{route('register.reservation_store',$section)}} id="register" class="col-xs-12" method="POST" class="form-horizontal" name="register">
+
+                        <form action={{route('register.reservation_store')}} id="register" class="col-xs-12" method="POST" class="form-horizontal" name="register">
                             {{ csrf_field() }}
-                            <div style="text-align:center"><h5>{{$section->name}}醫生</h5></div>
+
 
                             <div class="input-group">
                             <span class="input-group-addon">
@@ -21,9 +21,9 @@
 
                                 <div class="form-group drop-custum">
                                     <select class="form-control show-tick" name="section_id" id="section_id">
-
-                                        <option value="{{$section->id}}">{{$section->date}}---{{$section->start}}</option>
-
+                                        @foreach($sections as $section)
+                                        <option value="{{$section->id}}">{{$section->date}}--{{$section->name}}--{{$section->start}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 </button>
                             </div>
                         </form>
-                    @endforeach
+
                 </div>
             </div>
         </div>

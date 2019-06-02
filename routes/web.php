@@ -67,20 +67,27 @@ Route::post('/register/create/{section}',['as' => 'register.store', 'uses' =>'Re
 Route::get('/register/reservation',['as' => 'register.reservation', 'uses' =>'RegisterController@member_reservation']);
 //預約操作view(選擇日期、醫生、時段)；儲存預約
 Route::get('/register/create_reservation',['as' => 'register.create_reservation', 'uses' =>'RegisterController@create_reservation']);
-Route::post('/register/create_reservation/{section}',['as' => 'register.reservation_store', 'uses' =>'RegisterController@reservation_store']);
+Route::post('/register/create_reservation',['as' => 'register.reservation_store', 'uses' =>'RegisterController@reservation_store']);
 
 //過號相關路由......................................................................................
 //今日過號名單view；過號重新排序(處理過號)
 Route::get('/register/late',['as' => 'register.late', 'uses' =>'RegisterController@late']);
 Route::patch('/register/late/{section}',['as' => 'register.late.reset_register', 'uses' =>'RegisterController@reset_register']);
 
-//藥物相關路由.......................................................................................
-//藥物名單頁面view；新增藥物、刪除藥物
+//..........................................
 Route::get('/register/edit',['as' => 'register.edit', 'uses' =>'RegisterController@edit']);
 Route::post('/register'      ,['as' => 'register.store', 'uses' =>'RegisterController@store']);
 Route::patch('/register/{register}/update'  , ['as' => 'register.update', 'uses' => 'RegisterController@update']);
 
-//..........................................
+//列印收據..................................................................
+//顯示看完診的名單
+Route::get('/register/receipt',['as' => 'register.receipt', 'uses' =>'RegisterController@receipt']);
+//顯示該單的看診明細(會員、醫生、症狀、用藥......)
+Route::get('/register/{id}/detail',['as' => 'register.detail', 'uses' =>'RegisterController@detail']);
+
+
+//藥物相關路由.......................................................................................
+//藥物名單頁面view；新增藥物、刪除藥物
 Route::get('/medicine',['as' => 'medicine.index', 'uses' =>  'MedicineController@index']);
 Route::post('/medicine/store', ['as' => 'medicine.store', 'uses' => 'MedicineController@store']);
 Route::delete('/medicine/{medicine}', 'MedicineController@destroy');
