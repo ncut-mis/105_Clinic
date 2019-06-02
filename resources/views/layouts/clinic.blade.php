@@ -267,7 +267,6 @@
                 <li><a href="{{ route('medicine.index') }}"><i class="zmdi zmdi-local-hospital"></i><span><font face="微軟正黑體"><strong>藥物管理</strong></font></span></a></li>
                 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span><font face="微軟正黑體"><strong>預約管理</strong></font></span> </a>
                     <ul class="ml-menu">
-                        <li><a href="doctor-schedule.html">Doctor Schedule</a></li>
                         <li><a href="{{ route('register.index') }}">掛號</a></li>
                         <li><a href="{{ route('register.reservation') }}">預約</a></li>
                         <li><a href="{{ route('register.receipt') }}">已看診</a></li>
