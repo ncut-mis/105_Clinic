@@ -44,9 +44,9 @@
                                    @endif
                                    {{--<th style="text-align:center">{{$register->reservation_no}}</th>--}}
                                    <th>{{$register->note}}</th>
-                                   <th><form action="{{ route('register.index.destroy',$register->id) }}" method="POST">
+                                   <th><form action="{{ route('register.index.cancel',$register->id) }}" method="POST">
                                            {{ csrf_field() }}
-                                           {{ method_field('DELETE') }}
+                                           {{ method_field('PATCH') }}
                                            <button class="btn-secondary">Cancel</button></form></th>
                                </tr>
                          @endif

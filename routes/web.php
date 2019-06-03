@@ -54,7 +54,7 @@ Route::get('/firebase/time'  , ['as' => 'firebase.time', 'uses' => 'NoticeContro
 //掛號相關路由..................................................................................
 //今日掛號名單&今日已預約名單view；取消掛號、今日預約轉為掛號
 Route::get('/register/index',['as' => 'register.index', 'uses' =>'RegisterController@index']);
-Route::delete('/register/index/{register}',['as' => 'register.index.destroy', 'uses' =>'RegisterController@destroy']);
+Route::patch('/register/index/{register}',['as' => 'register.index.cancel', 'uses' =>'RegisterController@cancel']);
 Route::patch('/register/index/{section}',['as' => 'register.index.add_register', 'uses' =>'RegisterController@add_register']);
 //搜尋會員view(keyword)(掛號用)
 Route::get('/register/search',['as' => 'register.search', 'uses' =>'RegisterController@member_search']);

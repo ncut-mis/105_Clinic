@@ -224,9 +224,10 @@ class RegisterController extends Controller
      * @param  \App\Register $register
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function cancel(Register $register)
     {
-        Register::destroy($id);
+        $register->update([
+            'status' => 4,]);
         return view('register.index');
     }
 
@@ -262,18 +263,15 @@ class RegisterController extends Controller
 
     public function detail($id)
     {
-        $date = date("Y-m-d");
         $diagnosises = Diagnosis::join('members','members.id','=','diagnoses.member_id')
             ->join('doctors','doctors.id','=','diagnoses.doctor_id')
             ->join('staff','staff.id','=','doctors.staff_id')
             ->where('member_id',$id)
-            ->where('date','=' ,$date)
-            ->select('diagnoses.member_id','diagnoses.doctor_id','staff.name AS staff_name','members.name AS member_name')
+            ->select('diagnoses.member_id','diagnoses.doctor_id','staff.name AS staff_name','members.name AS member_name','diagnoses.symptom')
             ->get();
         //echo $diagnosises;
         $prescriptions = Diagnosis::join('prescriptions','prescriptions.diagnosis_id','=','diagnoses.id')
             ->join('medicines','medicines.id','=','prescriptions.medicine_id')
-            ->where('date','=' ,$date)
             ->where('member_id',[$id])
             ->select('prescriptions.id','prescriptions.diagnosis_id',
                 'prescriptions.dosage','prescriptions.note','medicines.medicine')
