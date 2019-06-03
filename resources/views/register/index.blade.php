@@ -46,9 +46,9 @@
                                    @else
                                        <th style="text-align:center" class="bg-warning">{{$register->note}}<br>已重新安排掛號</th>
                                    @endif
-                                   <th><form action="{{ route('register.index.destroy',$register->id) }}" method="POST">
+                                   <th><form action="{{ route('register.index.cancel',$register->id) }}" method="POST">
                                            {{ csrf_field() }}
-                                           {{ method_field('DELETE') }}
+                                           {{ method_field('PATCH') }}
                                            <button class="btn-secondary">Cancel</button></form></th>
                                </tr>
                          @endif

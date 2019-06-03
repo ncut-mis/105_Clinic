@@ -225,10 +225,12 @@ class RegisterController extends Controller
      * @param  \App\Register $register
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function cancel(Register $register)
     {
-        Register::destroy($id);
+        $register->update([
+            'status' => 4,]);
         return redirect()->route('register.index');
+
     }
 
     public function add_register($id)
@@ -263,6 +265,7 @@ class RegisterController extends Controller
 
     public function detail($id)
     {
+        date_default_timezone_set("Asia/Taipei");
         $date = date("Y-m-d");
         $diagnosises = Diagnosis::join('members','members.id','=','diagnoses.member_id')
             ->join('doctors','doctors.id','=','diagnoses.doctor_id')
