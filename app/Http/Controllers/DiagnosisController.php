@@ -54,7 +54,7 @@ class DiagnosisController extends Controller
         }
         $current=session('next');
         $current->status=1;  //已呼叫
-        $current_section->update(['current_no' =>$current->number]);
+        $current_section->update(['current_no' =>$current->reservation_no]);
         $current->save();
         session(['current' => $current]);
 
@@ -63,7 +63,7 @@ class DiagnosisController extends Controller
         {
             if($register->reminding_no!==0)
             {
-              $if_equal_current_no = $register->number - $register->reminding_no;
+              $if_equal_current_no = $register->reservation_no - $register->reminding_no;
              if($current_section->current_no===$if_equal_current_no)
               {
                $optionBuilder = new OptionsBuilder();
@@ -75,7 +75,7 @@ class DiagnosisController extends Controller
                $option = $optionBuilder->build();
                $notification = $notificationBuilder->build();
                $data = $dataBuilder->build();
-               $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
+               $token = "eCLSpu18YmA:APA91bGhYtYftvMGzR7YLVewSjnrn-rCm9cS6njAemYRraYsSAH0wMecGHJYLG0nori6woBLCkBUk_tkSiuJuMnPqu31GsHIr9iSsxYCIIZfKqkzMcddA0XgudY77PgFs58wfVE71rnV";
                $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
                $downstreamResponse->numberSuccess();
                $downstreamResponse->numberFailure();
@@ -85,16 +85,22 @@ class DiagnosisController extends Controller
                $downstreamResponse->tokensToModify();
                //return Array - you should try to resend the message to the tokens in the array
                $downstreamResponse->tokensToRetry();
-               // return Array (key:token, value:errror) - in production you should remove from your database the tokens
+               // return Array (key:token, value:error) - in production you should remove from your database the tokens
               }
             }
         }
 
-        $waiting_list=$current_section->registers()->where('status',0)->orderBy('number', 'ASC')->get();
+        $waiting_list=$current_section->registers()->where('status',0)->orderBy('reservation_no', 'ASC')->get();
         $next=$waiting_list->first(); //下一個看診者
         session(['next' => $next]);
+        session(['register' => $register]);
+        $records = $patient->diagnoses()->join('doctors','doctors.id','=','diagnoses.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->select('diagnoses.id','diagnoses.date','staff.name','diagnoses.symptom')
+            ->orderBy('id','asc')
+            ->get();
 
-        $data=['patient' => $patient,'next' => $next,'one' => $one];
+        $data=['patient' => $patient,'next' => $next,'one' => $one,'records' => $records];
         return view('doctor.diagnosis',$data);
     }
     public function continue(Patient $patient)
@@ -105,12 +111,18 @@ class DiagnosisController extends Controller
         $time=date("H:i:s");
         $current_section=$doctor->sections()->where('date',$date)->where('start','<',$time)->where('end','>',$time)->get()->first();//目前的看診時段
 
-        $waiting_list=$current_section->registers()->where('status',0)->orderBy('number', 'ASC')->get();
+        $waiting_list=$current_section->registers()->where('status',0)->orderBy('reservation_no', 'ASC')->get();
         $next=$waiting_list->first(); //下一個看診者
         session(['next' => $next]);
+
+        $records = $patient->diagnoses()->join('doctors','doctors.id','=','diagnoses.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->select('diagnoses.id','diagnoses.date','staff.name','diagnoses.symptom')
+            ->orderBy('id','asc')
+            ->get();
 //
         $medicines = Medicine::where('clinic_id',Auth()->user()->clinic->id)->get();
-        $data=['patient' => $patient,'medicines' => $medicines,'next' => $next];
+        $data=['patient' => $patient,'medicines' => $medicines,'next' => $next,'records' => $records];
         return view('doctor.diagnosis',$data);
     }
 
@@ -124,11 +136,11 @@ class DiagnosisController extends Controller
     public function store(Request $request,Patient $patient)
     {
         date_default_timezone_set("Asia/Taipei");
-       Diagnosis::create([
+        Diagnosis::create([
             'member_id' =>$patient->id,
             'doctor_id' =>$doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first()->id,
             'symptom' => $request->symptom,
-            'created_at' => date("Y-m-d"),
+            'date' => date("Y-m-d"),
         ]);
         return redirect()->route('patient.diagnosis.edit2',$patient);
     }
@@ -139,7 +151,7 @@ class DiagnosisController extends Controller
             'member_id' =>$patient->id,
             'doctor_id' =>$doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first()->id,
             'symptom' => $request->symptom,
-            'created_at' => date("Y-m-d"),
+            'date' => date("Y-m-d"),
         ]);
         return redirect()->route('search.diagnosis.compile',$patient);
 
@@ -157,7 +169,12 @@ class DiagnosisController extends Controller
         session(['register' => null]);
         session(['register' => $register]);
         $register= $register->id;
-        $data=['patient' => $patient,'register' => $register];
+        $records = $patient->diagnoses()->join('doctors','doctors.id','=','diagnoses.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->select('diagnoses.id','diagnoses.date','staff.name','diagnoses.symptom')
+            ->orderBy('id','asc')
+            ->get();
+        $data=['patient' => $patient,'register' => $register,'records' => $records];
         return view('doctor.diagnosis.show',$data);
     }
 
@@ -194,7 +211,14 @@ class DiagnosisController extends Controller
         $medicines = Medicine::where('clinic_id',auth()->user()->clinic->id)->get();
         $prescriptions=$diagnosis->prescriptions()->get();
         $next=session('next');
-        $data=['patient' => $patient,'diagnosis' => $diagnosis,'medicines' => $medicines,'prescriptions' => $prescriptions,'next' => $next];
+        $records = $patient->diagnoses()->join('doctors','doctors.id','=','diagnoses.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->select('diagnoses.id','diagnoses.date','staff.name','diagnoses.symptom')
+            ->orderBy('id','asc')
+            ->get();
+
+        $data=['patient' => $patient,'diagnosis' => $diagnosis,'medicines' => $medicines,
+            'prescriptions' => $prescriptions,'next' => $next,'records' => $records];
         return view('doctor.diagnosis.edit',$data);
     }
 
@@ -206,7 +230,14 @@ class DiagnosisController extends Controller
         $diagnosis=$doctor->diagnoses()->where('created_at',$date)->where('member_id',$patient->id)->get()->first();
         $medicines = Medicine::where('clinic_id',auth()->user()->clinic->id)->get();
         $prescriptions=$diagnosis->prescriptions()->get();
-        $data=['patient' => $patient,'diagnosis' => $diagnosis,'medicines' => $medicines,'prescriptions' => $prescriptions];
+        $records = $patient->diagnoses()->join('doctors','doctors.id','=','diagnoses.doctor_id')
+            ->join('staff','staff.id','=','doctors.staff_id')
+            ->select('diagnoses.id','diagnoses.date','staff.name','diagnoses.symptom')
+            ->orderBy('id','asc')
+            ->get();
+
+        $data=['patient' => $patient,'diagnosis' => $diagnosis,'medicines' => $medicines
+            ,'prescriptions' => $prescriptions,'records' => $records];
         return view('doctor.diagnosis.update',$data);
     }
 
