@@ -25,7 +25,7 @@
                                 @foreach($members as $member)
                                     @if($register->member_id===$member->id)
                                 <tr>
-                                    <td style="font-size: 20px">{{$register->number}}</td>
+                                    <td style="font-size: 20px">{{$register->reservation_no}}</td>
                                     <td style="font-size: 20px"><font face="微軟正黑體">{{$member->name}}</font></td>
                                     @if($register->status===0)
                                         <td style="font-size: 20px"><font face="微軟正黑體">候診中</font></td>
