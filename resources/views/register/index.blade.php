@@ -37,13 +37,15 @@
                                    <th style="text-align:center">{{$register->start}}</th>
                                    @if($register->reservation_no == (int)$register->reservation_no)
                                        <th style="text-align:center">{{$register->reservation_no}}</th>
-                                   @elseif($register->reservation_no <= 2.5)
-                                       <th style="text-align:center">1過號</th>
                                    @else
-                                       <th style="text-align:center">{{$register->reservation_no-2.5}}過號</th>
+                                       <th style="text-align:center" class="bg-blush"><del>{{$register->reservation_no-2.5}}</del><br>已過號</th>
                                    @endif
-                                   {{--<th style="text-align:center">{{$register->reservation_no}}</th>--}}
-                                   <th>{{$register->note}}</th>
+
+                                   @if($register->reservation_no == (int)$register->reservation_no)
+                                       <th style="text-align:center">{{$register->note}}</th>
+                                   @else
+                                       <th style="text-align:center" class="bg-warning">{{$register->note}}<br>已重新安排掛號</th>
+                                   @endif
                                    <th><form action="{{ route('register.index.destroy',$register->id) }}" method="POST">
                                            {{ csrf_field() }}
                                            {{ method_field('DELETE') }}

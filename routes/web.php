@@ -67,12 +67,12 @@ Route::post('/register/create/{section}',['as' => 'register.store', 'uses' =>'Re
 Route::get('/register/reservation',['as' => 'register.reservation', 'uses' =>'RegisterController@member_reservation']);
 //預約操作view(選擇日期、醫生、時段)；儲存預約
 Route::get('/register/create_reservation',['as' => 'register.create_reservation', 'uses' =>'RegisterController@create_reservation']);
-Route::post('/register/create_reservation',['as' => 'register.reservation_store', 'uses' =>'RegisterController@reservation_store']);
+Route::post('/register/create_reservation/{section}',['as' => 'register.reservation_store', 'uses' =>'RegisterController@reservation_store']);
 
 //過號相關路由......................................................................................
 //今日過號名單view；過號重新排序(處理過號)
 Route::get('/register/late',['as' => 'register.late', 'uses' =>'RegisterController@late']);
-Route::patch('/register/late/{section}',['as' => 'register.late.reset_register', 'uses' =>'RegisterController@reset_register']);
+Route::patch('/register/late/{register}',['as' => 'register.late.reset_register', 'uses' =>'RegisterController@reset_register']);
 
 //..........................................
 Route::get('/register/edit',['as' => 'register.edit', 'uses' =>'RegisterController@edit']);

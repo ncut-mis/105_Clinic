@@ -3,7 +3,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>Reister Create</h2>
+            <h2>Register Create</h2>
 
         </div>
         <div class="container">
