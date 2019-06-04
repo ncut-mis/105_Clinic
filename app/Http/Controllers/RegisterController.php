@@ -230,10 +230,6 @@ class RegisterController extends Controller
         $register->update([
             'status' => 4,]);
         return redirect()->route('register.index');
-<<<<<<< HEAD
-=======
-
->>>>>>> a23ba75121c9819f86e0ebf2df3a9718ca9d4f75
     }
 
     public function add_register($id)
