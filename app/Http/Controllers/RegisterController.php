@@ -32,7 +32,8 @@ class RegisterController extends Controller
             ->where('start','<',$time )->where('end','>',$time )
             ->select('sections.id','sections.start','staff.name AS staff_name',
                 'sections.date','members.name AS member_name','sections.next_register_no',
-                'registers.reservation_no','registers.id','registers.status')
+                'registers.reservation_no','registers.id','registers.status','registers.note')
+            ->orderBy('reservation_no','asc')
             ->get();
         $data= ['registers'=>$registers];
         return view('register.index',$data);
@@ -229,6 +230,10 @@ class RegisterController extends Controller
         $register->update([
             'status' => 4,]);
         return redirect()->route('register.index');
+<<<<<<< HEAD
+=======
+
+>>>>>>> a23ba75121c9819f86e0ebf2df3a9718ca9d4f75
     }
 
     public function add_register($id)
@@ -239,11 +244,11 @@ class RegisterController extends Controller
         return redirect()->route('register.index');
     }
 
-    public function reset_register(Section $sections,$id)
+    public function reset_register($id)
     {
         $registers = Register::find($id);
         $registers->status = 0;
-        $registers->reservation_no = $sections->current_no+ 2.5;
+        $registers->reservation_no = $registers->section->current_no+ 2.5;//int
         $registers->save();
         return redirect()->route('register.index');
     }
@@ -263,10 +268,13 @@ class RegisterController extends Controller
 
     public function detail($id)
     {
+        date_default_timezone_set("Asia/Taipei");
+        $date = date("Y-m-d");
         $diagnosises = Diagnosis::join('members','members.id','=','diagnoses.member_id')
             ->join('doctors','doctors.id','=','diagnoses.doctor_id')
             ->join('staff','staff.id','=','doctors.staff_id')
             ->where('member_id',$id)
+            ->where('date','=' ,$date)
             ->select('diagnoses.member_id','diagnoses.doctor_id','staff.name AS staff_name','members.name AS member_name','diagnoses.symptom')
             ->get();
         //echo $diagnosises;

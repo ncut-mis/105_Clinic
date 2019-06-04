@@ -8,13 +8,13 @@
         </div>
         <div class="container-fluid">
             <div class="card">
-                <table class="table table-hover">
+                <table class="table table-hover responsive-table">
                     <thead>
                     <tr>
                         <th width="50px" style="text-align:center"></th>
                         <th width="100px" style="text-align:center">會員</th>
                         <th width="150px" style="text-align:center">看診醫生</th>
-                        <th style="text-align:center">症狀</th>
+                        <th width="100px"  style="text-align:left">症狀</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,7 +34,7 @@
                         <th width="50px" style="text-align:center"></th>
                         <th width="100px" style="text-align:center">藥名</th>
                         <th width="150px" style="text-align:center">使用次數</th>
-                        <th style="text-align:center">用藥方式</th>
+                        <th width="100px" style="text-align:center">用藥方式</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,7 @@
                             <th style="text-align:center"></th>
                             <th style="text-align:center">{{$prescription->medicine}}</th>
                             <th style="text-align:center">{{$prescription->dosage}}</th>
-                            <th style="text-align:left">{{$prescription->note}}</th>
+                            <th style="text-align:center">{{$prescription->note}}</th>
                         </tr>
                     @endforeach
                     </tbody>
