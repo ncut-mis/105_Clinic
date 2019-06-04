@@ -214,7 +214,7 @@ class RegisterController extends Controller
         $register->update([
             'status' => 0,
         ]);
-        return view('/clinic/home');
+        return redirect()->route('/clinic/home');
 
     }
 
@@ -228,7 +228,7 @@ class RegisterController extends Controller
     {
         $register->update([
             'status' => 4,]);
-        return view('register.index');
+        return redirect()->route('register.index');
     }
 
     public function add_register($id)
@@ -236,7 +236,7 @@ class RegisterController extends Controller
         $add_register = Register::find($id);
         $add_register->status = 0;
         $add_register->save();
-        return view('register.index');
+        return redirect()->route('register.index');
     }
 
     public function reset_register(Section $sections,$id)
@@ -245,7 +245,7 @@ class RegisterController extends Controller
         $registers->status = 0;
         $registers->reservation_no = $sections->current_no+ 2.5;
         $registers->save();
-        return view('register.index');
+        return redirect()->route('register.index');
     }
 
     public function search(Patient $patient)
