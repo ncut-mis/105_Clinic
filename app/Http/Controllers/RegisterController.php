@@ -225,10 +225,11 @@ class RegisterController extends Controller
      * @param  \App\Register $register
      * @return \Illuminate\Http\Response
      */
-    public function cancel(Register $register)
+    public function cancel($id)
     {
-        $register->update([
-            'status' => 4,]);
+        $cancel = Register::find($id);
+        $cancel->status = 4;
+        $cancel->save();
         return redirect()->route('register.index');
     }
 
