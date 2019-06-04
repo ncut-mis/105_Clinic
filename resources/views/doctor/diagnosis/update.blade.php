@@ -3,38 +3,47 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2><font face="微軟正黑體">看診</font></h2>
-            <small class="text-muted">Patient Diagnosis</small>
+            <div class="header col-light-green" style="font-size:23px;">
+                <font face="微軟正黑體"><strong>看診</strong></font>
+            </div>
+            <small class="text-muted">Doctor Diagnosis</small>
         </div>
         <div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="card">
-					<div class="header">
-						<h1>看診 </h1><small>Patient Diagnosis</small>
-					</div>
+				<div class="card bg-lime">
 					<div class="body">
                         <div class="row clearfix">
                             <div class="col-sm-3 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <div>姓名：</div>
-                                        <label type="text" class="form-control">{{$patient->name}}</label>
+                                        <div style="font-size: 20px"><font face="微軟正黑體">姓名：</font></div>
+                                        <label type="text" class="form-control col-light-blue" style="text-align: center;font-size: 20px"><font face="微軟正黑體"><b>{{$patient->name}}</b></font></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <div>生日：</div>
-                                        <label type="text" class="form-control">{{$patient->birthday}}</label>
+                                        <div style="font-size: 20px"><font face="微軟正黑體">生日：</font></div>
+                                        <label type="text" class="form-control col-light-blue" style="text-align: center;font-size: 20px">{{$patient->birthday}}</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <div>身分證字號：</div>
-                                        <label type="text" class="form-control">{{$patient->number}}</label>
+                                        <div style="font-size: 20px"><font face="微軟正黑體">身分證字號：</font></div>
+                                        <label type="text" class="form-control col-light-blue" style="text-align: center;font-size: 20px">{{$patient->number}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Material Design Colors -->
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="body">
+                                        <div class="button-demo js-modal-buttons">
+                                            <button type="button" data-color="grey" class="btn bg-grey waves-effect" style="font-size: 18px"><font face="微軟正黑體">查看<br>就診紀錄</font></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +59,7 @@
                                     <font face="微軟正黑體"><h2><strong ><span style="font-size: 20px">症狀描述</span></strong><small>Symptom Description</small> </h2></font>
                                 </div>
                                 <div class="body">
-                                    <textarea class="form-control" name="symptom" style="width:930px;height:200px;">{{$diagnosis->symptom}}</textarea>
+                                    <textarea class="form-control" name="symptom" style="width:930px;height:200px;font-size: 20px;" required>{{$diagnosis->symptom}}</textarea>
                                 </div>
                                 <button type="submit" class="mfb-component__button--main g-bg-blue">
                                     <i class="fa fa-plus"></i>儲存<br>症狀
@@ -99,13 +108,14 @@
                                                     <option value=飯前服用>飯前服用</option>
                                                     <option value=飯後服用>飯後服用</option>
                                                     <option value=睡前服用>睡前服用</option>
+                                                    <option value=塗抹於患部>塗抹於患部</option>
                                                 </select> <br></td>
                                             </tr>
 
                                             </tbody>
                                         </table>
                                         <div class="col-sm-12">
-                                            <button type="submit" class="btn btn-raised g-bg-green">新增</button>
+                                            <button type="submit" class="btn btn-raised g-bg-green"><font face="微軟正黑體">新增</font></button>
                                         </div>
                                         </form>
                                     </div>
@@ -116,7 +126,7 @@
                         <div class="col-lg-6 col-md-4 col-sm-6">
                             <div class="card bg-red">
                                 <div class="header bg-red">
-                                    <font face="微軟正黑體"><h2><strong>目前藥物</strong><small>Medicine</small></h2></font>
+                                    <font face="微軟正黑體"><h2><strong>處方箋</strong><small>Precscriptions</small></h2></font>
                                 </div>
                                 <div class="body">
                                     <div class="table-responsive">
@@ -134,15 +144,15 @@
                                           @foreach ($prescriptions as  $prescription)
                                               @if ($medicine->id === $prescription->medicine_id)
                                             <tr>
-                                                <td>{{$medicine->medicine}}</td>
-                                                <td>{{$prescription->dosage}}</td>
-                                                <td>{{$prescription->note}}</td>
+                                                <td style="vertical-align: middle"><font face="微軟正黑體">{{$medicine->medicine}}</font></td>
+                                                <td style="vertical-align: middle"><font face="微軟正黑體">{{$prescription->dosage}}</font></td>
+                                                <td style="vertical-align: middle"><font face="微軟正黑體">{{$prescription->note}}</font></td>
                                                 <td>
                                                     <form action="/patient/{{$patient->id}}/prescription/{{$prescription->id}}/destroy" method="POST" >
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                     <div class="col-sm-12">
-                                                        <button type="submit" class="btn btn-raised g-bg-green">刪除藥物</button>
+                                                        <button type="submit" class="btn btn-raised g-bg-green"><font face="微軟正黑體">刪除<br>藥物</font></button>
                                                     </div>
                                                     </form>
                                                 </td>
@@ -169,4 +179,39 @@
 		</div>
     </div>
 </section>
-
+<!-- For Material Design Colors -->
+<div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel"><font face="微軟正黑體">就診紀錄</font></h4>
+                <span aria-hidden="true" class="close" data-dismiss="modal" aria-label="Close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col" width="110"><font face="微軟正黑體">看診日期</font></th>
+                            <th scope="col" width="90" ><font face="微軟正黑體">看診醫生</font></th>
+                            <th scope="col"><font face="微軟正黑體">症狀</font></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($records as $record)
+                            <tr>
+                                <td><font face="微軟正黑體">{{$record->created_at}}</font></td>
+                                <td><font face="微軟正黑體">{{$record->name}}</font></td>
+                                <td><font face="微軟正黑體">{{$record->symptom}}</font></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal"><font face="微軟正黑體">關閉</font></button>
+            </div>
+        </div>
+    </div>
+</div>

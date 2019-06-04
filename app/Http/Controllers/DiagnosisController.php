@@ -54,7 +54,10 @@ class DiagnosisController extends Controller
         }
         $current=session('next');
         $current->status=1;  //已呼叫
-        $current_section->update(['current_no' =>$current->reservation_no]);
+        if($current->reservation_no == (int)$current->reservation_no)
+        {
+            $current_section->update(['current_no' =>$current->reservation_no]);
+        }
         $current->save();
         session(['current' => $current]);
 

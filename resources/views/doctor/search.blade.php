@@ -25,7 +25,11 @@
                                 @foreach($members as $member)
                                     @if($register->member_id===$member->id)
                                 <tr>
+                                    @if($register->reservation_no == (int)$register->reservation_no)
                                     <td style="font-size: 20px">{{$register->reservation_no}}</td>
+                                    @else
+                                        <td style="font-size: 20px"><font face="微軟正黑體">{{$register->reservation_no-2.5}}(原看診號碼)<br>過號病患已重新再掛號</font></td>
+                                    @endif
                                     <td style="font-size: 20px"><font face="微軟正黑體">{{$member->name}}</font></td>
                                     @if($register->status===0)
                                         <td style="font-size: 20px"><font face="微軟正黑體">候診中</font></td>
