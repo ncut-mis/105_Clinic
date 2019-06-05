@@ -64,7 +64,7 @@ class DoctorController extends Controller
 //            $next='finish';
 //            session(['next' => $next]);
 //        }
-        $number_of_reservations=$current_section->reservations()->count();//目前看診時段預約人數
+        $number_of_reservations=$current_section->registers()->count();//目前看診時段預約人數
         $data = ['doctor' => $doctor,'current_section' =>  $current_section,'registers' => $registers,'patients' => $patients
                 , 'waiting_list' =>  $waiting_list,'late_list' =>  $late_list,'number_of_reservations' =>  $number_of_reservations
                 , 'next' => $next  , 'now' =>  $now

@@ -21,7 +21,7 @@ class CreateSectionsTable extends Migration
             $table->string('start');
             $table->string('end');
             $table->integer('current_no');
-            $table->integer('next_reservation_no')->default(1);
+            $table->integer('next_register_no')->default(1);
             $table->timestamps();
         });
     }
