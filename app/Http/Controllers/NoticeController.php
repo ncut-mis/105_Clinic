@@ -18,7 +18,7 @@ class NoticeController extends Controller
     {
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
-        $notificationBuilder = new PayloadNotificationBuilder(Auth::user()->clinic->name.'診所通知');
+        $notificationBuilder = new PayloadNotificationBuilder('診所通知');
         $notificationBuilder->setBody('您已過號，若要看診煩請回到診所重新掛號!')->setSound('default');
         $dataBuilder = new PayloadDataBuilder();
         $dataBuilder->addData(['a_data' => 'my_data']);
