@@ -38,7 +38,7 @@
                                    @if($register->reservation_no == (int)$register->reservation_no)
                                        <th style="text-align:center">{{$register->reservation_no}}</th>
                                    @else
-                                       <th style="text-align:center" class="bg-blush"><del>{{$register->reservation_no-2.5}}</del><br>已過號</th>
+                                       <th style="text-align:center" class="bg-blush">已過號</th>
                                    @endif
 
                                    @if($register->reservation_no == (int)$register->reservation_no)
