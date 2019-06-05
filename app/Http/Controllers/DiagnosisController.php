@@ -210,7 +210,7 @@ class DiagnosisController extends Controller
         $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first();
         date_default_timezone_set("Asia/Taipei");//+8hour
         $date=date("Y-m-d");
-        $diagnosis=$doctor->diagnoses()->where('date',$date)->where('member_id',$patient->id)->get()->first();
+        $diagnosis=$doctor->diagnoses()->where('date',$date)->where('member_id',$patient->id)->get()->last();
         $medicines = Medicine::where('clinic_id',auth()->user()->clinic->id)->get();
         $prescriptions=$diagnosis->prescriptions()->get();
         $next=session('next');
