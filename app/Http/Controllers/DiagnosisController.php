@@ -50,7 +50,28 @@ class DiagnosisController extends Controller
             $one_no=session('one');
             $one_no->status=3;
             $one_no->save();
-            return redirect()->route('firebase.late',$patient);
+            
+            $optionBuilder = new OptionsBuilder();
+            $optionBuilder->setTimeToLive(60*20);
+            $notificationBuilder = new PayloadNotificationBuilder(Auth::user()->clinic->name.'診所通知');
+            $notificationBuilder->setBody('您已過號，請回到診所重新掛號!')->setSound('default');
+            $dataBuilder = new PayloadDataBuilder();
+            $dataBuilder->addData(['a_data' => 'my_data']);
+            $option = $optionBuilder->build();
+            $notification = $notificationBuilder->build();
+            $data = $dataBuilder->build();
+//        $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
+            $token = "eCLSpu18YmA:APA91bGhYtYftvMGzR7YLVewSjnrn-rCm9cS6njAemYRraYsSAH0wMecGHJYLG0nori6woBLCkBUk_tkSiuJuMnPqu31GsHIr9iSsxYCIIZfKqkzMcddA0XgudY77PgFs58wfVE71rnV";
+            $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+            $downstreamResponse->numberSuccess();
+            $downstreamResponse->numberFailure();
+//return Array - you must remove all this tokens in your database
+            $downstreamResponse->tokensToDelete();
+//return Array (key : oldToken, value : new token - you must change the token in your database )
+            $downstreamResponse->tokensToModify();
+//return Array - you should try to resend the message to the tokens in the array
+            $downstreamResponse->tokensToRetry();
+// return Array (key:token, value:error) - in production you should remove from your database the tokens
         }
         $current=session('next');
         $current->status=1;  //已呼叫
@@ -64,7 +85,7 @@ class DiagnosisController extends Controller
         $registers=$current_section->registers()->get();
         foreach ($registers as $register)
         {
-            if($register->reminding_no!==0)
+            if($register->reminding_no!==null)
             {
               $if_equal_current_no = $register->reservation_no - $register->reminding_no;
              if($current_section->current_no===$if_equal_current_no)
@@ -210,7 +231,7 @@ class DiagnosisController extends Controller
         $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first();
         date_default_timezone_set("Asia/Taipei");//+8hour
         $date=date("Y-m-d");
-        $diagnosis=$doctor->diagnoses()->where('created_at',$date)->where('member_id',$patient->id)->get()->first();
+        $diagnosis=$doctor->diagnoses()->where('date',$date)->where('member_id',$patient->id)->get()->first();
         $medicines = Medicine::where('clinic_id',auth()->user()->clinic->id)->get();
         $prescriptions=$diagnosis->prescriptions()->get();
         $next=session('next');
@@ -230,7 +251,7 @@ class DiagnosisController extends Controller
         $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first();
         date_default_timezone_set("Asia/Taipei");//+8hour
         $date=date("Y-m-d");
-        $diagnosis=$doctor->diagnoses()->where('created_at',$date)->where('member_id',$patient->id)->get()->first();
+        $diagnosis=$doctor->diagnoses()->where('date',$date)->where('member_id',$patient->id)->get()->first();
         $medicines = Medicine::where('clinic_id',auth()->user()->clinic->id)->get();
         $prescriptions=$diagnosis->prescriptions()->get();
         $records = $patient->diagnoses()->join('doctors','doctors.id','=','diagnoses.doctor_id')
