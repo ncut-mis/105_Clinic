@@ -25,7 +25,8 @@ class NoticeController extends Controller
         $option = $optionBuilder->build();
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
-        $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
+//      $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
+        $token = "eCLSpu18YmA:APA91bGhYtYftvMGzR7YLVewSjnrn-rCm9cS6njAemYRraYsSAH0wMecGHJYLG0nori6woBLCkBUk_tkSiuJuMnPqu31GsHIr9iSsxYCIIZfKqkzMcddA0XgudY77PgFs58wfVE71rnV";
         $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
         $downstreamResponse->numberSuccess();
         $downstreamResponse->numberFailure();
@@ -51,6 +52,7 @@ class NoticeController extends Controller
 //        $notification = $notificationBuilder->build();
 //        $data = $dataBuilder->build();
 //        $token = "fYaSghNWxMY:APA91bEdW_uSrWmQZvVjlYHQ0SYumSjmO0-18hyM2PE9VFIHbeDSTNNVtmp-zJ-uRJ20Y1YgMPreVbabExE1Gnfmybw72d0bCUBMZfMNVLW4CqcaCxawkxabYAYCKvsGsUmZVOIp5oaO";
+//        $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
 //        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
 //        $downstreamResponse->numberSuccess();
 //        $downstreamResponse->numberFailure();
@@ -98,7 +100,7 @@ class NoticeController extends Controller
                     $option = $optionBuilder->build();
                     $notification = $notificationBuilder->build();
                     $data = $dataBuilder->build();
-                    $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
+                    $token = "dqp9esKsFTA:APA91bG7IEtk_Cw7Ivi-RqqSmfAZLTt4mZ8PSwJ6HxKmnBcsE3IaAUfdAjsy00yfwVkR_5dQhG2XdmPJqnG1WaxUS_Xj1HWJjrtQXIO1ddLAEKOLHj56BFgKXdiQ1BpPrprUhaeTnS5t";
                     $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
                     $downstreamResponse->numberSuccess();
                     $downstreamResponse->numberFailure();

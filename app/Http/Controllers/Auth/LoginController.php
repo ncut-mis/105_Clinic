@@ -48,7 +48,7 @@ class LoginController extends Controller
         {
             if($position_id == 1||$position_id ==2||$position_id ==3)
             {
-                return '/clinic/home';
+                return '/register/index';
             }
             if($position_id == 4)
             {

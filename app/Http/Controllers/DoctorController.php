@@ -22,9 +22,54 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function home(Request $request)
     {
-        return view('doctor.home');
+        if($request->session()->has('current')){
+            $current_section=session('current')->section;
+            $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first();//取得醫生資料
+            date_default_timezone_set("Asia/Taipei");
+            $date=date("Y-m-d");
+            $time=date("H:i:s");
+            $current_section=$doctor->sections()->where('date',$date)->where('start','<',$time)->where('end','>',$time)->get()->first();//目前的看診時段
+        }
+        else{
+
+           $doctor=Doctor::where('staff_id',auth()->user()->id)->get()->first();//取得醫生資料
+        date_default_timezone_set("Asia/Taipei");
+        $date=date("Y-m-d");
+        $time=date("H:i:s");
+        $current_section=$doctor->sections()->where('date',$date)->where('start','<',$time)->where('end','>',$time)->get()->first();//目前的看診時段
+    }
+        $registers=$current_section->registers()->orderby('reservation_no', 'ASC')->get();//目前的看診時段所有病患掛號名單
+        //$patient=$registers->member()->get();
+        $patients=Member::orderBy('id')->get();
+        $waiting_list=$current_section->registers()->where('status',0)->orderBy('reservation_no', 'ASC')->get();//目前的候診名單
+        $now=$current_section->registers()->where('status',1)->get()->first();//目前的正在看診名單
+        $late_list=$current_section->registers()->where('status',3)->get();//目前的過號名單
+
+//        if(session('next')!=='finish')
+//        {
+        $next =$waiting_list->first();//下一個看診者
+        session(['next' => $next]);
+//        }
+        if(session('next')===null)
+        {
+            $now->status=3;
+            $now->save();
+            $next='finish';
+            session(['next' => $next]);
+        }
+//         if(session('next')==='finish')
+//        {
+//            $next='finish';
+//            session(['next' => $next]);
+//        }
+        $number_of_reservations=$current_section->registers()->count();//目前看診時段預約人數
+        $data = ['doctor' => $doctor,'current_section' =>  $current_section,'registers' => $registers,'patients' => $patients
+                , 'waiting_list' =>  $waiting_list,'late_list' =>  $late_list,'number_of_reservations' =>  $number_of_reservations
+                , 'next' => $next  , 'now' =>  $now
+                ];
+        return view('doctor.home', $data);
     }
 
     public function profile(Doctor $doctor)
