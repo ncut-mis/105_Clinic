@@ -49,6 +49,7 @@ Route::patch('/clinic/information'  , ['as' => 'clinic.information.update', 'use
 //firebase測試
 Route::get('/firebase/late/{patient}'  , ['as' => 'firebase.late', 'uses' => 'NoticeController@late']);
 Route::get('/firebase/time'  , ['as' => 'firebase.time', 'uses' => 'NoticeController@time']);
+Route::get('/firebase/late'  , ['as' => 'firebase.late', 'uses' => 'NoticeController@late']);
 
 
 //掛號相關路由..................................................................................

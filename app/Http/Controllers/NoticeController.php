@@ -19,14 +19,13 @@ class NoticeController extends Controller
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
         $notificationBuilder = new PayloadNotificationBuilder(Auth::user()->clinic->name.'診所通知');
-        $notificationBuilder->setBody('您已過號，請回到診所重新掛號!')->setSound('default');
+        $notificationBuilder->setBody('您已過號，若要看診煩請回到診所重新掛號!')->setSound('default');
         $dataBuilder = new PayloadDataBuilder();
         $dataBuilder->addData(['a_data' => 'my_data']);
         $option = $optionBuilder->build();
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
-//      $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
-        $token = "eCLSpu18YmA:APA91bGhYtYftvMGzR7YLVewSjnrn-rCm9cS6njAemYRraYsSAH0wMecGHJYLG0nori6woBLCkBUk_tkSiuJuMnPqu31GsHIr9iSsxYCIIZfKqkzMcddA0XgudY77PgFs58wfVE71rnV";
+        $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
         $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
         $downstreamResponse->numberSuccess();
         $downstreamResponse->numberFailure();
@@ -37,7 +36,7 @@ class NoticeController extends Controller
 //return Array - you should try to resend the message to the tokens in the array
         $downstreamResponse->tokensToRetry();
 // return Array (key:token, value:error) - in production you should remove from your database the tokens
-        return redirect()->route('doctor.diagnosis',$patient);
+//        return redirect()->route('doctor.diagnosis',$patient);
     }
 
     public function number(Section $current_section,Register $register,Patient $patient)
