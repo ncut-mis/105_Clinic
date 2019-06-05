@@ -50,28 +50,7 @@ class DiagnosisController extends Controller
             $one_no=session('one');
             $one_no->status=3;
             $one_no->save();
-            
-            $optionBuilder = new OptionsBuilder();
-            $optionBuilder->setTimeToLive(60*20);
-            $notificationBuilder = new PayloadNotificationBuilder(Auth::user()->clinic->name.'診所通知');
-            $notificationBuilder->setBody('您已過號，請回到診所重新掛號!')->setSound('default');
-            $dataBuilder = new PayloadDataBuilder();
-            $dataBuilder->addData(['a_data' => 'my_data']);
-            $option = $optionBuilder->build();
-            $notification = $notificationBuilder->build();
-            $data = $dataBuilder->build();
-//        $token = "fXBRQnqdcVo:APA91bEVvrBRXL7VyCiIikWeQFPvk7VvH4KUmFuh1pZFItkRaREdWkHOYhp6PBBsU5NxV9CtXCGbWSn631kNAvz6few6cEsrU-0qkvkgPSz_Vg5g-SgAS5eXGiC-QrNBr5_uZTjar5Qm";
-            $token = "eCLSpu18YmA:APA91bGhYtYftvMGzR7YLVewSjnrn-rCm9cS6njAemYRraYsSAH0wMecGHJYLG0nori6woBLCkBUk_tkSiuJuMnPqu31GsHIr9iSsxYCIIZfKqkzMcddA0XgudY77PgFs58wfVE71rnV";
-            $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-            $downstreamResponse->numberSuccess();
-            $downstreamResponse->numberFailure();
-//return Array - you must remove all this tokens in your database
-            $downstreamResponse->tokensToDelete();
-//return Array (key : oldToken, value : new token - you must change the token in your database )
-            $downstreamResponse->tokensToModify();
-//return Array - you should try to resend the message to the tokens in the array
-            $downstreamResponse->tokensToRetry();
-// return Array (key:token, value:error) - in production you should remove from your database the tokens
+//            return redirect()->route('firebase.late',$patient);
         }
         $current=session('next');
         $current->status=1;  //已呼叫
@@ -82,42 +61,42 @@ class DiagnosisController extends Controller
         $current->save();
         session(['current' => $current]);
 
-        $registers=$current_section->registers()->get();
-        foreach ($registers as $register)
-        {
-            if($register->reminding_no!==null)
-            {
-              $if_equal_current_no = $register->reservation_no - $register->reminding_no;
-             if($current_section->current_no===$if_equal_current_no)
-              {
-               $optionBuilder = new OptionsBuilder();
-               $optionBuilder->setTimeToLive(60*20);
-               $notificationBuilder = new PayloadNotificationBuilder(Auth::user()->clinic->name.'通知');
-               $notificationBuilder->setBody('目前看診號碼為'.$current_section->current_no.'號,還有'.$register->reminding_no.'位就輪到您囉')->setSound('default');
-               $dataBuilder = new PayloadDataBuilder();
-               $dataBuilder->addData(['a_data' => 'my_data']);
-               $option = $optionBuilder->build();
-               $notification = $notificationBuilder->build();
-               $data = $dataBuilder->build();
-               $token = "eCLSpu18YmA:APA91bGhYtYftvMGzR7YLVewSjnrn-rCm9cS6njAemYRraYsSAH0wMecGHJYLG0nori6woBLCkBUk_tkSiuJuMnPqu31GsHIr9iSsxYCIIZfKqkzMcddA0XgudY77PgFs58wfVE71rnV";
-               $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-               $downstreamResponse->numberSuccess();
-               $downstreamResponse->numberFailure();
-               //return Array - you must remove all this tokens in your database
-               $downstreamResponse->tokensToDelete();
-               //return Array (key : oldToken, value : new token - you must change the token in your database )
-               $downstreamResponse->tokensToModify();
-               //return Array - you should try to resend the message to the tokens in the array
-               $downstreamResponse->tokensToRetry();
-               // return Array (key:token, value:error) - in production you should remove from your database the tokens
-              }
-            }
-        }
+//        $registers=$current_section->registers()->get();
+//        foreach ($registers as $register)
+//        {
+//            if($register->reminding_no!==null)
+//            {
+//              $if_equal_current_no = $register->reservation_no - $register->reminding_no;
+//             if($current_section->current_no===$if_equal_current_no)
+//              {
+//               $optionBuilder = new OptionsBuilder();
+//               $optionBuilder->setTimeToLive(60*20);
+//               $notificationBuilder = new PayloadNotificationBuilder(Auth::user()->clinic->name.'通知');
+//               $notificationBuilder->setBody('目前看診號碼為'.$current_section->current_no.'號,還有'.$register->reminding_no.'位就輪到您囉')->setSound('default');
+//               $dataBuilder = new PayloadDataBuilder();
+//               $dataBuilder->addData(['a_data' => 'my_data']);
+//               $option = $optionBuilder->build();
+//               $notification = $notificationBuilder->build();
+//               $data = $dataBuilder->build();
+//               $token = "eCLSpu18YmA:APA91bGhYtYftvMGzR7YLVewSjnrn-rCm9cS6njAemYRraYsSAH0wMecGHJYLG0nori6woBLCkBUk_tkSiuJuMnPqu31GsHIr9iSsxYCIIZfKqkzMcddA0XgudY77PgFs58wfVE71rnV";
+//               $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+//               $downstreamResponse->numberSuccess();
+//               $downstreamResponse->numberFailure();
+//               //return Array - you must remove all this tokens in your database
+//               $downstreamResponse->tokensToDelete();
+//               //return Array (key : oldToken, value : new token - you must change the token in your database )
+//               $downstreamResponse->tokensToModify();
+//               //return Array - you should try to resend the message to the tokens in the array
+//               $downstreamResponse->tokensToRetry();
+//               // return Array (key:token, value:error) - in production you should remove from your database the tokens
+//              }
+//            }
+//        }
 
         $waiting_list=$current_section->registers()->where('status',0)->orderBy('reservation_no', 'ASC')->get();
         $next=$waiting_list->first(); //下一個看診者
         session(['next' => $next]);
-        session(['register' => $register]);
+//        session(['register' => $register]);
         $records = $patient->diagnoses()->join('doctors','doctors.id','=','diagnoses.doctor_id')
             ->join('staff','staff.id','=','doctors.staff_id')
             ->select('diagnoses.id','diagnoses.date','staff.name','diagnoses.symptom')

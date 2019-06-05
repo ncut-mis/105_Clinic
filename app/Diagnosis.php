@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Diagnosis extends Model
 {
     protected $fillable = [
-        'member_id', 'doctor_id', 'symptom',
+        'member_id', 'doctor_id', 'symptom','date'
     ];
     public function member()
     {
