@@ -5,14 +5,14 @@
         {{ method_field('PATCH') }}
     <div class="container-fluid">
         <div class="block-header">
-            <h2>編輯診所資訊</h2>
-            <small class="text-muted">Edit Information</small>
+            <h3><font face="微軟正黑體">編輯診所資訊</font></h3>
+            <small class="text-muted">Edit Clinic Information</small>
         </div>
         <div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<div class="card bg-lime">
 					<div class="header bg-lime">
-						<h2>基本資料<br> <small>Basic Information</small> </h2>
+                        <h2><font face="微軟正黑體" style="font-size:23px;">基本資料</font><br> <small>Basic Information</small> </h2>
 					</div>
 
 					<div class="body">
@@ -68,7 +68,7 @@
                                     <h3><font face="微軟正黑體"><i class="material-icons col-indigo">photo</i>上傳診所環境照片</font></h3>
                                 </div>
                                 <div class="fallback">
-                                    <input name="photo" type="file" accept ="image/*" />
+                                    <input name="photo" type="file" accept ="image/*" required />
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
 			<div class="col-md-12">
 				<div class="card bg-pink">
 					<div class="header bg-pink">
-						<h2>診所營業時間<small>Opening hour</small> </h2>
+                        <h2><font face="微軟正黑體" style="font-size:23px;">診所營業時間</font><small>Opening hour</small> </h2>
 					</div>
 					<div class="body">
                         <div class="row clearfix">
@@ -91,7 +91,7 @@
 				</div>
 			</div>
 				 <div class="col-sm-12">
-                    <button type="submit" class="btn btn-raised g-bg-cyan">更新</button>
+                     <button type="submit" class="btn btn-raised g-bg-cyan"><font face="微軟正黑體" style="font-size:16px;">更新</font></button>
                 </div>
           </div>
       </form>

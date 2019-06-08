@@ -3,7 +3,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h4><font face="微軟正黑體">已看診名單</font></h4>
+            <h3><font face="微軟正黑體">已看診名單</font></h3>
             <small class="text-muted">Finish Diagnoses Patients List</small>
         </div>
         <div class="container-fluid">
@@ -14,8 +14,8 @@
                         <th width="50px" style="text-align:center"></th>
                         <th width="125px" style="text-align:center">病患姓名</th>
                         <th width="150px" style="text-align:center">看診醫生</th>
-                        <th width="125px" style="text-align:center">時段</th>
-                        <th width="125px" style="text-align:center">號碼</th>
+                        <th width="125px" style="text-align:center">看診時段</th>
+                        <th width="125px" style="text-align:center">候診號碼</th>
                         <th style="text-align:center">備註</th>
                         <th width="150px">功能</th>
                     </tr>

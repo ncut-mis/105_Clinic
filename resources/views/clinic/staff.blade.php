@@ -3,7 +3,8 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>櫃台人員</h2>
+            <h3><font face="微軟正黑體">櫃台人員</font></h3>
+            <small class="text-muted">Counter Staff</small><br>
         </div>
 
         <div class="row clearfix">
@@ -21,12 +22,6 @@
                                             <h4 class="m-b-5 m-t-20"><font face="微軟正黑體"><strong>{{$staff->name}}</strong></font></h4>
                                             <p class="text-muted"><font face="微軟正黑體">櫃台人員</font><span> </span></p>
                                         </div>
-
-                                        <ul class="social-links list-inline m-t-10">
-                                            <li><a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                            <li><a title="twitter" href="#" ><i class="zmdi zmdi-twitter"></i></a></li>
-                                            <li><a title="instagram" href="3" ><i class="zmdi zmdi-instagram"></i></a></li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +34,8 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>助理護士</h2>
+            <h3><font face="微軟正黑體">助理護士</font></h3>
+            <small class="text-muted">Assistant Nurses</small><br>
         </div>
 
         <div class="row clearfix">
@@ -57,12 +53,6 @@
                                         <h4 class="m-b-5 m-t-20"><font face="微軟正黑體"><strong>{{$staff->name}}</strong></font></h4>
                                         <p class="text-muted"><font face="微軟正黑體">助理護士</font><span> </span></p>
                                     </div>
-
-                                    <ul class="social-links list-inline m-t-10">
-                                        <li><a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                        <li><a title="twitter" href="#" ><i class="zmdi zmdi-twitter"></i></a></li>
-                                        <li><a title="instagram" href="3" ><i class="zmdi zmdi-instagram"></i></a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>

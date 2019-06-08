@@ -3,7 +3,8 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>Reservation</h2>
+          <h3><font face="微軟正黑體">搜尋病患</font></h3>
+          <small class="text-muted">Search Patient</small>
         </div>
         <div class="container">
             <div class="card-top"></div>
@@ -11,11 +12,11 @@
                 <div class="col-md-12">
                     <form action="{{ route('register.create_reservation') }}" class="form-horizontal" method="get">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="keyword" placeholder="搜尋">
+                            <input type="text" class="form-control" name="keyword" placeholder="請輸入身分證字號">
                         </div>
                         <div class="text-center">
                             <button type="submit"  class="btn btn-raised g-bg-cyan waves-effect">
-                                <i class="material-icons">create</i><font face="微軟正黑體">搜尋會員</font>
+                                <i class="material-icons">search</i><font face="微軟正黑體">搜尋病患</font>
                             </button>
                         </div>
                     </form>

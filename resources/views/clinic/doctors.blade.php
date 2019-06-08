@@ -3,8 +3,8 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>All Doctors</h2>
-
+            <h3><font face="微軟正黑體">醫生人員</font></h3>
+            <small class="text-muted">The Doctors</small><br>
         </div>
         <div class="row clearfix">
        @foreach($doctors as $doctor)
@@ -25,11 +25,6 @@
 
                             <p class="text-muted"><font face="微軟正黑體">駐診日期</font><br>{{$doctor->clinic_date}}</p>
                             <a href="{{ route('clinic.profile',$doctor) }}" class="btn btn-raised btn-sm bg-blue"><font face="微軟正黑體">醫生簡介</font></a>
-                            <ul class="social-links list-inline m-t-10">
-                                <li><a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                <li><a title="twitter" href="#" ><i class="zmdi zmdi-twitter"></i></a></li>
-                                <li><a title="instagram" href="3" ><i class="zmdi zmdi-instagram"></i></a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
