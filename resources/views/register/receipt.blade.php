@@ -3,7 +3,8 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h4>已看診名單</h4>
+            <h4><font face="微軟正黑體">已看診名單</font></h4>
+            <small class="text-muted">Finish Diagnoses Patients List</small>
         </div>
         <div class="container-fluid">
             <div class="card">
@@ -11,7 +12,7 @@
                     <thead>
                     <tr>
                         <th width="50px" style="text-align:center"></th>
-                        <th width="125px" style="text-align:center">會員</th>
+                        <th width="125px" style="text-align:center">病患姓名</th>
                         <th width="150px" style="text-align:center">看診醫生</th>
                         <th width="125px" style="text-align:center">時段</th>
                         <th width="125px" style="text-align:center">號碼</th>
@@ -31,7 +32,7 @@
                                 <th>{{$register->note}}</th>
                                 <th><a href="{{ route('register.detail',$register->members_id) }}">
                                     <input type="hidden" name="member_id" value="{{$register->members_id}}" >
-                                    <button class="btn-secondary">列印收據</button></a></th>
+                                    <button type="submit" class="bg-warning">查看<br>收據及處方箋</button></a></th>
                             </tr>
                         @endif
                     @endforeach
@@ -41,3 +42,4 @@
         </div>
     </div>
 </section>
+
