@@ -316,7 +316,8 @@ class RegisterController extends Controller
             ->join('staff','staff.id','=','doctors.staff_id')
             ->where('member_id',$id)
             ->where('date','=' ,$date)
-            ->select('diagnoses.member_id','diagnoses.doctor_id','staff.name AS staff_name','members.name AS member_name','diagnoses.symptom')
+            ->select('diagnoses.member_id','diagnoses.doctor_id','staff.name AS staff_name','members.name AS member_name','diagnoses.symptom',
+                'members.number','members.birthday','diagnoses.date')
             ->get();
         //echo $diagnosises;
         $prescriptions = Diagnosis::join('prescriptions','prescriptions.diagnosis_id','=','diagnoses.id')

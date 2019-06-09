@@ -14,7 +14,11 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        $announcements=Announcement::
+            where('clinic_id','=',auth()->user()->clinic->id)
+            ->orderBy('created_at','DESC')->get();
+        $data=['announcements'=>$announcements];
+        return view('clinic.posts.index',$data);
     }
 
     /**
@@ -24,7 +28,7 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        //
+        return view('clinic.posts.create');
     }
 
     /**
@@ -35,7 +39,15 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        date_default_timezone_set( "Asia/Taipei");
+        $date = date("Y:m:d:H:i");
+        Announcement::create([
+            'clinic_id' => $request->clinic_id,
+            'title' => $request['title'],
+            'content'=>$request['content'],
+            'datetime'=> $date,
+        ]);
+        return redirect()->route('clinic.posts.index');
     }
 
     /**
@@ -44,9 +56,11 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement $announcement
      * @return \Illuminate\Http\Response
      */
-    public function show(Announcement $announcement)
+    public function show(Announcement $announcement,$id)
     {
-        //
+        $announcement=Announcement::find($id);
+        $data=['announcement'=>$announcement];
+        return view('clinic.posts.show',$data);
     }
 
     /**
@@ -55,9 +69,11 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement $announcement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Announcement $announcement)
+    public function edit(Announcement $announcement,$id)
     {
-        //
+        $announcement = Announcement::find($id);
+        $data = ['announcement' => $announcement];
+        return view('clinic.posts.edit', $data);
     }
 
     /**
@@ -67,9 +83,14 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement $announcement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(Request $request, Announcement $announcement,$id)
     {
-        //
+        $announcement=Announcement::find($id);
+        $announcement->update([
+            'title' => $request['title'],
+            'content'=>$request['content'],
+        ]);
+        return redirect()->route('clinic.posts.index');
     }
 
     /**
@@ -78,8 +99,9 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement $announcement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Announcement $announcement)
+    public function destroy(Announcement $announcement,$id)
     {
-        //
+        Announcement::destroy($id);
+        return redirect()->route('clinic.posts.index');
     }
 }

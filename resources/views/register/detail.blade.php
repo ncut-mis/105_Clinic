@@ -18,11 +18,9 @@
                     <tr>
                         <th width="20px" style="text-align:center"></th>
                         <th width="100px" style="text-align:center">看診日期</th>
-                        <th width="100px" style="text-align:center">病患姓名</th>
-                        <th width="100px" style="text-align:center">出生日期</th>
-                        <th width="100px" style="text-align:center">身分證字號</th>
-                        <th width="100px" style="text-align:center">看診醫生</th>
-                        <th width="100px"  style="text-align:left">症狀</th>
+                        <th width="150px" style="text-align:center">病患姓名</th>
+                        <th width="150px" style="text-align:center">出生日期</th>
+                        <th width="150px" style="text-align:center">身分證字號</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,7 +31,25 @@
                             <th style="text-align:center">{{$diagnosis->member_name}}</th>
                             <th style="text-align:center">{{$diagnosis->birthday}}</th>
                             <th style="text-align:center">{{$diagnosis->number}}</th>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th width="20px" style="text-align:center"></th>
+                        <th width="150px" style="text-align:center">看診醫生</th>
+                        <th width="20px" style="text-align:center"></th>
+                        <th width="400px" style="text-align:left">症狀</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($diagnosises as $diagnosis)
+                        <tr>
+                            <th style="text-align:center"></th>
                             <th style="text-align:center">{{$diagnosis->staff_name}}</th>
+                            <th style="text-align:center"></th>
                             <th style="text-align:left">{{$diagnosis->symptom}}</th>
                         </tr>
                     @endforeach
@@ -42,7 +58,7 @@
                 <table class="table table-hover responsive-table ">
                     <thead>
                     <tr>
-                        <th width="800px" style="text-align:right">掛號費：150元</th>
+                        <th width="600px" style="text-align:right">掛號費：150元</th>
                         {{--<th width="30px" style="text-align:right">基本自付：50元</th>--}}
                         {{--<th width="20px" style="text-align:right">藥品部分負擔：0元</th>--}}
                         {{--<th width="20px" style="text-align:right">※金額共計：200元</th>--}}
