@@ -3,8 +3,8 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>Register Create</h2>
-
+            <h3><font face="微軟正黑體">掛號</font></h3>
+            <small class="text-muted">Register</small>
         </div>
         <div class="container">
             <div class="card-top"></div>
@@ -13,7 +13,7 @@
                     @foreach($sections as $section)
                     <form action={{route('register.store',$section)}} id="register" class="col-xs-12" method="POST" class="form-horizontal" name="register">
                         {{ csrf_field() }}
-                        <div style="text-align:center"><h5>{{$section->name}}醫生</h5></div>
+                        <div style="text-align:center"><h5><font face="微軟正黑體">{{$section->name}}醫生</font></h5></div>
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="zmdi zmdi-timer"></i>

@@ -10,7 +10,7 @@ class Register extends Model
     protected $table ='registers';
 
     protected $fillable =[
-        'section_id', 'member_id','status','reservation_no','status','date',
+        'section_id', 'member_id','status','reservation_no','status','date','note',
     ];
 
     public function member()

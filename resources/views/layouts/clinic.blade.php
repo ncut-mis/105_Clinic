@@ -46,81 +46,17 @@
 <div class="overlay"></div>
 <!-- #END# Overlay For Sidebars -->
 <!-- #Float icon -->
-<ul id="f-menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
-    <li class="mfb-component__wrap">
-        <a href="#" class="mfb-component__button--main g-bg-cyan">
-            <i class="mfb-component__main-icon--resting zmdi zmdi-plus"></i>
-            <i class="mfb-component__main-icon--active zmdi zmdi-close"></i>
-        </a>
-        <ul class="mfb-component__list">
-            <li>
-                <a href="doctor-schedule.html" data-mfb-label="Doctor Schedule" class="mfb-component__button--child bg-blue">
-                    <i class="zmdi zmdi-calendar mfb-component__child-icon"></i>
-                </a>
-            </li>
-            <li>
-                <a href="patients.html" data-mfb-label="Patients List" class="mfb-component__button--child bg-orange">
-                    <i class="zmdi zmdi-account-o mfb-component__child-icon"></i>
-                </a>
-            </li>
 
-            <li>
-                <a href="payments.html" data-mfb-label="Payments" class="mfb-component__button--child bg-purple">
-                    <i class="zmdi zmdi-balance-wallet mfb-component__child-icon"></i>
-                </a>
-            </li>
-        </ul>
-    </li>
-</ul>
 <!-- #Float icon -->
 <!-- Morphing Search  -->
 <div id="morphsearch" class="morphsearch">
     <form class="morphsearch-form">
         <div class="form-group m-0">
-            <input value="" type="search" placeholder="Explore Swift..." class="form-control morphsearch-input" />
+            <input value="" type="search" placeholder="" class="form-control morphsearch-input" />
             <button class="morphsearch-submit" type="submit">Search</button>
         </div>
     </form>
     <div class="morphsearch-content">
-        <div class="dummy-column">
-            <h2>People</h2>
-            <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar1.jpg" alt=""/>
-                <h3>Sara Soueidan</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar2.jpg" alt=""/>
-                <h3>Rachel Smith</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar3.jpg" alt=""/>
-                <h3>Peter Finlan</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar4.jpg" alt=""/>
-                <h3>Patrick Cox</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar5.jpg" alt=""/>
-                <h3>Tim Holman</h3>
-            </a></div>
-        <div class="dummy-column">
-            <h2>Popular</h2>
-            <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar5.jpg" alt=""/>
-                <h3>Sara Soueidan</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar4.jpg" alt=""/>
-                <h3>Rachel Smith</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar1.jpg" alt=""/>
-                <h3>Peter Finlan</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar2.jpg" alt=""/>
-                <h3>Patrick Cox</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar3.jpg" alt=""/>
-                <h3>Tim Holman</h3>
-            </a> </div>
-        <div class="dummy-column">
-            <h2>Recent</h2>
-            <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar1.jpg" alt=""/>
-                <h3>Sara Soueidan</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar5.jpg" alt=""/>
-                <h3>Rachel Smith</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar1.jpg" alt=""/>
-                <h3>Peter Finlan</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar4.jpg" alt=""/>
-                <h3>Patrick Cox</h3>
-            </a> <a class="dummy-media-object" href="#"> <img class="round" src="/img/xs/avatar2.jpg" alt=""/>
-                <h3>Tim Holman</h3>
-            </a></div>
     </div>
     <!-- /morphsearch-content -->
     <span class="morphsearch-close"></span> </div>
@@ -133,60 +69,11 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <!-- Notifications -->
-            <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i> <span class="label-count">7</span> </a>
+            <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i></a>
                 <ul class="dropdown-menu">
                     <li class="header">NOTIFICATIONS</li>
                     <li class="body">
                         <ul class="menu">
-                            <li> <a href="javascript:void(0);">
-                                    <div class="icon-circle bg-light-green"><i class="zmdi zmdi-account-add"></i></div>
-                                    <div class="menu-info">
-                                        <h4>12 new members joined</h4>
-                                        <p> <i class="material-icons">access_time</i> 14 mins ago </p>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <div class="icon-circle bg-cyan"><i class="zmdi zmdi-shopping-cart-plus"></i></div>
-                                    <div class="menu-info">
-                                        <h4>4 sales made</h4>
-                                        <p> <i class="material-icons">access_time</i> 22 mins ago </p>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <div class="icon-circle bg-red"><i class="zmdi zmdi-delete"></i></div>
-                                    <div class="menu-info">
-                                        <h4><b>Nancy Doe</b> deleted account</h4>
-                                        <p> <i class="material-icons">access_time</i> 3 hours ago </p>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <div class="icon-circle bg-orange"><i class="zmdi zmdi-edit"></i></div>
-                                    <div class="menu-info">
-                                        <h4><b>Nancy</b> changed name</h4>
-                                        <p> <i class="material-icons">access_time</i> 2 hours ago </p>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <div class="icon-circle bg-blue-grey"><i class="zmdi zmdi-comment-alt-text"></i></div>
-                                    <div class="menu-info">
-                                        <h4><b>John</b> commented your post</h4>
-                                        <p> <i class="material-icons">access_time</i> 4 hours ago </p>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <div class="icon-circle bg-light-green"><i class="zmdi zmdi-refresh-alt"></i></div>
-                                    <div class="menu-info">
-                                        <h4><b>John</b> updated status</h4>
-                                        <p> <i class="material-icons">access_time</i> 3 hours ago </p>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <div class="icon-circle bg-purple"><i class="zmdi zmdi-settings"></i></div>
-                                    <div class="menu-info">
-                                        <h4>Settings updated</h4>
-                                        <p> <i class="material-icons">access_time</i> Yesterday </p>
-                                    </div>
-                                </a> </li>
                         </ul>
                     </li>
                     <li class="footer"> <a href="javascript:void(0);">View All Notifications</a> </li>
@@ -194,35 +81,11 @@
             </li>
             <!-- #END# Notifications -->
             <!-- Tasks -->
-            <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-flag"></i><span class="label-count">9</span> </a>
+            <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-flag"></i></a>
                 <ul class="dropdown-menu">
                     <li class="header">TASKS</li>
                     <li class="body">
                         <ul class="menu tasks">
-                            <li> <a href="javascript:void(0);">
-                                    <h4> Task 1 <small>32%</small> </h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 32%"> </div>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <h4>Task 2 <small>45%</small> </h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-cyan" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 45%"> </div>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <h4>Task 3 <small>54%</small> </h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 54%"> </div>
-                                    </div>
-                                </a> </li>
-                            <li> <a href="javascript:void(0);">
-                                    <h4> Task 4 <small>65%</small> </h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 65%"> </div>
-                                    </div>
-                                </a> </li>
                         </ul>
                     </li>
                     <li class="footer"> <a href="javascript:void(0);">View All Tasks</a> </li>
@@ -241,20 +104,18 @@
         <div class="user-info">
             <div class="admin-image"><img src="{{url('img/staff/'. auth()->user()->photo)}}"> </div>
             <div class="admin-action-info"> <span>Welcome</span>
-                <h3><font face="微軟正黑體">{{Auth::user()->name}}</font></h3>
+                <h3><font face="微軟正黑體">{{Auth::user()->name}} <small>診所人員</small></font></h3>
                 <ul>
-                    <li><a data-placement="bottom" title="Go to Inbox" href="mail-inbox.html"><i class="zmdi zmdi-email"></i></a></li>
-                    <li><a data-placement="bottom" title="Go to Profile" href="profile.html"><i class="zmdi zmdi-account"></i></a></li>
+                    <li><a data-placement="bottom" title="Go to Inbox" href=""><i class="zmdi zmdi-email"></i></a></li>
+                    <li><a data-placement="bottom" title="Go to Profile" href=""><i class="zmdi zmdi-account"></i></a></li>
                     <li><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="zmdi zmdi-settings"></i></a></li>
                     <li><a data-placement="bottom" title="登出" href="/home" ><i class="zmdi zmdi-sign-in"></i></a></li>
                 </ul>
             </div>
             <div class="quick-stats">
-                <h5>Today Report</h5>
+                <h5><font face="微軟正黑體" style="color:#ffffff">今日門診<br><?php echo date("Y年m月d日");?></font></h5>
                 <ul>
-                    <li><span>16<i>Patient</i></span></li>
-                    <li><span>20<i>Panding</i></span></li>
-                    <li><span>04<i>Visit</i></span></li>
+                    <li><font face="微軟正黑體" style="color:#ffffff">診所營業中</font></li>
                 </ul>
             </div>
         </div>
@@ -263,20 +124,21 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
-                <li><a href="{{ route('clinic.home') }}"><i class="zmdi zmdi-home"></i><span><font face="微軟正黑體"><strong>首頁</strong></font></span></a></li>
-                <li><a href="{{ route('medicine.index') }}"><i class="zmdi zmdi-local-hospital"></i><span><font face="微軟正黑體"><strong>藥物管理</strong></font></span></a></li>
-                <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span><font face="微軟正黑體"><strong>預約管理</strong></font></span> </a>
-                    <ul class="ml-menu">
-                        <li><a href="{{ route('register.index') }}">掛號</a></li>
-                        <li><a href="{{ route('register.reservation') }}">預約</a></li>
-                        <li><a href="{{ route('register.receipt') }}">已看診</a></li>
-                    </ul>
+                <li><a href="{{ route('register.index') }}"><i class="zmdi zmdi-home"></i><span><font face="微軟正黑體"><strong>首頁</strong></font></span></a></li>
+                <li><a href="{{ route('clinic.home') }}"><i class="material-icons">create</i><span><font face="微軟正黑體"><strong>現場掛號</strong></font></span> </a>
+                <li><a href="{{ route('register.receipt') }}"><i class="zmdi zmdi-print"></i><span><font face="微軟正黑體"><strong>列印收據及處方箋</strong></font></span> </a>
+                <li><a href="{{ route('register.reservation') }}"><i class="zmdi zmdi-calendar-check"></i><span><font face="微軟正黑體"><strong>預約管理</strong></font></span> </a>
+                    {{--<ul class="ml-menu">--}}
+                        {{--<li><a href="{{ route('register.index') }}">掛號</a></li>--}}
+                        {{--<li><a href="{{ route('register.reservation') }}">預約</a></li>--}}
+                        {{--<li><a href="{{ route('register.receipt') }}">已看診</a></li>--}}
+                    {{--</ul>--}}
                 </li>
                 <?php $URL=$_SERVER['REQUEST_URI'];?>
                 @if($URL==='/clinic/doctors')
                  <li class="active open"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span><font face="微軟正黑體"><strong>診所人員管理</strong></font></span> </a>
                     <ul class="ml-menu">
-                        <li class="active"><a href="{{ route('clinic.doctors') }}"><font face="微軟正黑體"><strong>所有醫生</strong></font></a></li>
+                        <li class="active"><a href="{{ route('clinic.doctors') }}"><font face="微軟正黑體"><strong>醫生人員</strong></font></a></li>
                         <li><a href="{{ route('clinic.staff') }}"><font face="微軟正黑體"><strong>診所人員</strong></font></a></li>
                         <li><a href="{{ route('clinic.addstaff') }}"><font face="微軟正黑體"><strong>新增診所人員</strong></font></a></li>
 
@@ -285,7 +147,7 @@
                 @elseif($URL==='/clinic/staff')
                     <li class="active open"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span><font face="微軟正黑體"><strong>診所人員管理</strong></font></span> </a>
                         <ul class="ml-menu">
-                            <li><a href="{{ route('clinic.doctors') }}"><font face="微軟正黑體"><strong>所有醫生</strong></font></a></li>
+                            <li><a href="{{ route('clinic.doctors') }}"><font face="微軟正黑體"><strong>醫生人員</strong></font></a></li>
                             <li class="active"><a href="{{ route('clinic.staff') }}"><font face="微軟正黑體"><strong>診所人員</strong></font></a></li>
                             <li><a href="{{ route('clinic.addstaff') }}"><font face="微軟正黑體"><strong>新增診所人員</strong></font></a></li>
 
@@ -294,23 +156,16 @@
                     @else
                     <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span><font face="微軟正黑體"><strong>診所人員管理</strong></font></span> </a>
                         <ul class="ml-menu">
-                            <li><a href="{{ route('clinic.doctors') }}"><font face="微軟正黑體"><strong>所有醫生</strong></font></a></li>
+                            <li><a href="{{ route('clinic.doctors') }}"><font face="微軟正黑體"><strong>醫生人員</strong></font></a></li>
                             <li><a href="{{ route('clinic.staff') }}"><font face="微軟正黑體"><strong>診所人員</strong></font></a></li>
                             <li><a href="{{ route('clinic.addstaff') }}"><font face="微軟正黑體"><strong>新增診所人員</strong></font></a></li>
 
                         </ul>
                     </li>
                 @endif
-                <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-o"></i><span><font face="微軟正黑體"><strong>會員管理</strong></font></span> </a>
-                    <ul class="ml-menu">
-                        <li><a href="patients.html">All Patients</a></li>
-                        <li><a href="add-patient.html">Add Patient</a></li>
-                        <li><a href="patient-profile.html">Patient Profile</a></li>
-                        <li><a href="patient-invoice.html">Patient Invoice</a></li>
-                    </ul>
-                </li>
-                <li><a href="{{ route('clinic.information.edit') }}"><i class="zmdi zmdi-file-text"></i><span><font face="微軟正黑體"><strong>診所基本資料</strong></font></span></a>
+                <li><a href="{{ route('medicine.index') }}"><i class="zmdi zmdi-local-hospital"></i><span><font face="微軟正黑體"><strong>藥物管理</strong></font></span></a></li>
                 <li><a href="{{ route('per_week_section.index') }}"><i class="zmdi zmdi-delicious"></i><span><font face="微軟正黑體"><strong>醫生預定看診時段管理</strong></font></span></a></li>
+                <li><a href="{{ route('clinic.information.edit') }}"><i class="zmdi zmdi-file-text"></i><span><font face="微軟正黑體"><strong>診所基本資料</strong></font></span></a>
 
 
                 <li class="header"></li>
@@ -324,8 +179,6 @@
     <!-- Right Sidebar -->
     <aside id="rightsidebar" class="right-sidebar">
         <ul class="nav nav-tabs tab-nav-right" role="tablist">
-            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#skins">Skins</a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#chat">Chat</a></li>
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settings">Setting</a></li>
         </ul>
         <div class="tab-content">
@@ -360,121 +213,6 @@
                         <span>Blush</span> </li>
                 </ul>
             </div>
-            <div role="tabpanel" class="tab-pane" id="chat">
-                <div class="demo-settings">
-                    <div class="search">
-                        <div class="input-group">
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="Search..." required autofocus>
-                            </div>
-                        </div>
-                    </div>
-                    <h6>Recent</h6>
-                    <ul>
-                        <li class="online">
-                            <div class="media">
-                                <a  role="button" tabindex="0"> <img class="media-object " src="/img/xs/avatar1.jpg" alt=""> </a>
-                                <div class="media-body">
-                                    <span class="name">Claire Sassu</span> <span class="message">Can you share the...</span> <span class="badge badge-outline status"></span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="online">
-                            <div class="media"> <a  role="button" tabindex="0"> <img class="media-object " src="/img/xs/avatar2.jpg" alt=""> </a>
-                                <div class="media-body">
-                                    <span class="name">Maggie jackson</span> <span class="message">Can you share the...</span> <span class="badge badge-outline status"></span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="online">
-                            <div class="media"> <a  role="button" tabindex="0"> <img class="media-object " src="/img/xs/avatar3.jpg" alt=""> </a>
-                                <div class="media-body">
-                                    <span class="name">Joel King</span> <span class="message">Ready for the meeti...</span> <span class="badge badge-outline status"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <h6>Contacts</h6>
-                    <ul>
-                        <li class="offline">
-                            <div class="media"> <a  role="button" tabindex="0"> <img class="media-object " src="/img/xs/avatar4.jpg" alt=""> </a>
-                                <div class="media-body">
-                                    <span class="name">Joel King</span> <span class="badge badge-outline status"></span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="online">
-                            <div class="media"> <a  role="button" tabindex="0"> <img class="media-object " src="/img/xs/avatar1.jpg" alt=""> </a>
-                                <div class="media-body">
-                                    <span class="name">Joel King</span> <span class="badge badge-outline status"></span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="offline">
-                            <div class="media"> <a class="pull-left " role="button" tabindex="0"> <img class="media-object " src="/img/xs/avatar2.jpg" alt=""> </a>
-                                <div class="media-body">
-                                    <span class="name">Joel King</span> <span class="badge badge-outline status"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="settings">
-                <div class="demo-settings">
-                    <p>GENERAL SETTINGS</p>
-                    <ul class="setting-list">
-                        <li> <span>Report Panel Usage</span>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox" checked>
-                                    <span class="lever"></span></label>
-                            </div>
-                        </li>
-                        <li> <span>Email Redirect</span>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox">
-                                    <span class="lever"></span></label>
-                            </div>
-                        </li>
-                    </ul>
-                    <p>SYSTEM SETTINGS</p>
-                    <ul class="setting-list">
-                        <li> <span>Notifications</span>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox" checked>
-                                    <span class="lever"></span></label>
-                            </div>
-                        </li>
-                        <li> <span>Auto Updates</span>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox" checked>
-                                    <span class="lever"></span></label>
-                            </div>
-                        </li>
-                    </ul>
-                    <p>ACCOUNT SETTINGS</p>
-                    <ul class="setting-list">
-                        <li> <span>Offline</span>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox">
-                                    <span class="lever"></span></label>
-                            </div>
-                        </li>
-                        <li> <span>Location Permission</span>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox" checked>
-                                    <span class="lever"></span></label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </aside>
     <!-- #END# Right Sidebar -->
@@ -500,5 +238,6 @@
 <!-- Bootstrap Material Datetime Picker Plugin Js -->
 <script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 <script src="{{ asset('js/pages/forms/basic-form-elements.js') }}"></script>
+<script src="{{ asset('js/pages/ui/modals.js') }}"></script><!-- Modal -->
 </body>
 </html>

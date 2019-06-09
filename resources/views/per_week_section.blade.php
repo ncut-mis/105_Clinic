@@ -5,7 +5,8 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h3>醫生每週預定看診時段管理</h3>
+            <h3><font face="微軟正黑體">醫生每週預定看診時段管理</font></h3>
+            <small class="text-muted">Per Week Sections Management Of Doctors</small><br>
         </div>
 
         <div>
@@ -17,7 +18,7 @@
                     <div class="col-sm-4">
 
                         <div>
-                            <label>醫生姓名：</label>
+                            <label class="col-black">醫生姓名：</label>
                             <select name="doctor_id" id="doctor_id" required="" autofocus>
                                 <option value="0" readonly>--Doctor--</option>
                                 @foreach($staffs as $staff)
@@ -31,7 +32,7 @@
                         </div>
 
                         <div>
-                            <label>星期：</label>
+                            <label class="col-black">星期：</label>
                             <select name="weekday" required="" autofocus>
                                 <option value="星期一">星期一</option>
                                 <option value="星期二">星期二</option>
@@ -43,15 +44,15 @@
                             </select>
                         </div>
                         <div>
-                            <label>開始時間：</label>
-                            <input  name="start_time" class="form-control bg-white" placeholder="請輸入開始時間" required="" autofocus>
+                            <label class="col-black">開始時間：</label>
+                            <input  name="start_time" class="form-control bg-white" placeholder="請輸入開始時間" required>
                         </div>
                         <div class="form-group">
-                            <label>結束時間：</label>
-                            <input name="end_time" class="form-control bg-white" placeholder="請輸入結束時間" required="" autofocus>
+                            <label class="col-black">結束時間：</label>
+                            <input name="end_time" class="form-control bg-white" placeholder="請輸入結束時間" required>
                         </div>
                         <div class="form-group">
-                            <label>開始看診日期：</label>
+                            <label class="col-black">開始看診日期：</label>
                             {{--<input name="from" class="form-control" placeholder="請輸入開始日期">--}}
                             <input type="date"   name="from" id="from" placeholder="看診日期" required="" autofocus>
                         </div>
@@ -61,7 +62,7 @@
                 </div>
 
                 <div class="text-right">
-                    <button style="color:white;" type="submit" class=" btn bg-green">新增</button>
+                    <button style="color:white;" type="submit" class="btn  btn-raised bg-teal"><strong>新增</strong></button>
                 </div>
             </form>
         </div>
@@ -77,6 +78,7 @@
                     <th>開始時間</th>
                     <th>結束時間</th>
                     <th>看診日期</th>
+                    <th>修改/刪除</th>
                     <th></th>
                 </tr>
                 </thead>

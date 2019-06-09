@@ -3,7 +3,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h4><font face="微軟正黑體">列印收據及處方箋</font></h4>
+            <h4><font face="微軟正黑體"><strong>列印收據及處方箋</strong></font></h4>
             <small class="text-muted">Print receipt and prescriptions</small><br>
             <a href="{{ route('register.receipt') }}"><button class="btn-success">返回已看診名單</button></a>
         </div>
