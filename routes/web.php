@@ -101,3 +101,13 @@ Route::delete('/per_week_section/{per_week_section}','PerWeekSectionController@d
 Route::get('/per_week_section/{per_week_section}/staff/{staff}/edit', ['as' => 'per_week_section.edit','uses' => 'PerWeekSectionController@edit']);
 Route::patch('/per_week_section/{per_week_section}/update'  , ['as' => 'per_week_section.update', 'uses' => 'PerWeekSectionController@update']);
 
+Route::group(['prefix' => 'clinic'], function() {
+    Route::get('posts/index'          , ['as' => 'clinic.posts.index' , 'uses' => 'AnnouncementController@index']);
+    Route::get('posts/create'   , ['as' => 'clinic.posts.create', 'uses' => 'AnnouncementController@create']);
+    Route::get('posts/{id}'   , ['as' => 'clinic.posts.show', 'uses' => 'AnnouncementController@show']);
+    Route::get('posts/{id}/edit', ['as' => 'clinic.posts.edit'  , 'uses' => 'AnnouncementController@edit']);
+
+    Route::post('posts',          ['as' => 'clinic.posts.store', 'uses' => 'AnnouncementController@store']);
+    Route::patch('posts/{id}/update',    ['as' => 'clinic.posts.update', 'uses' => 'AnnouncementController@update']);
+    Route::delete('posts/{id}',    ['as' => 'clinic.posts.destroy', 'uses' => 'AnnouncementController@destroy']);
+});

@@ -128,6 +128,7 @@
                 <li><a href="{{ route('clinic.home') }}"><i class="material-icons">create</i><span><font face="微軟正黑體"><strong>現場掛號</strong></font></span> </a>
                 <li><a href="{{ route('register.receipt') }}"><i class="zmdi zmdi-print"></i><span><font face="微軟正黑體"><strong>列印收據及處方箋</strong></font></span> </a>
                 <li><a href="{{ route('register.reservation') }}"><i class="zmdi zmdi-calendar-check"></i><span><font face="微軟正黑體"><strong>預約管理</strong></font></span> </a>
+                <li><a href="{{ route('clinic.posts.index') }}"><i class="zmdi zmdi-calendar-check"></i><span><font face="微軟正黑體"><strong>公告管理</strong></font></span> </a>
                     {{--<ul class="ml-menu">--}}
                         {{--<li><a href="{{ route('register.index') }}">掛號</a></li>--}}
                         {{--<li><a href="{{ route('register.reservation') }}">預約</a></li>--}}
