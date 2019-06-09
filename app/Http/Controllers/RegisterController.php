@@ -11,6 +11,7 @@ use App\Patient;
 use App\Register;
 use App\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -32,7 +33,7 @@ class RegisterController extends Controller
             ->where('start','<',$time )->where('end','>',$time )
             ->select('sections.id','sections.start','staff.name AS staff_name',
                 'sections.date','members.name AS member_name','sections.next_register_no',
-                'registers.reservation_no','registers.id','registers.status','registers.note')
+                'registers.reservation_no','registers.id','registers.status','registers.note','members.phone')
             ->orderBy('reservation_no','asc')
             ->get();
         $data= ['registers'=>$registers];
@@ -52,7 +53,7 @@ class RegisterController extends Controller
             ->where('start','<',$time )->where('end','>',$time )
             ->select('sections.id','sections.start','staff.name AS staff_name',
                 'sections.date','members.name AS member_name','sections.next_register_no',
-                'registers.reservation_no','registers.id','registers.status')
+                'registers.reservation_no','registers.id','registers.status','registers.note')
             ->get();
         $data= ['registers'=>$registers];
         return view('register.late',$data);
@@ -181,6 +182,46 @@ class RegisterController extends Controller
         return redirect()->route('register.index');
     }
 
+    public function iccardstore(Request $request,Section $section)
+    {
+        $keyword =$request->get('number');
+        $member = Member::where('number','LIKE',"$keyword")->get()->first();
+        $register_no = $section->next_register_no;
+        if($member===null)
+        {
+            Member::create([
+                'name' => $request->name,
+                'birthday' =>null,
+                'number'=> $request->number,
+                'phone' =>null,
+                'address' =>null,
+                'email' => "123@gmail.com",
+                'password' => Hash::make($request,['number']),
+            ]);
+            $max_member_id = Member::orderby('id','DESC')->get()->first();
+            Register::create([
+                'section_id' => $section->id,
+                'member_id' => $max_member_id->id,
+                'reservation_no'=> $register_no,
+                'reminding_time' =>null,
+                'reminding_no' =>null,
+                'status' => 0,
+            ]);
+        }
+         else {
+              Register::create([
+              'section_id' => $section->id,
+              'member_id' => $member->id,
+              'reservation_no'=> $register_no,
+              'reminding_time' =>null,
+              'reminding_no' =>null,
+              'status' => 0,
+        ]);}
+
+        $section->next_register_no= $register_no+1;
+        $section->save();
+        return redirect()->route('register.index');
+    }
     /**
      * Display the specified resource.
      *
@@ -233,9 +274,12 @@ class RegisterController extends Controller
         return redirect()->route('register.index');
     }
 
-    public function add_register($id)
+    public function add_register(Request $request,$id)
     {
         $add_register = Register::find($id);
+        $add_register->update([
+            'note' =>$request->note,
+        ]);
         $add_register->status = 0;
         $add_register->save();
         return redirect()->route('register.index');

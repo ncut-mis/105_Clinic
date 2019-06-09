@@ -49,7 +49,6 @@ Route::patch('/clinic/information'  , ['as' => 'clinic.information.update', 'use
 //firebase測試
 Route::get('/firebase/late/{patient}'  , ['as' => 'firebase.late', 'uses' => 'NoticeController@late']);
 Route::get('/firebase/time'  , ['as' => 'firebase.time', 'uses' => 'NoticeController@time']);
-Route::get('/firebase/late'  , ['as' => 'firebase.late', 'uses' => 'NoticeController@late']);
 
 
 //掛號相關路由..................................................................................
@@ -62,6 +61,9 @@ Route::get('/register/search',['as' => 'register.search', 'uses' =>'RegisterCont
 //掛號操作view(選擇醫生、時段)、儲存掛號
 Route::get('/register/create',['as' => 'register.create', 'uses' =>'RegisterController@create']);
 Route::post('/register/create/{section}',['as' => 'register.store', 'uses' =>'RegisterController@store']);
+
+//***使用健保卡掛號***
+Route::post('/register/iccard/create/{section}',['as' => 'register.iccard.store', 'uses' =>'RegisterController@iccardstore']);
 
 //預約相關路由.....................................................................................
 //搜尋會員view(keyword)(預約用)
