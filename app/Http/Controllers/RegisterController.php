@@ -24,6 +24,7 @@ class RegisterController extends Controller
         date_default_timezone_set( "Asia/Taipei");
         $date = date("Y-m-d");
         $time = date("H:i:s");
+        $clinics = auth()->user()->clinic->id;
         $registers = Register::join('members','members.id','=','registers.member_id')
             ->join('sections','sections.id','=','registers.section_id')
             ->join('doctors','doctors.id','=','sections.doctor_id')
@@ -32,10 +33,11 @@ class RegisterController extends Controller
             ->where('start','<',$time )->where('end','>',$time )
             ->select('sections.id','sections.start','staff.name AS staff_name',
                 'sections.date','members.name AS member_name','sections.next_register_no',
-                'registers.reservation_no','registers.id','registers.status','registers.note')
+                'registers.reservation_no','registers.id','registers.status','registers.note',
+                'sections.clinic_id AS clinic_id')
             ->orderBy('reservation_no','asc')
             ->get();
-        $data= ['registers'=>$registers];
+        $data= ['registers'=>$registers,'clinics'=>$clinics,];
         return view('register.index',$data);
     }
 
@@ -44,6 +46,7 @@ class RegisterController extends Controller
         date_default_timezone_set( "Asia/Taipei");
         $date = date("Y-m-d");
         $time = date("H:i:s");
+        $clinics = auth()->user()->clinic->id;
         $registers = Register::join('members','members.id','=','registers.member_id')
             ->join('sections','sections.id','=','registers.section_id')
             ->join('doctors','doctors.id','=','sections.doctor_id')
@@ -52,9 +55,9 @@ class RegisterController extends Controller
             ->where('start','<',$time )->where('end','>',$time )
             ->select('sections.id','sections.start','staff.name AS staff_name',
                 'sections.date','members.name AS member_name','sections.next_register_no',
-                'registers.reservation_no','registers.id','registers.status')
+                'registers.reservation_no','registers.id','registers.status','sections.clinic_id AS clinic_id')
             ->get();
-        $data= ['registers'=>$registers];
+        $data= ['registers'=>$registers,'clinics'=>$clinics];
         return view('register.late',$data);
     }
 
@@ -75,6 +78,7 @@ class RegisterController extends Controller
         date_default_timezone_set( "Asia/Taipei");
         $date = date("Y-m-d");
         $time = date("H:i:s");
+        $clinics = auth()->user()->clinic->id;
         $registers = Register::join('members','members.id','=','registers.member_id')
             ->join('sections','sections.id','=','registers.section_id')
             ->join('doctors','doctors.id','=','sections.doctor_id')
@@ -83,9 +87,9 @@ class RegisterController extends Controller
             ->where('start','<',$time )->where('end','>',$time )
             ->select('sections.id','sections.start','staff.name AS staff_name',
                 'sections.date','members.name AS member_name','sections.next_register_no','members.id AS members_id',
-                'registers.reservation_no','registers.id','registers.status')
+                'registers.reservation_no','registers.id','registers.status','sections.clinic_id AS clinic_id')
             ->get();
-        $data= ['registers'=>$registers];
+        $data= ['registers'=>$registers,'clinics'=>$clinics];
         return view('register.receipt',$data);
     }
 

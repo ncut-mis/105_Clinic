@@ -30,6 +30,7 @@
                     </thead>
                     <tbody>
                     @foreach($registers as $register)
+                        @if($register->clinic_id == Auth::user()->clinic->id )
                          @if($register->status == 0 )
                                <tr>
                                    <th style="text-align:center"></th>
@@ -53,6 +54,7 @@
                                            <button class="btn-secondary">Cancel</button></form></th>
                                </tr>
                          @endif
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
@@ -83,21 +85,23 @@
                     </thead>
                     <tbody>
                     @foreach($registers as $register)
-                         @if($register->status === -1)
-                             <tr>
-                                    <th style="text-align:center"></th>
-                                    <th style="text-align:center">{{$register->member_name}}</th>
-                                    <th style="text-align:center">{{$register->phone}}</th>
-                                    <th style="text-align:center">{{$register->staff_name}}</th>
-                                    <th style="text-align:center">{{$register->start}}</th>
-                                    <th style="text-align:center">{{$register->reservation_no}}</th>
-                                 <form action="{{ route('register.index.add_register',$register->id) }}" method="POST">
-                                     {{ csrf_field() }}
-                                     {{ method_field('PATCH') }}
-                                 <th style="text-align:center"><input type="text" name="note" id="note" class="form-control" placeholder="輸入備註"></th>
-                                 <th><button class="btn-secondary">ADD</button></th></form>
-                             </tr>
-                         @endif
+                        @if($register->clinic_id == Auth::user()->clinic->id )
+                                @if($register->status === -1)
+                                    <tr>
+                                        <th style="text-align:center"></th>
+                                        <th style="text-align:center">{{$register->member_name}}</th>
+                                        <th style="text-align:center">{{$register->phone}}</th>
+                                        <th style="text-align:center">{{$register->staff_name}}</th>
+                                        <th style="text-align:center">{{$register->start}}</th>
+                                        <th style="text-align:center">{{$register->reservation_no}}</th>
+                                        <form action="{{ route('register.index.add_register',$register->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('PATCH') }}
+                                        <th style="text-align:center"><input type="text" name="note" id="note" class="form-control" placeholder="輸入備註"></th>
+                                        <th><button class="btn-secondary">ADD</button></th></form>
+                                    </tr>
+                                @endif
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
