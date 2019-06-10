@@ -16,7 +16,23 @@ class ClinicController extends Controller
      */
     public function home()
     {
-        return view('clinic.home');
+        date_default_timezone_set( "Asia/Taipei");
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
+        $doctors=auth()->user()->clinic->doctors;//診所所有醫生
+
+        foreach ($doctors as $doctor)
+        {
+            $current_doctors_section=$doctor->sections()->where('date',$date)->where('start','<',$time)->where('end','>',$time)->get();//目前有看診時段的醫生
+//            dd($current_doctors_section);
+            foreach ($current_doctors_section as $current_doctor_section)
+            {
+               $doctor_section_datas[] = $current_doctor_section;//門診時段資訊
+//                echo   $doctor_section_datas;
+            }
+        }
+                $data = ['doctor_section_datas' => $doctor_section_datas];
+                return view('clinic.home',$data);
     }
 
     public function doctors()
