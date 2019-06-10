@@ -22,6 +22,7 @@
                     </thead>
                     <tbody>
                     @foreach($registers as $register)
+                        @if($register->clinic_id == Auth::user()->clinic->id )
                         @if($register->status === 2)
                             <tr>
                                 <th style="text-align:center"></th>
@@ -34,6 +35,7 @@
                                     <input type="hidden" name="member_id" value="{{$register->members_id}}" >
                                     <button type="submit" class="bg-warning">查看<br>收據及處方箋</button></a></th>
                             </tr>
+                        @endif
                         @endif
                     @endforeach
                     </tbody>

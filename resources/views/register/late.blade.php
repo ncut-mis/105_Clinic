@@ -23,6 +23,7 @@
                     </thead>
                     <tbody>
                     @foreach($registers as $register)
+                        @if($register->clinic_id == Auth::user()->clinic->id )
                          @if($register->status === 3)
                               <tr>
                                   <th style="text-align:center"></th>
@@ -36,6 +37,7 @@
                                           {{ method_field('PATCH') }}
                                           <button class="btn-secondary">重新排位</button></form></th>
                               </tr>
+                         @endif
                          @endif
                     @endforeach
                     </tbody>
