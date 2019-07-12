@@ -48,7 +48,7 @@
                                    @else
                                        <th style="text-align:center" class="bg-warning">{{$register->note}}<br>已過號並重新安排掛號</th>
                                    @endif
-                                   <th><form action="{{ route('register.index.cancel',$register->id) }}" method="POST">
+                                   <th><form action="{{ route('register.index.cancel',$register) }}" method="POST">
                                            {{ csrf_field() }}
                                            {{ method_field('PATCH') }}
                                            <button class="btn-secondary">Cancel</button></form></th>

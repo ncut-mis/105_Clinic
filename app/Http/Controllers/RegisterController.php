@@ -271,31 +271,29 @@ class RegisterController extends Controller
      * @param  \App\Register $register
      * @return \Illuminate\Http\Response
      */
-    public function cancel($id)
+    public function cancel(Register $register)
     {
-        $cancel = Register::find($id);
-        $cancel->status = 4;
-        $cancel->save();
-        return redirect()->route('register.index');
-    }
-
-    public function add_register(Request $request,$id)
-    {
-        $add_register = Register::find($id);
-        $add_register->update([
-            'note' =>$request->note,
+        $register->update([
+            'status' => 4,
         ]);
-        $add_register->status = 0;
-        $add_register->save();
         return redirect()->route('register.index');
     }
 
-    public function reset_register($id)
+    public function add_register(Request $request,Register $register)
     {
-        $registers = Register::find($id);
-        $registers->status = 0;
-        $registers->reservation_no = $registers->section->current_no+ 2.5;//int
-        $registers->save();
+        $register->update([
+            'note' =>$request->note,
+            'status' => 0,
+        ]);
+        return redirect()->route('register.index');
+    }
+
+    public function reset_register(Register $register)
+    {
+        $register->update([
+            'reservation_no' =>$register->section->current_no+ 2.5,
+            'status' => 0,
+        ]);
         return redirect()->route('register.index');
     }
 

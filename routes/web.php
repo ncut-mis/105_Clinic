@@ -54,8 +54,8 @@ Route::get('/firebase/time'  , ['as' => 'firebase.time', 'uses' => 'NoticeContro
 //掛號相關路由..................................................................................
 //今日掛號名單&今日已預約名單view；取消掛號、今日預約轉為掛號
 Route::get('/register/index',['as' => 'register.index', 'uses' =>'RegisterController@index']);
-Route::patch('/register/index/{id}/cancel',['as' => 'register.index.cancel', 'uses' =>'RegisterController@cancel']);
-Route::patch('/register/index/{id}/add_register',['as' => 'register.index.add_register', 'uses' =>'RegisterController@add_register']);
+Route::patch('/register/index/{register}/cancel',['as' => 'register.index.cancel', 'uses' =>'RegisterController@cancel']);
+Route::patch('/register/index/{register}/add_register',['as' => 'register.index.add_register', 'uses' =>'RegisterController@add_register']);
 //搜尋會員view(keyword)(掛號用)
 Route::get('/register/search',['as' => 'register.search', 'uses' =>'RegisterController@member_search']);
 //掛號操作view(選擇醫生、時段)、儲存掛號
