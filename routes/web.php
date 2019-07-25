@@ -86,7 +86,7 @@ Route::patch('/register/{register}/update'  , ['as' => 'register.update', 'uses'
 //顯示看完診的名單
 Route::get('/register/receipt',['as' => 'register.receipt', 'uses' =>'RegisterController@receipt']);
 //顯示該單的看診明細(會員、醫生、症狀、用藥......)
-Route::get('/register/{id}/detail',['as' => 'register.detail', 'uses' =>'RegisterController@detail']);
+Route::get('/register/{member}/detail',['as' => 'register.detail', 'uses' =>'RegisterController@detail']);
 
 
 //藥物相關路由.......................................................................................
