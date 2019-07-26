@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \app\Console\Commands\Reminding::class,
+        \app\Console\Commands\PerWeekSection::class,
     ];
 
     /**
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command( 'notice:time')->everyThirtyMinutes();
+        $schedule->command( 'adjust:section')->daily();
     }
 
     /**

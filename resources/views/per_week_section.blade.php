@@ -43,13 +43,13 @@
                                 <option value="星期日">星期日</option>　
                             </select>
                         </div>
-                        <div>
+                        <div class="form-group">
                             <label class="col-black">開始時間：</label>
-                            <input  name="start_time" class="form-control bg-white" placeholder="請輸入開始時間" required>
+                            <input type="text"  name="start_time"  placeholder="請輸入開始時間"  required autofocus>
                         </div>
                         <div class="form-group">
                             <label class="col-black">結束時間：</label>
-                            <input name="end_time" class="form-control bg-white" placeholder="請輸入結束時間" required>
+                            <input type="text" name="end_time" placeholder="請輸入結束時間"  required autofocus>
                         </div>
                         <div class="form-group">
                             <label class="col-black">開始看診日期：</label>
