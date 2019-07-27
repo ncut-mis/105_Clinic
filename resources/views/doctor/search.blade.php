@@ -2,14 +2,14 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-             <div class="header col-teal" style="font-size: 20px;">
+             <div class="" style="font-size: 20px;">
                 <font face="微軟正黑體"><strong>掛號搜尋</strong></font>
             </div>
             <small class="text-muted">Register Search</small>
         </div>
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="card bg-teal">
+                <div class="">
                     <div class="body table-responsive">
                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                             <thead>
