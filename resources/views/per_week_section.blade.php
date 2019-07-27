@@ -93,7 +93,7 @@
                         <td>{{$per_week_section->weekday}}</td>
                         <td>{{$per_week_section->start_time}}</td>
                         <td>{{$per_week_section->end_time}}</td>
-                        <td>{{$per_week_section->from}}</td>
+                        <td>{{$per_week_section->date}}</td>
                         <td>
                             <a class="btn btn-link bg-blue" href="{{ route('per_week_section.edit',[$per_week_section,$staff])}}">修改時段</a>
                             <form action="/per_week_section/{{ $per_week_section->id}}" method="POST">
